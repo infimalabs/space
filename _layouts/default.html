@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="{{ page.lang | default: site.lang | default: "en-US" }}">
+
+  <head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="{{ site.description }}">
+    <meta name="author" content="{{ site.author }}">
+
+    {% if page.title -%}
+    <title>{{ site.title }} - {{ page.title }}</title>
+    {%- else -%}
+    <title>{{ site.title }}</title>
+    {%- endif %}
+
+    {% if jekyll.environment != "development" -%}{%- include ga.html id=site.data.default.ident.ga -%}{%- endif %}
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <!-- Bootstrap core CSS -->
+    <link href="/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/assets/vendor/fontawesome/css/fontawesome.min.css" rel="stylesheet" type="text/css">
+
+    <!-- Custom fonts for this template -->
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href='https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100;300;400;700&display=swap' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css2?family=Rubik+Glitch:wght@400&display=swap' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;900&display=swap' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css2?family=Zen+Dots:wght@400;700&display=swap' rel="stylesheet" type="text/css">
+
+    <!-- Custom styles for this template -->
+    <link href="/assets/css/agency.min.css?{{ site.time | date: "%s%N" }}" rel="stylesheet">
+
+  </head>
+
+  <body id="{{site.title | slugify}}">
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
+      <div class="container">
+        <a class="navbar-brand js-scroll-trigger" href="/#{{site.title | slugify}}">
+          {%- for name in site.data.default.brand.name -%}
+          {%- if name == "&lt;" -%}
+          <span class="logo-lt">{{ name }}</span>
+          {%- else -%}
+          <span class="logo-{{ name | slugify }}">{{ name }}</span>
+          {%- endif  -%}
+          {%- endfor -%}
+        </a>
+        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          <i class="fas fa-bars"></i>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav ml-auto">
+            {%- for link in site.data.default.nav -%}
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="{{ link.url }}">{{ link.title }}</a>
+            </li>
+            {%- endfor -%}
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Header -->
+    {% for i in (1..2) -%}
+    <header class="intro {% cycle 'fixed', 'unfixed' %}">
+      <div class="container">
+        <div class="intro-text">
+          <div class="intro-heading">
+          {% assign lines = page.intro | default: page.title | strip | split: page.newline %}
+          {%- for line in lines -%}
+            {% assign words = line | split: " " %}
+            <div class="intro-line">
+            {%- for w in words -%}<span class="intro-line-{{ w | slugify }}">{{ w }}</span> {% endfor -%}
+            </div>
+          {%- endfor -%}
+          </div>
+        </div>
+      </div>
+    </header>
+    {% endfor -%}
+
+    <!-- Main -->
+    <main>
+      {{ content }}
+    </main>
+
+    <!-- Footer -->
+    <footer>
+      <div class="container">
+        <div class="row">
+          <div class="copyright col-md-4">
+            &copy;&nbsp;<strong>{{ 'now' | date: "%Y" }}</strong>&nbsp;<a href="{{ site.url | absolute_url }}">{{ site.data.default.copyright }}</a>
+          </div>
+          <div class="col-md-4">
+            <ul class="list-inline social-buttons">
+              {%- for network in site.data.default.brand.social -%}
+              <li class="list-inline-item"><a href="{{ network.url }}"><i class="fab fa-{{ network.title }}"></i></a>
+              </li>
+              {%- endfor -%}
+            </ul>
+          </div>
+          <div class="col-md-4">
+            <!-- <ul class="list-inline quicklinks">
+              <li><a href="#">Privacy Policy</a></li>
+              <li><a href="#">Terms of Use</a></li>
+            </ul> -->
+          </div>
+        </div>
+      </div>
+    </footer>
+
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="/assets/vendor/jquery/jquery.min.js"></script>
+    <script src="/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Plugin JavaScript -->
+    <script src="/assets/vendor/jquery-easing/jquery.easing.min.js"></script>
+
+    <!-- Custom scripts for this template -->
+    <script src="/assets/js/agency.min.js"></script>
+
+  </body>
+
+</html>

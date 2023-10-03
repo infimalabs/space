@@ -1,0 +1,22 @@
+copyright: Infima Labs
+
+ident:
+  ga: G-4P6BD6030C
+
+brand:
+  name:
+  - "&lt;"
+  - space
+  social:
+  - title: facebook
+    url: https://www.facebook.com/infimalabs
+  - title: instagram
+    url: https://www.instagram.com/infimalabs/
+  - title: twitter
+    url: https://twitter.com/infimalabs
+
+nav:
+- title: Spatial Computing
+  url: '/'
+- title: A15 Phase Structure
+  url: '/A15'

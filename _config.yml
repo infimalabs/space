@@ -1,0 +1,79 @@
+tz: America/Chicago
+url: https://infima.space
+title: infima.space
+author: Infima Labs
+description: >-
+  infima.space
+
+host: 0.0.0.0
+open_url: true
+encoding: utf-8
+strict_front_matter: true
+
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - node_modules
+  - vendor/bundle/
+  - vendor/cache/
+  - vendor/gems/
+  - vendor/ruby/
+  - A15/_build/
+  - A15/A15.tpl
+
+plugins:
+  - jekyll-mentions
+  - jekyll-readme-index
+  - jekyll-redirect-from
+  - jekyll-sitemap
+  - jemoji
+
+liquid:
+  error_mode: strict
+  strict_filters: true
+  # Too many exceptions with no clear solutions.
+  # strict_variables: true
+
+kramdown:
+  show_warnings: true
+
+sass:
+  style: compressed
+  sourcemap: development
+
+defaults:
+  - scope:
+      path: ""
+      type: pages
+    values:
+      # 10 years in the future.
+      date: 2033-10-03 10:00:00 -0500
+      layout: article
+      newline: "\n"
+      title: Accelerate all virtualities
+  - scope:
+      path: "*.md"
+    values:
+      date: 2023-10-03 10:00:00 -0500
+      last_modified_at: 2023-10-12 02:00:00 -0500
+      tags: [md]
+  - scope:
+      path: "*.pdf"
+    values:
+      tags: [pdf]
+  - scope:
+      path: A15/**/*
+    values:
+      categories: [A15]
+  - scope:
+      path: A15.*
+    values:
+      categories: [A15]
+  - scope:
+      path: A15.md
+    values:
+      redirect_from: [/A15/]
+      title: A15 Phase Structure
+      intro: |-
+        Tenfold the demand
+        Double the speed
