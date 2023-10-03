@@ -1,0 +1,38 @@
+ident:
+  ga: G-4P6BD6030C
+brand:
+  name:
+  - "&lt;"
+  - space
+  intro:
+    heading:
+    - Double the speed
+  social:
+  - title: facebook
+    url: https://www.facebook.com/infimalabs
+  - title: instagram
+    url: https://www.instagram.com/infimalabs/
+  - title: twitter
+    url: https://twitter.com/infimalabs
+nav:
+- title: A15 Phase Structure
+  url: '/A15/'
+copyright: Infima Labs
+url: https://infimalabs.com
+
+default:
+  intro:
+    heading:
+    - Accelerate all virtualities
+  title: The Fabric of the Metaverse
+  subtitle: Spatial Computing Research and Experimental Libraries
+  items:
+  - content: true
+
+A15:
+  intro:
+    heading:
+    - Tenfold the demand
+    - Double the speed
+  items:
+  - group: true

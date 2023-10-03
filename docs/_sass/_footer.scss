@@ -1,0 +1,25 @@
+// Styling for the footer
+
+footer {
+  color: $light;
+  padding: 25px 0;
+  text-align: center;
+  .copyright {
+    @include heading-font;
+    @include text-shadow;
+    font-size: 90%;
+    line-height: 40px;
+    text-transform: none;
+  }
+  ul.social-buttons {
+    font-size: 200%;
+  }
+  ul.quicklinks {
+    font-size: 90%;
+    line-height: 40px;
+    margin-bottom: 0;
+    text-transform: none;
+    @include heading-font;
+    @include text-shadow;
+  }
+}

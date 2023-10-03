@@ -1,0 +1,97 @@
+// Styling for the navbar
+
+#mainNav {
+  @include text-shadow;
+  text-align: right;
+  border-bottom: none;
+  background-color: $dark;
+  .navbar-toggler {
+    font-size: 12px;
+    right: 0;
+    padding: 13px;
+    color: $gray-400;
+    border: 0;
+    background-color: $primary;
+    @include navbar-font;
+    @include text-shadow;
+  }
+  .navbar-brand {
+    color: $gray-400;
+    @include logo-font;
+    @include text-shadow;
+    &.active,
+    &:active,
+    &:focus,
+    &:hover {
+      color: lighten($gray-400, 30%);
+    }
+    .logo-lt {
+      color: $primary;
+      font-family: "Rubik Glitch";
+      vertical-align: top;
+      line-height: 100%;
+      font-size: 150%;
+      &:hover {
+        color: $secondary;
+        transition: all 0.3s;
+      }
+    }
+  }
+  .navbar-nav {
+    .nav-item {
+      .nav-link {
+        color: $gray-400;
+        font-weight: 400;
+        padding: 0.75em 0;
+        @include navbar-font;
+        @include text-shadow;
+        &.active,
+        &:hover {
+          color: $primary;
+        }
+      }
+    }
+  }
+}
+@media(max-width:992px) {
+  #mainNav {
+    border-bottom: 3px solid $primary;
+  }
+}
+@media(min-width:992px) {
+  #mainNav {
+    padding-top: 25px;
+    padding-bottom: 25px;
+    -webkit-transition: padding-top 0.3s, padding-bottom 0.3s, background 0.3s, border 0.3s;
+    -moz-transition: padding-top 0.3s, padding-bottom 0.3s, background 0.3s, border 0.3s;
+    transition: padding-top 0.3s, padding-bottom 0.3s, background 0.3s, border 0.3s;
+    border-bottom: 3px solid transparent;
+    background-color: transparent;
+    .navbar-brand {
+      font-size: 1.75em;
+      -webkit-transition: all 0.3s;
+      -moz-transition: all 0.3s;
+      transition: all 0.3s;
+    }
+    .navbar-nav {
+      .nav-item {
+        .nav-link {
+          padding: 1.1em 1em !important;
+          -webkit-transition: all 0.3s;
+          -moz-transition: all 0.3s;
+          transition: all 0.3s;
+        }
+      }
+    }
+    &.navbar-shrink {
+      padding-top: 0;
+      padding-bottom: 0;
+      border-color: $primary;
+      background-color: $dark;
+      .navbar-brand {
+        font-size: 1.25em;
+        padding: 12px 0;
+      }
+    }
+  }
+}

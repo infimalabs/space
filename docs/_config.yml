@@ -1,0 +1,22 @@
+tz: America/Chicago
+url: https://infima.space
+title: infima.space
+author: Infima Labs
+description: >-
+  infima.space
+
+plugins:
+  - jekyll-sitemap
+
+assets_path: /assets/
+
+sass:
+  style: compressed
+
+defaults:
+  - scope:
+      path: ""
+    values:
+      layout: "space"
+      date: "2023-10-03T10:00:00-0500"
+      title: "Accelerate all virtualities"

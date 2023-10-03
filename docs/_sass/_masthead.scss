@@ -1,0 +1,56 @@
+// Styling for the masthead
+
+header.masthead {
+  text-align: center;
+  color: $primary;
+  &.unfixed {
+    opacity: 0;
+    position: relative;
+    bottom: 100%;
+  }
+  &.fixed {
+    z-index: -1;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+  }
+  .intro-text {
+    padding-top: 150px;
+    padding-bottom: 100px;
+    .intro-heading {
+      color: $primary;
+      padding: 0.2em;
+      font-size: 37px;
+      font-weight: 700;
+      @include intro-font;
+      @include text-shadow;
+      .intro-line {
+        &-accelerate {
+          font-style: italic;
+        }
+        &-virtualities, &-demand, &-speed {
+          color: $secondary;
+        }
+        &-of, &-all, &-the, &-via {
+          color: $secondary;
+          font-size: 0.75em;
+        }
+      }
+    }
+  }
+}
+@media(min-width:768px) {
+  header.masthead {
+    .intro-text {
+      padding-top: 250px;
+      padding-bottom: 250px;
+      .intro-heading {
+        font-size: 55px;
+        font-weight: 700;
+        @include intro-font;
+        @include text-shadow;
+      }
+    }
+  }
+}
