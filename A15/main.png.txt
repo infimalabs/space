@@ -1,0 +1,3 @@
+figure:views=4:scale=1/96:n=40/9:centers:bars:axes:title
+pyritohedra:verts:faces
+tetradecahedra:edges:lines
