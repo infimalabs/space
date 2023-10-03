@@ -1,0 +1,5 @@
+figure:views=XY:scale=0:n=5/2:centers:edges:faces:stix
+pyritohedra
+tetradecahedra:lines:planes=X:colormap=Reds
+tetradecahedra:lines:planes=Y:colormap=Greens
+tetradecahedra:lines:planes=Z:colormap=Blues
