@@ -8,7 +8,7 @@ override v := $(or $v,draft)
 pngs := $(basename $(notdir $(wildcard figure/*.png.txt)))
 
 # Constants.
-gitmod := $(shell git log -1 --pretty=format:%ct)
+gitmod := $(shell TZ=UTC0 git log -1 --date=format-local:%Y-%m-%dT%H:%M:%SZ --format=%cd)
 giturl := $(subst git@,https://,$(subst :,/,$(subst .git,,$(shell git config remote.origin.url))))
 
 # Group sources.
@@ -30,6 +30,7 @@ pdfcpu = pdfcpu
 pandoc = pandoc
 python = python3
 mkdir = mkdir -v
+touch = touch
 open = open
 cp = cp -v
 mv = mv -v
@@ -50,7 +51,9 @@ latexc = latexmk -outdir=$(bldtmp) -jobname=$(@F).tmp -usepretex='$(latexv)' -pd
 pdfc = $(pdfcpu) merge -m create $@.tmp.pdf $^ \
 			 && $(call stampc,$v,$(stampv1),$@.tmp.pdf) \
 			 && $(call stampc,$(giturl),$(stampv2),$@.tmp.pdf) \
-			 && $(pdfcpu) optimize $@.tmp.pdf $@
+			 && $(pdfcpu) optimize $@.tmp.pdf \
+			 && $(touch) -d $(gitmod) $@.tmp.pdf \
+			 && $(mv) $@.tmp.pdf $@
 docsc = $(pandoc) $g.tex --fail-if-warnings --standalone --wrap=none --template=$(@F) --output=$@ --default-image-extension=png \
 			 --resource-path=$(bldtmp):$(bldone) --to=html --mathml --citeproc --toc \
 			 -M toc-title:Table\ of\ Contents -M date:$(gitmod)
