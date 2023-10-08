@@ -8,12 +8,13 @@
 // Core variables and mixins
 @import "_variables.scss";
 @import "_mixins.scss";
-// Global CSS
-@import "_pandoc.scss";
-@import "_global.scss";
 // Components
+@import "_default.scss";
 @import "_navbar.scss";
-@import "_masthead.scss";
+@import "_intro.scss";
 @import "_footer.scss";
+@import "_article.scss";
 // Groups
 @import "_A15.scss";
+// Media
+@import "_media.scss";

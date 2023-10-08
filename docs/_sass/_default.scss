@@ -1,0 +1,118 @@
+// Default styling
+
+html { height: 100%; }
+
+body,
+{
+  @include body-font;
+  background-attachment: fixed;
+  background-color: $main;
+  background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEMAAAA5CAMAAABarWbmAAAAllBMVEUAAAADAwMAAAAUFBQKCgoKCgoKCgoMDAwKCgoLCwsJCQkLCwsKCgoKCgoKCgoKCgoICAgKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoJCQkKCgoKCgoKCgoKCgoMDAwLCwsKCgoICAgICAgKCgoJCQkKCgoKCgoKCgoKCgoJCQkKCgoLCwsLCwsKCgoGBgYKCgoKCgpu1IxTAAAAMXRSTlMABQMJqNpuDPo1OGvdPyS2Me2BQ/Hf1NDHwXOloVFNGLKVEw7jkIdlYZot5npeWyAbmRC9IgAAAnhJREFUSMftV2uTojAQHIIC6q6CiG/xvb5Wd/v//7nLhHBhzQar7q6u9oMpy8pQTfcwFWYaQps8ci6PGmhQzRLUwpPjv3OIgkP8bR4zEo/yiMkXbgqVh1tFeHQGYfQqMZ6DIXyLEL2FDha+7XUEGgGzLpFvAwTR8YKoF+FylIo2i7ynOwNGJIIEUX9rKckwnQCrmOIVME6/A2z7wCUQMljugd1BKokvgG5DSuRqm4+ARrfKosCHDNgvqcjx3JNKpiyM9fsRBh0h9xyJYCCT9TkyhRgDvbN65uIvHwJzLouObztgveG9ltmsgd2N97oQc2CYm+R5I6ZcllBLTKREbHJXu1YPmOhkQ5llMhWawZT4cw9kV7n/YImFBBtAob/gZD9kcM2A9WeR9R0mZqX0XRZi6tkngi9NZVne0zJLo1Gt9KIJuU5LDbBllicGNBeVQtinao4kdZ9trlWCueJzrS0d0FTP6SZp4qgAbsgULxsSNZBthqAW4FOAZkheHeQFHfKeHE+OJ8e/49jWQsJH723I/UM87B/1E5pOSLh3f48RRR87MdYF0P3Ubtmm+a91P7VkzAQxfV0Iq2dX+3qL77BbtpTIbma+VFmUrJkvt8xu/p78/Z6oMmiPywlyN33GbQboaRwIGVQAubYhnh40RzXSS4xfmIPsqJPzCuMxzEsZlljpUVq1FuVENdPYmBTjTvSljZS4XL/OHd8oKVdgmSXWv2pzQKIzsB2XcRirM51XpTux3RqQdATZFqfqdHaS5c4l2WaJCqslHOd2o3whmxnXsUzHILTINwAbo/yp/X6YR45BaNdNYJ99cr2RfuzXf8h3w5PjDzh+Af+UT66cmpSVAAAAAElFTkSuQmCC");
+  bottom: 0;
+  color: $dark;
+  font-kerning: normal;
+  hyphens: auto;
+  left: 0;
+  margin: 0;
+  overflow-wrap: break-word;
+  overflow-y: scroll;
+  padding: 0;
+  position: absolute;
+  right: 0;
+  text-rendering: optimizeLegibility;
+  top: 0;
+  z-index: -100;
+}
+
+main,
+{
+  max-width: 96rem;
+}
+
+main,
+article,
+section,
+{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: auto;
+}
+
+p {
+  line-height: 1.75;
+}
+
+a {
+  text-shadow: 0 0 0.025em $dark;
+  color: darken($primary, 10%);
+  &:hover {
+    color: $primary;
+  }
+  &:visited {
+    color: lighten($secondary, 10%);
+    &:hover {
+        color: $secondary;
+    }
+  }
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 700;
+  @include heading-font;
+}
+
+.text-primary {
+  color: $primary !important;
+}
+
+.text-justify {
+  text-align: justified;
+}
+
+// Button Styles
+.btn {
+  @include heading-font;
+  @include text-shadow;
+  font-weight: 700;
+}
+
+.btn-xl {
+  font-size: 18px;
+  padding: 20px 40px;
+}
+
+.btn-primary {
+  background-color: $primary;
+  border-color: $primary;
+  &:active,
+  &:focus,
+  &:hover {
+    background-color: lighten($primary, 7.5%) !important;
+    border-color: lighten($primary, 7.5%) !important;
+    color: white;
+  }
+  &:active,
+  &:focus {
+    box-shadow: 0 0 0 0.2rem rgba(254, 209, 55,.5) !important;
+  }
+}
+
+// Highlight color customization
+::-moz-selection {
+  background: $primary;
+  text-shadow: none;
+}
+
+::selection {
+  background: $primary;
+  text-shadow: none;
+}
+
+img::selection {
+  background: transparent;
+}
+
+img::-moz-selection {
+  background: transparent;
+}

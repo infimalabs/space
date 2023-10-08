@@ -1,0 +1,35 @@
+// Print
+@media print {
+  html,
+  {
+    background-color: white;
+
+    * {
+      background-color: transparent !important;
+      color: black !important;
+      filter: grayscale(100%) !important;
+    }
+
+    body,
+    {
+      > :not(main) { display: none; }
+
+      > main,
+      {
+        * { border-width: 0 !important; }
+        > * { max-width: 90%; }
+        nav { display: none; }
+        h2, h3, h4 { break-after: avoid; }
+        p, h2, h3 { orphans: 3; widows: 3; }
+        details[open] > summary { list-style-type: none; }
+        ::before, ::after { content: none !important; }
+      }
+    }
+  }
+}
+
+
+// Mobile
+@media (max-width: 36rem) {
+  body { font-size: 0.875em; }
+}

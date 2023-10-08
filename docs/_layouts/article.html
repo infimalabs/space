@@ -1,0 +1,51 @@
+---
+layout: default
+group: default
+---
+
+{%- assign g = page.group | default: layout.group | default: "default" -%}
+{%- assign group = site.data[g] | default: site.data.default[g] | default: page -%}
+
+<article>
+
+{%- if g != "default" and group == site.data[g] -%}
+
+  {%- assign released = page.date | default: "now" | date:"%B %e, %Y" -%}
+  {%- assign modified = group.date | default: "now" | date:"%B %e, %Y" -%}
+
+  <h1>{{ group.title | default: page.title | trim -}}
+      &nbsp;<a class="fa-solid fa-file-arrow-down" title="Download {{g}}.pdf" href="{{g}}.pdf"></a></h1>
+  <h6>{{ group.subtitle | default: page.subtitle | default: group.author | trim }}&nbsp;&mdash;&nbsp;{{ released }}
+    {%- if released != modified %}<br/>(last modified {{modified}}){% endif %}</h6>
+
+  <section>
+
+    <aside>{{ content }}</aside>
+
+    {%- if group.abstract != "" -%}
+    <header>
+      <h2>{{ group.abstract-title }}</h2>
+      {{ group.abstract }}
+    </header>
+    {%- endif -%}
+
+    {%- if group.table-of-contents != "" -%}
+    <nav id="{{ group.idprefix }}TOC" role="doc-toc">
+    {%- if group.toc-title != "" -%}
+    <h2 id="{{ group.idprefix }}toc-title">{{ group.toc-title }}</h2>
+    {%- endif -%}
+    {{ group.table-of-contents }}
+    </nav>
+    {%- endif -%}
+
+  </section>
+
+  {{ group.body }}
+
+{%- else -%}
+
+  {{ content }}
+
+{%- endif -%}
+
+</article>

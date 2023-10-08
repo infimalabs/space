@@ -52,7 +52,7 @@ pdfc = $(pdfcpu) merge -m create $@.tmp.pdf $^ \
 			 && $(call stampc,$(giturl),$(stampv2),$@.tmp.pdf) \
 			 && $(pdfcpu) optimize $@.tmp.pdf $@
 docsc = $(pandoc) $g.tex --fail-if-warnings --standalone --wrap=none --template=$(@F) --output=$@ --default-image-extension=png \
-			 --resource-path=$(bldtmp):$(bldone) --to=html --mathml --citeproc --number-sections --toc \
+			 --resource-path=$(bldtmp):$(bldone) --to=html --mathml --citeproc --toc \
 			 -M toc-title:Table\ of\ Contents -M date:$(gitmod)
 
 # Ensure dirs.

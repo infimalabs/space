@@ -17,6 +17,10 @@ defaults:
   - scope:
       path: ""
     values:
-      layout: "space"
-      date: "2023-10-03T10:00:00-0500"
+      newline: "\n"
+      layout: "article"
       title: "Accelerate all virtualities"
+  - scope:
+      path: "index.md"
+    values:
+      date: "2023-10-03T10:00:00-0500"

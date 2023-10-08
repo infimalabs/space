@@ -1,0 +1,280 @@
+article,
+section,
+{
+  max-width: 100%;
+
+  > *,
+  {
+    background-color: $body;
+    flex: 0 1 100%;
+    margin: 0;
+    max-width: 100%;
+    min-width: 8rem;
+    width: 72rem;
+  }
+
+  > :not(article, section),
+  { padding: 1rem 2rem; }
+
+  > article,
+  > section,
+  { background-color: transparentize($dark, 0.0625); }
+
+  > h1,
+  {
+    @include text-shadow;
+    background-color: $main;
+    border-bottom: 3px solid $primary;
+    border-top: 3px solid $primary;
+    color: $light;
+    max-width: 100%;
+    padding: 8rem 0.5rem 4rem;
+    text-align: center;
+    width: 96rem;
+
+    > em { padding-right: 0.2em; }
+    > span { font-size: 1.5ex; }
+    > span:nth-of-type(even)::after { content: "\0a"; white-space: pre; }
+  }
+
+  > h1 + h6,
+  {
+    @include serif-font;
+    @include text-shadow;
+    color: $light;
+    background-color: transparentize($dark, 0.0625);
+    font-size: 1rem;
+    font-style: italic;
+    font-weight: 400;
+    padding: 2rem 0.5rem;
+    text-align: center;
+  }
+
+  > h1 + h6 + *,
+  > h1 + :not(h6),
+  { padding-top: 4rem; }
+
+  > h1 + h6 + article,
+  > h1 + h6 + section,
+  { padding-bottom: 0; }
+
+  > :last-child { border-bottom: 3px solid $primary; }
+
+  h2,
+  h3,
+  h4,
+  h5,
+  {
+    margin: 0;
+    padding: 3rem 0.5rem 1rem;
+  }
+
+  aside,
+  {
+    border-top: 3px solid $primary;
+    border-bottom: 3px solid $primary;
+    background-color: darken($body, 5%);
+
+    > details > summary::after,
+    {
+      content: "\2026";
+      display: inline-block;
+      width: 0;
+    }
+
+    > details[open] > summary::after { content: none; }
+    > details:only-child > summary { font-size: 1.75em;}
+  }
+
+  nav,
+  {
+    background-color: darken($body, 5%);
+    border-bottom: 3px solid $primary;
+    border-top: 3px solid $primary;
+    font-size: 1.2em;
+    text-align: left;
+
+    a,
+    {
+      color: $dark;
+      text-shadow: none;
+
+      &:hover { text-shadow: 0 0 0.1em $primary; }
+      &:visited { color: $light; }
+      &:visited:hover { color: $dark; }
+    }
+
+    h2 { margin-top: 0; }
+  }
+
+  figure,
+  {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+
+    figcaption,
+    {
+      flex: 0 1 auto;
+
+      &::before,
+      {
+        content: "Figure. ";
+        font-weight: bold;
+      }
+    }
+  }
+
+  blockquote,
+  {
+    color: darken($light, 20%);
+    padding: 1em 3em;
+  }
+
+  dd { padding-left: 2em; }
+  img { vertical-align: bottom; }
+  p { text-align: justify; }
+
+  // Pandoc styling on descendants only.
+  > * {
+    p {
+      margin: 1em 0;
+    }
+    img {
+      max-width: 100%;
+    }
+    svg {
+      height: auto;
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    code {
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      padding-bottom: 4em;
+      text-align: center;
+    }
+    nav[role="doc-toc"] {
+      padding-bottom: 4em;
+    }
+    nav[role="doc-toc"] li {
+      list-style: none;
+    }
+    nav[role="doc-toc"] ul {
+      padding-left: 1.3em;
+    }
+    nav[role="doc-toc"] > ul {
+      padding-left: 0;
+    }
+    nav[role="doc-toc"] a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    /* CSS for citations */
+    div.csl-bib-body { }
+    div.csl-entry {
+      clear: both;
+      margin-bottom: 0em;
+    }
+    .hanging-indent div.csl-entry {
+      margin-left:2em;
+      text-indent:-2em;
+    }
+    div.csl-left-margin {
+      min-width:2em;
+      float:left;
+    }
+    div.csl-right-inline {
+      margin-left:2em;
+      padding-left:1em;
+    }
+    div.csl-indent {
+      margin-left: 2em;
+    }
+  }
+}
+
+
+@media(min-width:72rem) {
+  article,
+  {
+    > :not(h1) { max-width: 72rem; }
+    > :not(figure, h1) { padding-left: 10rem; padding-right: 10rem; }
+    > :not(figure, section, h1, h2, h3, h4, h5, h6) { padding-left: 12rem; padding-right: 12rem; }
+    > blockquote { padding-left: 13rem; padding-right: 13rem; }
+  }
+}

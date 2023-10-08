@@ -1,11 +1,19 @@
 ---
-layout: space
 group: A15
 date: "2023-10-03 10:00:00 -0500"
 title: A15 Phase Structure
+intro: |-
+  Tenfold the demand
+  Double the speed
 ---
 
-# _Early Draft Release_
+<details markdown=block open>
+
+<summary markdown=span>
+
+**_Early Draft Release_**
+
+</summary>
 
 This [document](https://infima.space/A15/A15.pdf) is replete with section-sized **(todo)** items, contains no references, and has
 seen no review---it's _incomplete_. However, its code, research, and outcomes _are_ complete. In the wake of [Meta Connect
@@ -27,3 +35,5 @@ its GitHub project page (and later, a standalone Unity Asset).
 This research is favorably licensed under [CC-BY-4.0](https://github.com/infimalabs/space/blob/main/LICENSE). The one exception
 is `A15.py`, i.e. the [code proving the concept](https://github.com/infimalabs/space/blob/main/A15/A15.py) (and generating all
 figures seen here) which is even-more favorably licensed under MIT.
+
+</details>

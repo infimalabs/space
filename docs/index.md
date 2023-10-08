@@ -1,15 +1,19 @@
-# _What is infima.space?_
+# The Fabric of the Metaverse
+
+###### Spatial Computing Research and Experimental Libraries &mdash; {{page.date | date_to_string: "ordinal", "US"}}
+
+## _What is infima.space?_
 
 [Infima Space](https://infima.space) showcases research projects from [Infima Labs](https://infimalabs.com). Dedicated to the
 advancement of highly-interconnected virtual spaces, we believe the long-anticipated arrival of mainstream spatial computing is
 near. We use this _space_ to aggregate and present our ideas and research on such technologies.
 
-## Spatial Computing Research and Experimental Libraries
+### Spatial Computing Research and Experimental Libraries
 
 Below are excerpts from the Abstract or Introduction of current research endeavors. Each area of focus is accompanied by a
 dedicated page on this site. When applicable, original research and code is made available.
 
-### [A15 Phase Structure](/A15/)
+#### [A15 Phase Structure](/A15/)
 
 * Research [PDF](/A15/A15.pdf) or [HTML](/A15/) (early draft release)
 * `space-rust` [Protocol](https://github.com/infimalabs/space-rust) (under development)
