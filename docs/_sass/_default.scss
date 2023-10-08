@@ -101,11 +101,15 @@ h1, h2, h3, h4, h5, h6 {
 // Highlight color customization
 ::-moz-selection {
   background: $primary;
+  color: lighten($dark, 20%);
+  color: $main;
   text-shadow: none;
 }
 
 ::selection {
   background: $primary;
+  color: lighten($dark, 20%);
+  color: $main;
   text-shadow: none;
 }
 
