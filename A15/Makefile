@@ -8,7 +8,7 @@ override v := $(or $v,draft)
 pngs := $(basename $(notdir $(wildcard figure/*.png.txt)))
 
 # Constants.
-gitmod := $(shell TZ=UTC0 git log -1 --date=format-local:%Y-%m-%dT%H:%M:%SZ --format=%cd)
+gitmod := $(shell TZ=UTC0 git log -1 --date=format-local:%Y-%m-%dT%H:%M:%SZ --format=%cd -- $g.{py,tex,bib})
 giturl := $(subst git@,https://,$(subst :,/,$(subst .git,,$(shell git config remote.origin.url))))
 
 # Group sources.
