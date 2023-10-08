@@ -99,7 +99,7 @@ section,
       color: $dark;
       text-shadow: none;
 
-      &:hover { text-shadow: 0 0 0.1em $primary; }
+      &:hover { color: $dark; text-shadow: 0 0 0.1em $primary; }
       &:visited { color: $light; }
       &:visited:hover { color: $dark; }
     }
