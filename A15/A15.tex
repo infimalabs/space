@@ -165,8 +165,8 @@ appears in the form of alternating left- and right-handed sites with $T_h$ \emph
 (4-of-10 3-fold axes) of the full icosahedral symmetry group $I_h$. This localized asymmetry drastically increases isotropy (13.5
 mean coordination) without impacting long-range isometric order.
 
-\begin{figure}[!ht]\capstart \includegraphics[trim=130 140 80 50,scale=.35]{wp}\includegraphics[trim=130 140 80 50,scale=.35]{ts}
-\caption{\TWPh{} (left) and \tTSp{} (right). \label{fig-wp} \label{fig-ts}} \end{figure}
+\begin{figure}[!ht] \capstart \includegraphics[trim=130 140 80 50,scale=.35]{wp} \includegraphics[trim=130 140 80
+50,scale=.35]{ts} \caption{\TWPh{} (left) and \tTSp{} (right). \label{fig-wp-ts}} \end{figure}
 
 In a~sense, \AAAB{} is already binary. Its fractional lattice coefficients use nothing but the first three multiples of $2^{-2}$,
 and all eight basis sites are perfect binary floats. Quadruple its fractional coordinates into the integers, and its two,
@@ -176,10 +176,10 @@ triangle and the crux of the golden ratio. \AAAB{} can be defined at unit scale 
 discretize themselves to a~valid \AAAB{} site. In other words, finding the nearest site requires a precise definition of
 \emph{nearest}.
 
-The first definition, depicted in \autoref{fig-wp} (left), is available to any 3D point set. Starting from an \AAAB{} integer
+The first definition, depicted in \autoref{fig-wp-ts} (left), is available to any 3D point set. Starting from an \AAAB{} integer
 crystal lattice, identify its Voronoi honeycomb from the set of inflection points between neighboring \AAAB{} sites---edges in
 this secondary structure have exactly two nearest neighbors in \AAAB{}, and vertices have three or more---and \tWPh{} appears.
-A~simpler, less isotropic definition of \emph{nearest} is also available to \AAAB{}. As seen in \autoref{fig-ts} (right), when
+A~simpler, less isotropic definition of \emph{nearest} is also available to \AAAB{}. As seen in \autoref{fig-wp-ts} (right), when
 the angle between sites in the secondary structure is fixed to 90°---forcing exactly six nearest neighbors and filling the space
 with \emph{unit} cubes---\tTSp{} emerges instead. The price for this simplicity is reduced spatial accuracy and more directional
 aliasing.
@@ -261,9 +261,9 @@ as $N_1$ (cell width), $\epsilon_N$, $\epsilon_\delta$, $\epsilon_\Delta$, and $
 
 \subsection{ Validation Techniques and Statistical Analysis }\label{validation-techniques-and-statistical-analysis}
 
-\begin{figure}[!hb] \includegraphics[width=.325\textwidth]{histu} \includegraphics[width=.265\textwidth]{hists}
-\includegraphics[width=.26\textwidth]{histb} \caption{ Example \emph{unstable} (left) \label{fig-histu}, \emph{stable}
-(middle) \label{fig-hists}, and \emph{binary} (right) \label{fig-histb} configurations. } \end{figure}
+\begin{figure}[!hb] \includegraphics[width=.26\textwidth]{histb} \includegraphics[width=.265\textwidth]{hists}
+\includegraphics[width=.325\textwidth]{histu} \caption{Example \emph{binary} (left) \emph{stable} (middle) and \emph{unstable}
+(right) configurations. \label{fig-hist}} \end{figure}
 
 \textbf{(todo)} Explain \AAAB.py histogram bar graph and its epsilons; show unstable configurations generating a~smattering of
 epsilons and unused gaps; contrast this with gapless, sequential configurations that always generate a~limited number of epsilons
