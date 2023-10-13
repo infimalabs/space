@@ -11,7 +11,7 @@ section,
   > *,
   {
     background-color: $body;
-    flex: 0 1 100%;
+    flex: 0 1 auto;
     margin: 0;
     max-width: 100%;
     min-width: 8rem;
@@ -22,7 +22,7 @@ section,
   > section,
   { background-color: $dark; }
 
-  > :not(article, section),
+  > :not(article, section, iframe),
   { padding: 1rem 1rem; }
 
   > p + p,
@@ -67,14 +67,15 @@ section,
     text-align: center;
   }
 
-  > h1 + h6 + :not(article, section),
-  > h1 + :not(h6, article, section),
+  > h1 + h6 + :not(article, section, iframe),
+  > h1 + :not(h6, article, section, iframe),
   { padding-top: 2rem; }
 
   > h1 + h6 + article,
   > h1 + h6 + section,
   { padding-bottom: 0; }
 
+  > :first-child { border-top: 3px solid $primary; }
   > :last-child { border-bottom: 3px solid $primary; }
 
   h2,
@@ -147,8 +148,23 @@ section,
     padding: 1em 3em;
   }
 
+  img,
+  {
+    border: 0 solid $primary;
+    vertical-align: bottom;
+
+    &:only-child { border-width: 3px 0; }
+  }
+
+  iframe,
+  {
+    background-color: $main;
+    border: 0;
+    height: 75vh;
+    padding: 0;
+  }
+
   dd { padding-left: 2em; }
-  img { vertical-align: bottom; }
   p { text-align: justify; }
 
   // Pandoc styling on descendants only.
@@ -272,8 +288,8 @@ section,
 @media(min-width:72rem) {
   article,
   {
-    > :not(h1, article) { max-width: 72rem; padding-left: 10rem; padding-right: 10rem; }
-    > :not(h1, h2, h3, h4, h5, h6, article, section) { padding-left: 11rem; padding-right: 11rem; }
+    > :not(h1, article, iframe) { max-width: 72rem; padding-left: 10rem; padding-right: 10rem; }
+    > :not(h1, h2, h3, h4, h5, h6, article, section, iframe) { padding-left: 11rem; padding-right: 11rem; }
     > blockquote { padding-left: 13rem; padding-right: 13rem; }
     > figure { padding-left: 3rem; padding-right: 3rem; }
   }

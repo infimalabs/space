@@ -11,6 +11,7 @@ encoding: utf-8
 strict_front_matter: true
 
 exclude:
+  - .sass-cache
   - Gemfile
   - Gemfile.lock
   - node_modules
