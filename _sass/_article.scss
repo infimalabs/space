@@ -35,7 +35,11 @@ section,
   { padding-top: 0; }
 
   > :not(p) + p,
-  { text-indent: 1em; }
+  {
+    text-indent: 1em;
+
+    & > img:first-child { margin-left: -1em; }
+  }
 
   > h1,
   {
