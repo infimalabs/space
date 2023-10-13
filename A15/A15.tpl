@@ -41,13 +41,13 @@ last_modified_at: |-2
   $^$$last_modified_at$
 math: |-2
   $^$$math$
-pagetitle: |-2
-  $^$$pagetitle$
 subtitle: |-2
   $^$$subtitle$
 table-of-contents: |-2
   $^$$table-of-contents$
 title: |-2
+  $^$$pagetitle$
+title-html: |-2
   $^$$title$
 title-prefix: |-2
   $^$$title-prefix$

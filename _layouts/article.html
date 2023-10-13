@@ -10,7 +10,7 @@ layout: default
   {%- assign released = page.date | default: "now" | date:"%B %e, %Y" -%}
   {%- assign modified = page.last_modified_at | default: "now" | date:"%B %e, %Y" -%}
 
-  <h1>{{ page.title }}&nbsp;<a class="fa-solid fa-file-arrow-down" title="Download {{g}}.pdf" href="{{g}}.pdf"></a></h1>
+  <h1>{{ page.title-html }}&nbsp;<a class="fa-solid fa-file-arrow-down" title="Download {{g}}.pdf" href="{{g}}.pdf"></a></h1>
   <h6>{{ page.subtitle | default: page.author }}&nbsp;&mdash;&nbsp;{{ released }}
     {%- if released != modified %}<br/>(last modified {{modified}}){% endif %}</h6>
 
