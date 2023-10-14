@@ -53,10 +53,10 @@ latexc = $(latexmk) -outdir=$(bldtmp) -jobname=$(@F).tmp -usepretex='$(pre1)$(pr
 				 && $(mv) $@{.tmp.pdf,}
 docsc = $(rm) -f $@ \
 				&& $(pandoc) $g.tex --output=$@ --lua-filter=$g.lua --resource-path=$(bldtmp) \
-				--fail-if-warnings --standalone --wrap=none --citeproc --default-image-extension=png \
+				--fail-if-warnings --standalone --citeproc --default-image-extension=png \
 				-M toc-title:Table\ of\ Contents -M date:$(gittop) -M last_modified_at:$(gitmod) $1
-htmlc = $(call docsc,--mathml --to html5+gfm_auto_identifiers --template=$g.tpl --toc --ascii)
-markc = $(call docsc,--mathjax --to gfm+definition_lists-yaml_metadata_block)
+htmlc = $(call docsc,--mathml --to html5+gfm_auto_identifiers --template=$g.tpl --toc --ascii --wrap=none)
+markc = $(call docsc,--mathjax --to gfm-yaml_metadata_block)
 
 # Ensure dirs.
 $(bldone) $(bldtmp): ; $(mkdir) -p $@
