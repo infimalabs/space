@@ -8,16 +8,13 @@
   display: inline-block;
   padding: 2em 0.5em;
 
-  &[src$="/histu.png"],
-  &[src="histu.png"],
+  &[src$="histu.png"],
   { width: 36.5%; }
 
-  &[src$="/hists.png"],
-  &[src="hists.png"],
+  &[src$="hists.png"],
   { width: 30.5%; }
 
-  &[src$="/histb.png"],
-  &[src="histb.png"],
+  &[src$="histb.png"],
   { width: 30%; }
 }
 

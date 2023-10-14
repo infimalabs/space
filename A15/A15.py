@@ -76,7 +76,7 @@ Examples:
     - Random Visualization: python3 A15.py -pop -auto
     - Shape with Properties: python3 A15.py -pop,auto,edges figure -scale=0 pyritohedra -h=G06
     - Multiple Configurations: python3 A15.py -pop fig:n=10/3:edges:faces:centers:stix p++ t+:lines
-    - Configuration from files: python3 A15.py - ./intro.png.txt <<< :pop:title:axes:bars:views=4
+    - Configuration from files: python3 A15.py - ./fig-intro.png.txt <<< :pop:title:axes:bars:views=4
 
 Notes:
     - For deeper understanding or intricate setups, refer to the main paper or supplementary content.

@@ -11,21 +11,22 @@ encoding: utf-8
 strict_front_matter: true
 
 exclude:
+  - "*/Makefile"
+  - "*/latexmkrc"
   - .sass-cache
+  - A15/*.txt
+  - A15/A15.*
   - Gemfile
   - Gemfile.lock
+  - Makefile
   - node_modules
-  - vendor/bundle/
-  - vendor/cache/
-  - vendor/gems/
-  - vendor/ruby/
-  - A15/_build/
-  - A15/A15.tpl
+  - vendor/
 
 plugins:
   - jekyll-mentions
   - jekyll-readme-index
   - jekyll-redirect-from
+  - jekyll-relative-links
   - jekyll-sitemap
   - jemoji
 
@@ -53,27 +54,14 @@ defaults:
       newline: "\n"
       title: Accelerate all virtualities
   - scope:
-      path: "*.md"
+      path: README.md
     values:
       date: 2023-10-03 10:00:00 -0500
       last_modified_at: 2023-10-12 02:00:00 -0500
-      tags: [md]
   - scope:
-      path: "*.pdf"
-    values:
-      tags: [pdf]
-  - scope:
-      path: A15/**/*
+      path: A15/*
     values:
       categories: [A15]
-  - scope:
-      path: A15.*
-    values:
-      categories: [A15]
-  - scope:
-      path: A15.md
-    values:
-      redirect_from: [/A15/]
       title: A15 Phase Structure
       intro: |-
         Tenfold the demand

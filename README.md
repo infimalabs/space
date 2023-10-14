@@ -13,9 +13,9 @@ near. We use this _space_ to aggregate and present our ideas and research on suc
 Below are excerpts from the Abstract or Introduction of current research endeavors. Each area of focus is accompanied by a
 dedicated page on this site. When applicable, original research and code is made available.
 
-#### [A15 Phase Structure](/A15)
+#### [A15 Phase Structure](/A15/)
 
-* Research [PDF](/A15.pdf) or [HTML](/A15) (early draft release)
+* Research [PDF](/A15.pdf) or [HTML](/A15/) (early draft release)
 * `space-rust` [Protocol](https://github.com/infimalabs/space-rust) (under development)
 
 > ... the proposed solution rounds each three-dimensional (3D) floating-point coordinate—and all its unused dynamic range—to the

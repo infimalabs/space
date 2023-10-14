@@ -23,11 +23,13 @@ bldone = $(bldall)/$v
 bldtmp = $(bldone)/tmp
 
 # Build products.
-blddocs = $(bldone)/$g.md
 bldpdfs = $(bldone)/$g.pdf
+bldmark = $(bldone)/index.md
+bldrtfm = $(bldone)/README.md
 bldpngs = $(addprefix $(bldone)/,$(pngs:.txt=))
 
 # Build tooling.
+install = install -v
 latexmk = latexmk
 pandoc = pandoc
 python = python3
@@ -50,9 +52,11 @@ latexc = $(latexmk) -outdir=$(bldtmp) -jobname=$(@F).tmp -usepretex='$(pre1)$(pr
 				 && $(touch) -c -d $(gitmod) $@.tmp.pdf \
 				 && $(mv) $@{.tmp.pdf,}
 docsc = $(rm) -f $@ \
-				&& $(pandoc) $g.tex --output=$@ --lua-filter=$g.lua --template=$g.tpl --resource-path=$(bldtmp) --fail-if-warnings --toc \
-				--standalone --wrap=none --ascii --mathml --citeproc --default-image-extension=png --to=html5+gfm_auto_identifiers \
-				-M toc-title:Table\ of\ Contents -M date:$(gittop) -M last_modified_at:$(gitmod) -M g:$g -M v:$v
+				&& $(pandoc) $g.tex --output=$@ --lua-filter=$g.lua --resource-path=$(bldtmp) \
+				--fail-if-warnings --standalone --wrap=none --citeproc --default-image-extension=png \
+				-M toc-title:Table\ of\ Contents -M date:$(gittop) -M last_modified_at:$(gitmod) $1
+htmlc = $(call docsc,--mathml --to html5+gfm_auto_identifiers --template=$g.tpl --toc --ascii)
+markc = $(call docsc,--mathjax --to gfm+definition_lists-yaml_metadata_block)
 
 # Ensure dirs.
 $(bldone) $(bldtmp): ; $(mkdir) -p $@
@@ -63,14 +67,20 @@ $(bldone)/%.png: $g.py %.png.txt | $(bldone); $(figc)
 # Compile content.
 $(bldone)/%.pdf: %.tex $(bldpngs) $(MAKEFILE_LIST) | $(bldtmp); $(latexc)
 
+# Compile README.md.
+$(bldrtfm): $(srcs) $(bldpngs) $(MAKEFILE_LIST); $(markc)
+
 # Compile website.
-$(blddocs): $(srcs) $(bldpngs) $(MAKEFILE_LIST); $(docsc)
+$(bldmark): $(srcs) $(bldpngs) $(MAKEFILE_LIST) $(bldrtfm); $(htmlc)
 
 # Group targets.
-build: $(blddocs) $(bldpdfs)
+build: $(bldrtfm) $(bldmark) $(bldpdfs)
 
 # Group tests.
-t test check: build; @echo 'TODO($<): $@'; exit 1
+t test check: build; @echo 'TODO($<): $@'
+
+# Install products.
+install: build test; $(install) -p -m 0644 $(bldpngs) $(bldrtfm) $(bldmark) $(bldpdfs) $(or $(DESTDIR),.)
 
 # View products.
 openpdfs open: $(bldpdfs); $(open) $^
@@ -79,10 +89,11 @@ openall: openpngs openpdfs
 
 # Drop products.
 clean: cleanpdfs cleantmp
-cleantmp cleanone cleanpngs cleanpdfs cleandocs cleanall: clean%: ; $(rm) -rf $(bld$(or $*,tmp))
+cleantmp cleanone cleanpngs cleanpdfs cleanmark cleanrtfm cleanall: clean%: ; $(rm) -rf $(bld$*)
 
 # Default target.
-.DEFAULT_GOAL := build
+.DEFAULT_GOAL := install
 
 # Non-file targets.
-.PHONY: build t test check open openpngs openpdfs openall clean cleantmp cleanone cleanpngs cleanpdfs cleandocs cleanall
+.PHONY: install build t test check open openpngs openpdfs openall \
+	clean cleantmp cleanone cleanpngs cleanpdfs cleanmark cleanrtfm cleanall

@@ -1,10 +1,4 @@
 ---
-permalink: |-2
-  /A15
-g: |-2
-  A15
-v: |-2
-  draft
 abstract: |-2
   <p>Spatial computing stands at the heart of immersive, competitive experiences. When reality yields to fast-paced virtual arenas, every millisecond can clutch the win, and every dropped frame can shatter the illusion. Widespread spatial partitioning of different virtual realities (VR) with the topologically close-packed <strong><em>A15</em> phase structure</strong> (<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>&#x3B2;</mi><annotation encoding="application/x-tex">\beta</annotation></semantics></math>&#x2013;<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>W</mi><annotation encoding="application/x-tex">W</annotation></semantics></math>) promises to thread new, scalable dimensions of isotropic order into the fabric of the metaverse itself.</p>
   <p>This research advances the development of a&#xA0;trans-metaversal coordination space. Latency-sensitive, full-body VR experiences&#x2014;such as online multiplayer tournaments&#x2014;are close to insufferable under the current infrastructure. In lieu of a&#xA0;shared, compact spatial representation, downstream spatial protocols resort to resharing the original floating-point coordinates. Full immersion demands tenfold the coordinates at double the speed&#x2014;simply relaying the positional coordinates of a&#xA0;5-on-5 full-body VR match can exceed 100 kbps per user.</p>
@@ -18,7 +12,7 @@ author-meta: |-2
   C Anthony Risinger
 body: |-2
   <figure id="fig-intro">
-  <img src="/A15/intro.png" />
+  <img src="fig-intro.png" />
   <figcaption>Illustration of <em>A15</em> at three different scales. <span id="fig-intro" label="fig-intro"></span></figcaption>
   </figure>
   <h1 id="introduction-to-floats-and-spatial-partitioning-with-a15">Introduction to Floats and Spatial Partitioning with <em>A15</em></h1>
@@ -30,14 +24,14 @@ body: |-2
   <p>This research applies to IEEE 754-2008 base<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi></mi><mn>2</mn></msub><annotation encoding="application/x-tex">_{2}</annotation></semantics></math> floating-point numbers of all bit sizes, and may refer to them as <em>binary<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi></mi><mn>64</mn></msub><annotation encoding="application/x-tex">_{64}</annotation></semantics></math></em>, <em>binary<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi></mi><mn>32</mn></msub><annotation encoding="application/x-tex">_{32}</annotation></semantics></math></em>, <em>base<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi></mi><mn>2</mn></msub><annotation encoding="application/x-tex">_{2}</annotation></semantics></math> floats</em>, or simply <em>floats</em>. For coding and analysis purposes, binary<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi></mi><mn>64</mn></msub><annotation encoding="application/x-tex">_{64}</annotation></semantics></math> is preferred, due to its large size and prevalence in modern CPUs. For baselines and performance comparisons, binary<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi></mi><mn>32</mn></msub><annotation encoding="application/x-tex">_{32}</annotation></semantics></math> is preferred, due to its widespread presence in hardware, software, and network stacks.</p>
   <p>The nomenclature and parlance used throughout is primarily that of crystallography, borrowing from other disciplines as necessary.</p>
   <figure id="fig-cell2">
-  <img src="/A15/cell2.png" />
+  <img src="fig-cell2.png" />
   <figcaption>Left-handed <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi></mi><mn>1</mn></msup><msub><mi>/</mi><mn>2</mn></msub></mrow><annotation encoding="application/x-tex">^1/_2</annotation></semantics></math> unit cell. <span id="fig-cell2" label="fig-cell2"></span></figcaption>
   </figure>
   <h2 id="foundational-understanding-of-a15-and-spatial-partitioning">Foundational Understanding of <em>A15</em> and Spatial Partitioning</h2>
   <p>Partitioning virtual spaces is a&#xA0;matter of fairness. &#x201C;Fairness," as it applies to transformations on structures in 3D space, is a&#xA0;measure of isometry and isotropy&#x2014;reducing the bit space <em>must not</em> significantly warp distances and angles between any two sites. While isometry on its own is readily achievable, combining it with isotropy is much more difficult. The <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>S</mi><mi>O</mi><mrow><mo stretchy="true" form="prefix">(</mo><mn>3</mn><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">SO(3)</annotation></semantics></math> group, or the set of all possible 3D rotations, is spherical&#x2014;highly-isotropic structures appear &#x201C;rounder" from the perspective of an individual site&#x2014;and simply cannot fit nicely inside a&#xA0;cubical lattice &#x201C;box". This innate tension between translation-preserving symmetries and rotation-preserving symmetries drastically shrinks the pool of N-fold designs available to perfectly isometric 3D lattices. In accordance with the crystallographic restriction theorem, C12 is the maximum coordination number, and the only possible angles are 180<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mi></mi><mo>&#x2218;</mo></msup><annotation encoding="application/x-tex">^{\circ}</annotation></semantics></math> (2-fold), 120<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mi></mi><mo>&#x2218;</mo></msup><annotation encoding="application/x-tex">^{\circ}</annotation></semantics></math> (3-fold), 90<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mi></mi><mo>&#x2218;</mo></msup><annotation encoding="application/x-tex">^{\circ}</annotation></semantics></math> (4-fold), and 60<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mi></mi><mo>&#x2218;</mo></msup><annotation encoding="application/x-tex">^{\circ}</annotation></semantics></math> (6-fold)&#x2014;icosahedral designs (5-fold) with <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>I</mi><mi>h</mi></msub><annotation encoding="application/x-tex">I_h</annotation></semantics></math> symmetry are not possible.</p>
   <p><em>A15</em> eschews perfect isometry. It trades 100% identical sites for a&#xA0;blended mix of exactly 75% C14 major sites&#x2014;axes-aligned tetradecahedral layers (Weaire&#x2013;Phelan) or cubes (Tetrastix) with 14 connections each&#x2014;25% C12 minor sites&#x2014;pyritohedral voids (Weaire&#x2013;Phelan) or cubes (Tetrastix) with 12 connections each&#x2014;and two different site-to-site distance metrics. True 5-fold symmetry appears in the form of alternating left- and right-handed sites with <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>T</mi><mi>h</mi></msub><annotation encoding="application/x-tex">T_h</annotation></semantics></math> <em>pyritohedral</em> symmetry, an isometric subgroup (4-of-10 3-fold axes) of the full icosahedral symmetry group <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>I</mi><mi>h</mi></msub><annotation encoding="application/x-tex">I_h</annotation></semantics></math>. This localized asymmetry drastically increases isotropy (13.5 mean coordination) without impacting long-range isometric order.</p>
   <figure id="fig-wp-ts">
-  <p><img src="/A15/wp.png" alt="image" /><img src="/A15/ts.png" alt="image" /></p>
+  <p><img src="fig-wp.png" alt="image" /><img src="fig-ts.png" alt="image" /></p>
   <figcaption>The&#xA0;Weaire&#x2013;Phelan&#xA0;honeycomb (left) and the&#xA0;Tetrastix&#xA0;prism (right).<span id="fig-wp-ts" label="fig-wp-ts"></span></figcaption>
   </figure>
   <p>In a&#xA0;sense, <em>A15</em> is already binary. Its fractional lattice coefficients use nothing but the first three multiples of <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mn>2</mn><mrow><mo>&#x2212;</mo><mn>2</mn></mrow></msup><annotation encoding="application/x-tex">2^{-2}</annotation></semantics></math>, and all eight basis sites are perfect binary floats. Quadruple its fractional coordinates into the integers, and its two, site-to-site distance metrics become <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mn>2</mn><annotation encoding="application/x-tex">2</annotation></semantics></math> (major-major) and <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msqrt><mn>5</mn></msqrt><annotation encoding="application/x-tex">\sqrt{5}</annotation></semantics></math> (major-minor). <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msqrt><mn>5</mn></msqrt><annotation encoding="application/x-tex">\sqrt{5}</annotation></semantics></math> is the hypotenuse of a&#xA0;2:1 right triangle and the crux of the golden ratio. <em>A15</em> can be defined at unit scale without stability issues. However, at any scale, <em>A15</em> only represents the destination encoding, leaving open the question of <em>how</em> higher-density bit spaces should discretize themselves to a&#xA0;valid <em>A15</em> site. In other words, finding the nearest site requires a&#xA0;precise definition of <em>nearest</em>.</p>
@@ -76,11 +70,11 @@ body: |-2
   <h2 id="a15pys-experimental-design-and-exploration"><em>A15</em>.py&#x2019;s Experimental Design and Exploration</h2>
   <p><strong>(todo)</strong> Explain <em>A15</em>.py generation process, reasoning, capabilities, and assertions; describe main image and such things as <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>N</mi><mn>1</mn></msub><annotation encoding="application/x-tex">N_1</annotation></semantics></math> (cell width), <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>&#x3F5;</mi><mi>N</mi></msub><annotation encoding="application/x-tex">\epsilon_N</annotation></semantics></math>, <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>&#x3F5;</mi><mi>&#x3B4;</mi></msub><annotation encoding="application/x-tex">\epsilon_\delta</annotation></semantics></math>, <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>&#x3F5;</mi><mi>&#x394;</mi></msub><annotation encoding="application/x-tex">\epsilon_\Delta</annotation></semantics></math>, and <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>&#x3F5;</mi><annotation encoding="application/x-tex">\epsilon</annotation></semantics></math>.</p>
   <figure id="fig-main">
-  <p><img src="/A15/main.png" alt="image" /><span id="fig-main" label="fig-main"></span></p>
+  <p><img src="fig-main.png" alt="image" /><span id="fig-main" label="fig-main"></span></p>
   </figure>
   <h2 id="validation-techniques-and-statistical-analysis">Validation Techniques and Statistical Analysis</h2>
   <figure id="fig-hist">
-  <p><img src="/A15/histb.png" alt="image" /><img src="/A15/hists.png" alt="image" /><img src="/A15/histu.png" alt="image" /></p>
+  <p><img src="fig-histb.png" alt="image" /><img src="fig-hists.png" alt="image" /><img src="fig-histu.png" alt="image" /></p>
   <figcaption>Example <em>binary</em> (left) <em>stable</em> (middle) and <em>unstable</em> (right) configurations.<span id="fig-hist" label="fig-hist"></span></figcaption>
   </figure>
   <p><strong>(todo)</strong> Explain <em>A15</em>.py histogram bar graph and its epsilons; show unstable configurations generating a&#xA0;smattering of epsilons and unused gaps; contrast this with gapless, sequential configurations that always generate a&#xA0;limited number of epsilons (stable) or an exact number (binary).</p>
@@ -141,7 +135,7 @@ keywords: |-2
 lang: |-2
   
 last_modified_at: |-2
-  2023-10-13T06:00:00Z
+  2023-10-14T02:27:01Z
 math: |-2
   
 subtitle: |-2
@@ -184,4 +178,4 @@ title-prefix: |-2
 toc-title: |-2
   Table of Contents
 ---
-{%- include A15.md -%}
+{%- include {{ page.path }} -%}

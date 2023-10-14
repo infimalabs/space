@@ -19,6 +19,7 @@ group :jekyll_plugins do
   gem "jekyll-mentions", "~> 1.6.0"
   gem "jekyll-readme-index", "~> 0.3.0"
   gem "jekyll-redirect-from", "~> 0.16.0"
+  gem "jekyll-relative-links", "~> 0.6.1"
   gem "jekyll-sitemap", "~> 1.4.0"
   gem "jemoji", "~> 0.12.0"
 end

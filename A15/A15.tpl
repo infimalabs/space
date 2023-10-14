@@ -1,10 +1,4 @@
 ---
-permalink: |-2
-  /$^$$g$
-g: |-2
-  $^$$g$
-v: |-2
-  $^$$v$
 abstract: |-2
   $^$$abstract$
 abstract-title: |-2
@@ -54,4 +48,4 @@ title-prefix: |-2
 toc-title: |-2
   $^$$toc-title$
 ---
-{%- include $g$.md -%}
+{%- include {{ page.path }} -%}
