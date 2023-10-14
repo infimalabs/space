@@ -4,6 +4,7 @@ section,
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  list-style-position: inside;
   margin: auto;
   max-width: 100%;
   width: 96rem;
@@ -35,11 +36,7 @@ section,
   { padding-top: 0; }
 
   > :not(p) + p,
-  {
-    text-indent: 1em;
-
-    & > img:first-child { margin-left: -1em; }
-  }
+  { text-indent: 1em; }
 
   > h1,
   {
@@ -53,6 +50,7 @@ section,
     text-align: center;
     width: 96rem;
 
+    > a:empty { margin: 0.2em; }
     > em { padding-right: 0.2em; }
     > span { font-size: 1.5ex; }
     > span:nth-of-type(even)::after { content: "\0a"; white-space: pre; }
@@ -149,7 +147,7 @@ section,
   blockquote,
   {
     color: darken($light, 20%);
-    padding: 1em 3em;
+    padding: 0 3em;
   }
 
   img,
@@ -157,7 +155,12 @@ section,
     border: 0 solid $primary;
     vertical-align: bottom;
 
-    &:only-child { border-width: 3px 0; }
+    &:only-child,
+    {
+      border-width: 3px 0;
+      display: block;
+      margin: auto;
+    }
   }
 
   iframe,

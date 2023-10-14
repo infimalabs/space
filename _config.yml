@@ -53,6 +53,7 @@ defaults:
       layout: article
       newline: "\n"
       title: Accelerate all virtualities
+      intro: Accelerate all virtualities
   - scope:
       path: README.md
     values:
