@@ -18,25 +18,6 @@
   { width: 30%; }
 }
 
-#space-A15 {
-  .space-A15-title-of,
-  .space-A15-title-the,
-  .space-A15-title-via {
-    font-size: 0.75em;
-  }
-
-  .space-A15-title-via::before {
-    white-space: pre;
-    content: '\a';
-  }
-
-  .space-A15-title-accelerating {
-    font-style: italic;
-    padding-right: 0.2em;
-  }
-}
-
-
 @media(min-width:72rem) {
   #fig-hist img[src="fig-histu.png"] { width: 37.25%; }
 }
