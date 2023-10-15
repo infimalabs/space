@@ -15,15 +15,15 @@ layout: default
     {%- if released != modified %}<br/>(last modified <time datetime="{{page.last_modified_at}}">{{modified}}</time>)
     {%- endif %}</h6>
 
-  <section>
+  <header>
 
     <aside>{{ content }}</aside>
 
     {%- if page.abstract != "" -%}
-    <header>
+    <hgroup>
       <h2>{{ page.abstract-title }}</h2>
       {{ page.abstract }}
-    </header>
+    </hgroup>
     {%- endif -%}
 
     {%- if page.table-of-contents != "" -%}
@@ -35,7 +35,7 @@ layout: default
     </nav>
     {%- endif -%}
 
-  </section>
+  </header>
 
   {{ page.body }}
 

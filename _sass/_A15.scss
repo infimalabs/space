@@ -8,13 +8,13 @@
   display: inline-block;
   padding: 2em 0.5em;
 
-  &[src$="histu.png"],
+  &[src="fig-histu.png"],
   { width: 36.5%; }
 
-  &[src$="hists.png"],
+  &[src="fig-hists.png"],
   { width: 30.5%; }
 
-  &[src$="histb.png"],
+  &[src="fig-histb.png"],
   { width: 30%; }
 }
 
@@ -38,5 +38,5 @@
 
 
 @media(min-width:72rem) {
-  #fig-hist img[src="histu.png"] { width: 37.25%; }
+  #fig-hist img[src="fig-histu.png"] { width: 37.25%; }
 }
