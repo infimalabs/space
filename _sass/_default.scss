@@ -1,6 +1,13 @@
 // Default styling
 
-html { height: 100%; }
+html {
+  height: 100%;
+  overflow-y: scroll;
+  scroll-behavior: smooth;
+  scroll-padding-top: 3rem;
+  scroll-snap-align: none none;
+  scroll-snap-type: y proximity;
+}
 
 body,
 {
@@ -15,7 +22,6 @@ body,
   left: 0;
   margin: 0;
   overflow-wrap: break-word;
-  overflow-y: scroll;
   padding: 0;
   position: absolute;
   right: 0;
