@@ -4,7 +4,6 @@ section,
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  list-style-position: inside;
   margin: auto;
   max-width: 100%;
   width: 96rem;
@@ -23,8 +22,12 @@ section,
   > section,
   { background-color: $dark; }
 
-  > :not(article, section, iframe),
+  > :not(article, section, iframe, ul, ol),
   { padding: 1rem 1rem; }
+
+  > ul,
+  > ol,
+  { padding: 1rem 2rem; }
 
   > p + p,
   > h1 + p,
@@ -299,5 +302,7 @@ section,
     > :not(h1, h2, h3, h4, h5, h6, article, section, iframe) { padding-left: 11rem; padding-right: 11rem; }
     > blockquote { padding-left: 13rem; padding-right: 13rem; }
     > figure { padding-left: 3rem; padding-right: 3rem; }
+    > ol { padding-left: 12rem; padding-right: 12rem; }
+    > ul { padding-left: 12rem; padding-right: 12rem; }
   }
 }
