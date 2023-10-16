@@ -1,49 +1,28 @@
 // Styling for the intro
 
-header.intro {
-  text-align: center;
+.intro,
+{
+  @include intro-font;
+  @include text-shadow;
   color: $primary;
-  &.unfixed {
-    opacity: 0;
-    position: relative;
-    bottom: 100%;
-  }
-  &.fixed {
-    z-index: -1;
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-  }
-  .intro-text {
-    padding-top: 150px;
-    padding-bottom: 100px;
-    .intro-heading {
-      color: $primary;
-      padding: 0.2em;
-      font-size: 37px;
-      font-weight: 700;
-      @include intro-font;
-      @include text-shadow;
-      .intro-line {
-        &-accelerate { font-style: italic; }
-        &-via, &-the, &-all, &-of, &-off, &-us { font-size: 0.75em; }
-        &-via, &-the, &-all, &-of, &-virtualities, &-demand, &-speed, &-press, &-business, &-realities { color: $secondary; }
-      }
-    }
-  }
+  font-size: 3rem;
+  font-weight: 700;
+  margin: 0;
+  padding: 10.5rem 0 7.5rem;
+  text-align: center;
+
+  .accelerate { font-style: italic; }
+  .via, .the, .all, .of, .off, .us { font-size: 0.75em; }
+  .via, .the, .all, .of, .virtualities, .demand, .speed, .press, .business, .realities { color: $secondary; }
 }
+
 @media(min-width:768px) {
-  header.intro {
-    .intro-text {
-      padding-top: 250px;
-      padding-bottom: 250px;
-      .intro-heading {
-        font-size: 55px;
-        font-weight: 700;
-        @include intro-font;
-        @include text-shadow;
-      }
-    }
+  .intro,
+  {
+    @include intro-font;
+    @include text-shadow;
+    font-size: 4rem;
+    font-weight: 700;
+    padding: 18rem 0;
   }
 }
