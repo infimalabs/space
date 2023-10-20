@@ -9,7 +9,7 @@ body[id],
     justify-content: center;
     min-height: 5.5rem;
     position: sticky;
-    top: -2rem;
+    top: -1.75rem;
     z-index: 1;
 
     &::before,
@@ -21,7 +21,7 @@ body[id],
       height: 100%;
       max-width: 100%;
       min-width: 20rem;
-      outline: 0.5rem solid $main;
+      border-bottom: 3px solid $primary;
       position: absolute;
       top: 0;
       width: 70rem;
