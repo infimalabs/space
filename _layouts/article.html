@@ -4,45 +4,45 @@ layout: default
 
 <article>
 
-{%- if page.name == "index.md" and page.categories.size == 1 -%}
+{%- if page.name=="index.md" and page.categories.size==1 -%}
 
   {%- assign g = page.categories.first -%}
-  {%- assign released = page.date | default: "now" | date:"%B %e, %Y" -%}
-  {%- assign modified = page.last_modified_at | default: "now" | date:"%B %e, %Y" -%}
+  {%- assign released = page.date|default:"now"|date:"%B %e, %Y" -%}
+  {%- assign modified = page.last_modified_at|default:"now"|date:"%B %e, %Y" -%}
 
-  <h1>{{ page.title-html -}}
+  <h1>{{page.title-html -}}
     &nbsp;<a class="fa-solid fa-file-arrow-down" title="Download {{g}}.pdf" href="/{{g}}.pdf" target="_blank"></a></h1>
-  <h6>{{ page.subtitle | default: page.author }}&nbsp;&mdash;&nbsp;<time datetime="{{page.date}}">{{ released }}</time>
+  <h6>{{page.subtitle|default:page.author}}&nbsp;&mdash;&nbsp;<time datetime="{{page.date}}">{{released}}</time>
     {%- if released != modified %}<br/>(last modified <time datetime="{{page.last_modified_at}}">{{modified}}</time>)
     {%- endif %}</h6>
 
   <header>
 
-    <aside>{{ content }}</aside>
+    <aside>{{content}}</aside>
 
     {%- if page.abstract != "" -%}
     <hgroup>
-      <h2>{{ page.abstract-title }}</h2>
-      {{ page.abstract }}
+      <h2>{{page.abstract-title}}</h2>
+      {{page.abstract}}
     </hgroup>
     {%- endif -%}
 
     {%- if page.table-of-contents != "" -%}
-    <nav id="{{ page.idprefix }}TOC" role="doc-toc">
+    <nav id="{{page.idprefix}}TOC" role="doc-toc">
     {%- if page.toc-title != "" -%}
-    <h2 id="{{ page.idprefix }}toc-title">{{ page.toc-title }}</h2>
+    <h2 id="{{page.idprefix}}toc-title">{{page.toc-title}}</h2>
     {%- endif -%}
-    {{ page.table-of-contents }}
+    {{page.table-of-contents}}
     </nav>
     {%- endif -%}
 
   </header>
 
-  {{ page.body }}
+  {{page.body}}
 
 {%- else -%}
 
-  {{ content }}
+  {{content}}
 
 {%- endif -%}
 

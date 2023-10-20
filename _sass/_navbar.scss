@@ -1,96 +1,138 @@
 // Styling for the navbar
 
-#mainNav {
-  @include text-shadow;
-  text-align: right;
-  border-bottom: none;
-  background-color: $dark;
-  .navbar-toggler {
-    font-size: 12px;
-    right: 0;
-    padding: 13px;
-    color: $gray-400;
-    border: 0;
-    background-color: $primary;
-    @include navbar-font;
-    @include text-shadow;
-  }
-  .navbar-brand {
-    color: $gray-400;
-    @include logo-font;
-    @include text-shadow;
-    &.active,
-    &:active,
-    &:focus,
-    &:hover {
-      color: lighten($gray-400, 30%);
-    }
-    .logo-lt {
-      color: $primary;
-      font-family: "Rubik Glitch";
-      vertical-align: top;
-      line-height: 100%;
-      font-size: 150%;
-      &:hover {
-        color: $secondary;
-        transition: all 0.3s;
-      }
-    }
-  }
-  .navbar-nav {
-    .nav-item {
-      .nav-link {
-        color: $gray-400;
-        font-weight: 400;
-        padding: 0.75em 0;
-        @include navbar-font;
-        @include text-shadow;
-        &.active,
-        &:hover {
-          color: $primary;
-        }
-      }
-    }
-  }
-}
-@media(max-width:992px) {
-  #mainNav {
-    border-bottom: 3px solid $primary;
-  }
-}
-@media(min-width:992px) {
-  #mainNav {
-    padding-top: 25px;
-    padding-bottom: 25px;
-    -webkit-transition: padding-top 0.3s, padding-bottom 0.3s, background 0.3s, border 0.3s;
-    -moz-transition: padding-top 0.3s, padding-bottom 0.3s, background 0.3s, border 0.3s;
-    transition: padding-top 0.3s, padding-bottom 0.3s, background 0.3s, border 0.3s;
-    border-bottom: 3px solid transparent;
-    background-color: transparent;
-    .navbar-brand {
-      font-size: 1.75em;
-      -webkit-transition: all 0.3s;
-      -moz-transition: all 0.3s;
-      transition: all 0.3s;
-    }
-    .navbar-nav {
-      .nav-item {
-        .nav-link {
-          padding: 1.1em 1em !important;
-          -webkit-transition: all 0.3s;
-          -moz-transition: all 0.3s;
-          transition: all 0.3s;
-        }
-      }
-    }
-    &.navbar-shrink {
-      padding-top: 0;
-      padding-bottom: 0;
-      border-color: $primary;
+body[id],
+{
+  > header,
+  {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    min-height: 5.5rem;
+    position: sticky;
+    top: -2rem;
+    z-index: 1;
+
+    &::before,
+    {
       background-color: $dark;
-      .navbar-brand {
-        font-size: 1.25em;
-        padding: 12px 0;
+      border-radius: 0em 0em 1em 1em;
+      content: "";
+      filter: blur(0.125rem) opacity(50%);
+      height: 100%;
+      max-width: 100%;
+      min-width: 8rem;
+      outline: 0.5rem solid $main;
+      position: absolute;
+      top: 0;
+      width: 70rem;
+      z-index: -1;
+    }
+
+    > nav,
+    {
+      flex: 0 1 70rem;
+      line-height: 2.5rem;
+      padding: 0.5rem 1rem;
+      position: sticky;
+      text-align: right;
+      top: 0;
+
+      > button,
+      {
+        @include box-shadow;
+        @include text-shadow;
+        background-color: $primary;
+        border-radius: 0.25rem;
+        border: 0;
+        color: $gray-400;
+        cursor: pointer;
+        height: 2.5rem;
+        padding: 0;
+        width: 2.5rem;
+        outline: none;
+      }
+
+      > button + ul,
+      {
+        background-color: $primary;
+        border-radius: 0.5rem 0rem 0.5rem 0.5rem;
+        border-color: $dark;
+        border-style: solid;
+        border-width: 0px;
+        line-height: 0rem;
+        list-style: none;
+        margin: -0.25rem 1rem;
+        max-height: 80vh;
+        opacity: 0.125;
+        overflow: auto;
+        padding: 0;
+        position: absolute;
+        right: 0;
+        text-align: center;
+        transition: all 0.25s;
+
+        > li > a,
+        {
+          @include navbar-font;
+          color: $dark;
+          display: block;
+          font-weight: 400;
+          outline: none;
+          overflow: hidden;
+          padding: 0 1.375rem;
+          text-decoration: none;
+          text-shadow: 0 0 0.025em $light;
+          transition: all 0.25s;
+
+          &:active,
+          &:hover,
+          &:target,
+          {
+            background-color: lighten($primary, 20%);
+            color: lighten($dark, 10%);
+            text-shadow: none;
+          }
+
+          &:target,
+          { font-style: italic; }
+        }
+      }
+
+      > button + ul:focus-within,
+      > button + ul:hover,
+      > button:focus + ul,
+      {
+        border-bottom-width: 3px;
+        line-height: 3rem;
+        padding: 0.5rem 0;
+        opacity: 1;
+      }
+
+      > a,
+      {
+        @include logo-font;
+        @include text-shadow;
+        color: $gray-400;
+        float: left;
+        font-size: 1.5rem;
+        text-decoration: none;
+        transition: all 0.25s;
+
+        &:active,
+        &:focus,
+        &:hover,
+        { color: lighten($gray-400, 30%); }
+
+        &#nav-lt,
+        {
+          color: $primary;
+          font-family: "Rubik Glitch";
+          font-size: 2.25rem;
+          vertical-align: top;
+
+          &:hover,
+          { color: $secondary; }
+        }
       }
     }
   }

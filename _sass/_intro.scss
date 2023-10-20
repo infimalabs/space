@@ -1,6 +1,6 @@
 // Styling for the intro
 
-.intro,
+body[id] > p
 {
   @include intro-font;
   @include text-shadow;
@@ -8,7 +8,7 @@
   font-size: 3rem;
   font-weight: 700;
   margin: 0;
-  padding: 10.5rem 0 7.5rem;
+  padding: 15vh 0;
   text-align: center;
 
   .accelerate { font-style: italic; }
@@ -16,13 +16,10 @@
   .via, .the, .all, .of, .virtualities, .demand, .speed, .press, .business, .realities { color: $secondary; }
 }
 
-@media(min-width:768px) {
-  .intro,
+@media(min-width:72rem) {
+  body[id] > p
   {
-    @include intro-font;
-    @include text-shadow;
     font-size: 4rem;
-    font-weight: 700;
-    padding: 18rem 0;
+    padding: 30vh 0;
   }
 }
