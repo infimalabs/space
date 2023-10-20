@@ -160,3 +160,7 @@ body[id],
     }
   }
 }
+
+@media(min-width:72rem) {
+  body[id] > header::before { content: none; }
+}
