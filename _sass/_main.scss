@@ -252,9 +252,9 @@ main,
        overflow: visible;
       }
       hr {
-        border: none;
         height: 1px;
         margin: 1em 0;
+        &:first-child { display: none; }
       }
       table {
         margin: 1em 0;
