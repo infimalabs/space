@@ -60,6 +60,9 @@ body[id],
           color: $primary;
           cursor: default;
         }
+
+        &:hover:not(:focus),
+        { color: darken($primary, 20%); }
       }
 
       > button ~ ul,
@@ -154,7 +157,7 @@ body[id],
         }
       }
 
-      > button:hover:not(:focus) ~ ul,
+      > button:hover:not(:focus) ~ ul:not(:focus-within),
       { background-color: lighten($primary, 20%); }
 
       > a,
