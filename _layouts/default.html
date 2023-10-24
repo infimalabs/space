@@ -9,7 +9,8 @@
 <meta name="author" content="{{site.author}}">
 
 {% if page.title %}<title>{{site.title}} - {{page.title}}</title>{% else %}<title>{{site.title}}</title>{% endif %}
-{%- unless jekyll.environment == "development" %}{% include ga.html id=site.data.default.ident.ga %}{% endunless %}
+
+{% include ga.html id=site.data.default.ident.ga %}
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
