@@ -1,13 +1,5 @@
 // Mixins
 
-// Background Cover Mixin
-@mixin background-cover {
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
-}
-
 // Shadow Mixins
 @mixin text-shadow {
   text-shadow: 0 0.03125em 0.25em $dark, 0 0.03125em 0.1875em $dark, 0 0.03125em 0.125em $dark, 0 0.03125em 0.0625em $tertiary;

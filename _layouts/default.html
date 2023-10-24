@@ -14,16 +14,15 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-<link href="/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-<link href="/assets/vendor/fontawesome/css/fontawesome.min.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" type="text/css" href="/assets/vendor/bootstrap/css/bootstrap.min.css"> <!-- DELETE THIS -->
 
-<link href="https://fonts.googleapis.com/css2?family=Kanit:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100;300;400;700&display=swap" rel="stylesheet" type="text/css">
-<link href="https://fonts.googleapis.com/css2?family=Rubik+Glitch:wght@400&display=swap" rel="stylesheet" type="text/css">
-<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;900&display=swap" rel="stylesheet" type="text/css">
-<link href="https://fonts.googleapis.com/css2?family=Zen+Dots:wght@400;700&display=swap" rel="stylesheet" type="text/css">
-
-<link href="/assets/css/agency.min.css?{{site.time|date:"%s%N"}}" rel="stylesheet">
+<style>{% capture style %}{% include style.scss %}{% endcapture %}{{style|scssify|strip}}</style>
+<link rel="stylesheet" type="text/css" href="/assets/vendor/fontawesome/css/fontawesome.min.css">
+<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css2?family=Kanit:wght@100;200;300;400;500;600;700;800;900&display=swap">
+<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100;300;400;700&display=swap">
+<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css2?family=Rubik+Glitch:wght@400&display=swap">
+<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;900&display=swap">
+<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css2?family=Zen+Dots:wght@400;700&display=swap">
 
 </head>
 
