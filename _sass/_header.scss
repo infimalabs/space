@@ -200,5 +200,6 @@ body[id],
 }
 
 @media(min-width:72rem) {
+  body[id] > header > nav > button ~ ul { grid-template-columns: auto auto auto auto; }
   body[id] > header::before { content: none; }
 }
