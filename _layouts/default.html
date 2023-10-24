@@ -31,15 +31,15 @@
 
 <header>
   <nav>
-    <button id="nav" class="fas fa-bars" type="button"></button>
+    <button id="nav" class="fas fa-bars" type="button" autofocus></button>
     <ul>
-      {%- for link in site.data.default.nav %}
-      <li><a id="nav-{{link.title|slugify}}" href="{{link.url}}">{{link.title}}</a></li>
-      {%- endfor %}
+      {%- for link in site.data.default.nav -%}
+      <li><a id="nav-{{link.title|slugify}}"href="{{link.url}}">{{link.title}}</a></li>
+      {%- endfor -%}
     </ul>
-    {%- for name in site.data.default.brand.name %}
+    {%- for name in site.data.default.brand.name -%}
     <a id="nav-{{name|slugify}}" href="{% if name=="&lt;" %}/{% endif %}#">{{name}}</a>
-    {%- endfor %}
+    {%- endfor -%}
   </nav>
 </header>
 

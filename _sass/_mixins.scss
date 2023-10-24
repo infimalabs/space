@@ -10,10 +10,10 @@
 
 // Shadow Mixins
 @mixin text-shadow {
-  text-shadow: 0 0 0.4em $dark, 0 0 0.3em $dark, 0 0 0.2em $dark, 0 0 0.1em $tertiary;
+  text-shadow: 0 0.03125em 0.25em $dark, 0 0.03125em 0.1875em $dark, 0 0.03125em 0.125em $dark, 0 0.03125em 0.0625em $tertiary;
 }
 @mixin box-shadow {
-  box-shadow: 0 0 0.4em $dark, 0 0 0.3em $dark, 0 0 0.2em $dark, 0 0 0.1em $tertiary;
+  box-shadow: 0 0.03125em 0.25em $dark, 0 0.03125em 0.1875em $dark, 0 0.03125em 0.125em $dark, 0 0.03125em 0.0625em $tertiary;
 }
 
 // Font Mixins

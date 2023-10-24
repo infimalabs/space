@@ -6,8 +6,8 @@ body[id],
   {
     align-items: center;
     display: flex;
+    height: 5.5rem;
     justify-content: center;
-    min-height: 5.5rem;
     position: sticky;
     top: -1.75rem;
     z-index: 1;
@@ -15,13 +15,13 @@ body[id],
     &::before,
     {
       background-color: $dark;
+      border-bottom: 3px solid $primary;
       border-radius: 0em 0em 1em 1em;
       content: "";
       filter: blur(0.125rem) opacity(50%);
       height: 100%;
       max-width: 100%;
       min-width: 20rem;
-      border-bottom: 3px solid $primary;
       position: absolute;
       top: 0;
       width: 70rem;
@@ -31,6 +31,7 @@ body[id],
     > nav,
     {
       flex: 0 1 70rem;
+      height: 3.5rem;
       line-height: 2.5rem;
       padding: 0.5rem 1rem;
       position: sticky;
@@ -39,65 +40,80 @@ body[id],
 
       > button,
       {
-        @include box-shadow;
-        background-color: $primary;
-        border-radius: 0.25rem;
+        background-color: transparent;
         border: 0;
         color: $dark;
         cursor: pointer;
+        float: right;
         height: 2.5rem;
+        margin: 0 0 0 -2.5rem;
         outline: none;
         padding: 0;
-        transition: all 0.25s;
+        position: relative;
+        transition: all 0.5s;
         width: 2.5rem;
+        z-index: 2;
 
-        &:hover,
+        &:focus,
         {
-          background-color: lighten($primary, 20%);
-          color: lighten($dark, 20%);
-        }
-
-        &:active,
-        {
-          background-color: lighten($primary, 30%);
-          color: lighten($dark, 30%);
+          @include text-shadow;
+          color: $primary;
         }
       }
 
-      > button + ul,
+      > button ~ ul,
       {
+        @include box-shadow;
+        align-items: center;
         background-color: $primary;
-        border-color: $dark;
-        border-radius: 0.5rem 0rem 0.5rem 0.5rem;
-        border-style: solid;
-        border-width: 0px;
-        line-height: 0rem;
+        border-radius: 1.25rem;
+        display: grid;
+        float: right;
+        gap: 0 0;
+        grid-template-columns: auto;
         list-style: none;
-        margin: -0.25rem 1rem;
-        max-height: 80vh;
-        max-width: 60vw;
-        opacity: 0.125;
+        margin: 0 0 0 -2.5rem;
+        max-height: 20vh;
+        min-height: 2.5rem;
+        min-width: 2.5rem;
         overflow: hidden;
         padding: 0;
-        position: absolute;
-        right: 0;
-        text-align: center;
-        transition: all 0.25s;
-        white-space: nowrap;
-        width: 2.5rem;
+        position: relative;
+        right: 0rem;
+        scroll-snap-type: y mandatory;
+        scrollbar-color: $main $primary;
+        text-overflow: ellipsis;
+        transition: margin 0.25s, opacity 0.5s, right 0.5s 0.25s;
+        z-index: 1;
 
+        > li,
+        {
+          scroll-snap-align: start none;
+          transition: line-height 0.25s, opacity 0.5s, width 0.5s;
+        }
+
+        > li > a,
+        {
+          text-align: center;
+          transition: line-height 0.25s, opacity 0.25s, width 0.5s 0.25s;
+        }
+
+        > li,
         > li > a,
         {
           @include navbar-font;
           color: $dark;
-          display: block;
+          display: inline-block;
           font-weight: 400;
+          line-height: 0rem;
+          opacity: 0;
           outline: none;
-          overflow: hidden;
-          padding: 0 1.375rem;
           text-decoration: none;
+          text-overflow: ellipsis;
           text-shadow: 0 0 0.025em $light;
-          transition: all 0.25s;
+          vertical-align: top;
+          white-space: nowrap;
+          width: 0rem;
 
           &:active,
           &:hover,
@@ -119,16 +135,22 @@ body[id],
         }
       }
 
-      > button + ul:focus-within,
-      > button + ul:hover,
-      > button:focus + ul,
+      > button ~ ul:focus-within,
+      > button ~ ul:hover,
+      > button:focus ~ ul,
       {
-        border-bottom-width: 3px;
-        line-height: 3rem;
-        opacity: 1;
-        overflow: auto;
-        padding: 0.5rem 0;
-        width: 20rem;
+        margin-left: 2.5rem;
+        overflow-y: auto;
+        right: 2.5rem;
+
+        > li,
+        > li > a,
+        {
+          line-height: 2.5rem;
+          opacity: 1;
+          overflow: hidden;
+          width: 13rem;
+        }
       }
 
       > a,
@@ -138,13 +160,17 @@ body[id],
         color: $gray-400;
         float: left;
         font-size: 1.875rem;
+        position: relative;
         text-decoration: none;
-        transition: all 0.25s;
+        transition: all 0.5s;
+        z-index: 0;
 
         &:active,
         &:focus,
         &:hover,
         { color: lighten($gray-400, 30%); }
+
+        &:last-child { margin-right: -100%; }
 
         &#nav-lt,
         {
@@ -159,6 +185,14 @@ body[id],
       }
     }
   }
+}
+
+@media(min-width:36rem) {
+  body[id] > header > nav > button ~ ul { grid-template-columns: auto auto; }
+}
+
+@media(min-width:54rem) {
+  body[id] > header > nav > button ~ ul { grid-template-columns: auto auto auto; }
 }
 
 @media(min-width:72rem) {
