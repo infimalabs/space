@@ -58,6 +58,7 @@ body[id],
         {
           @include text-shadow;
           color: $primary;
+          cursor: default;
         }
       }
 
@@ -83,7 +84,7 @@ body[id],
         scroll-snap-type: y mandatory;
         scrollbar-color: $main $primary;
         text-overflow: ellipsis;
-        transition: margin 0.25s, opacity 0.5s, right 0.5s 0.25s;
+        transition: margin 0.25s, opacity 0.5s, background-color 0.5s, right 0.5s 0.25s,;
         z-index: 1;
 
         > li,
@@ -152,6 +153,9 @@ body[id],
           width: 13rem;
         }
       }
+
+      > button:hover:not(:focus) ~ ul,
+      { background-color: lighten($primary, 20%); }
 
       > a,
       {
