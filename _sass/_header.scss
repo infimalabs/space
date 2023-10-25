@@ -90,14 +90,10 @@ body[id],
         z-index: 1;
 
         > li,
-        {
-          scroll-snap-align: start none;
-        }
+        { scroll-snap-align: start none; }
 
         > li > a,
-        {
-          text-align: center;
-        }
+        { text-align: center; }
 
         > li,
         > li > a,
@@ -211,21 +207,20 @@ body[id],
 }
 
 @media(prefers-reduced-motion:no-preference) {
-  body[id] > header > nav,
+  body[id] > header > nav > button,
   {
-    > button,
+    transition: color 0.5s, text-shadow 0.5s;
+
+    ~ a,
     { transition: color 0.5s, text-shadow 0.5s; }
 
-    > button ~ a,
-    { transition: color 0.5s, text-shadow 0.5s; }
-
-    > button ~ ul,
+    ~ ul,
     { transition: margin 0.25s, opacity 0.5s, background-color 0.5s, right 0.5s 0.25s; }
 
-    > button ~ ul > li,
+    ~ ul > li,
     { transition: line-height 0.25s, background-color 0.5s, opacity 0.5s, width 0.5s; }
 
-    > button ~ ul > li > a,
+    ~ ul > li > a,
     { transition: line-height 0.25s, background-color 0.5s, opacity 0.25s, width 0.5s 0.25s; }
   }
 }

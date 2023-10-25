@@ -34,7 +34,7 @@
     <button autofocus class="fas fa-bars" type="button"></button>
     <ul>
       {%- for link in site.data.default.nav -%}
-      <li><a id="nav-{{link.title|slugify}}"href="{{link.url}}">{{link.title}}</a></li>
+      <li><a id="nav-{{link.title|slugify}}" href="{{link.url}}">{{link.title}}</a></li>
       {%- endfor -%}
     </ul>
     {%- for name in site.data.default.brand.name -%}
