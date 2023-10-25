@@ -40,7 +40,7 @@ body[id],
 
       > button,
       {
-        background-color: transparent;
+        animation: 0s step-end 1ms 1 normal backwards running nav-motion-delay-button;
         border: 0;
         color: $dark;
         cursor: pointer;
@@ -49,7 +49,6 @@ body[id],
         margin: 0 0 0 -2.5rem;
         padding: 0;
         position: relative;
-        transition: color 0.5s, text-shadow 0.5s;
         width: 2.5rem;
         z-index: 2;
 
@@ -69,6 +68,7 @@ body[id],
       {
         @include box-shadow;
         align-items: center;
+        animation: 0s step-end 1ms 1 normal backwards paused nav-motion-delay-list;
         background-color: $primary;
         border-radius: 1.25rem;
         display: grid;
@@ -87,25 +87,23 @@ body[id],
         scroll-snap-type: y mandatory;
         scrollbar-color: $main $primary;
         text-overflow: ellipsis;
-        transition: margin 0.25s, opacity 0.5s, background-color 0.5s, right 0.5s 0.25s,;
         z-index: 1;
 
         > li,
         {
           scroll-snap-align: start none;
-          transition: line-height 0.25s, opacity 0.5s, width 0.5s;
         }
 
         > li > a,
         {
           text-align: center;
-          transition: line-height 0.25s, opacity 0.25s, width 0.5s 0.25s;
         }
 
         > li,
         > li > a,
         {
           @include navbar-font;
+          animation: 0s step-end 1ms 1 normal backwards paused nav-motion-delay-list-item;
           color: $dark;
           display: inline-block;
           font-weight: 400;
@@ -143,6 +141,7 @@ body[id],
       > button ~ ul:hover,
       > button:focus ~ ul,
       {
+        animation-play-state: running;
         margin-left: 2.5rem;
         overflow-y: auto;
         right: 2.5rem;
@@ -150,6 +149,7 @@ body[id],
         > li,
         > li > a,
         {
+          animation-play-state: running;
           line-height: 2.5rem;
           opacity: 1;
           overflow: hidden;
@@ -169,7 +169,6 @@ body[id],
         font-size: 1.875rem;
         position: relative;
         text-decoration: none;
-        transition: all 0.5s;
         z-index: 0;
 
         &:active,
@@ -194,6 +193,10 @@ body[id],
   }
 }
 
+@keyframes nav-motion-delay-button { from { @include text-shadow; color: $primary; cursor: default; } }
+@keyframes nav-motion-delay-list { from { margin-left: 2.5rem; overflow-y: auto; right: 2.5rem; } }
+@keyframes nav-motion-delay-list-item { from { line-height: 2.5rem; opacity: 1; width: 13rem; } }
+
 @media(min-width:36rem) {
   body[id] > header > nav > button ~ ul { grid-template-columns: auto auto; }
 }
@@ -205,4 +208,24 @@ body[id],
 @media(min-width:72rem) {
   body[id] > header > nav > button ~ ul { grid-template-columns: auto auto auto auto; }
   body[id] > header::before { content: none; }
+}
+
+@media(prefers-reduced-motion:no-preference) {
+  body[id] > header > nav,
+  {
+    > button,
+    { transition: color 0.5s, text-shadow 0.5s; }
+
+    > button ~ a,
+    { transition: color 0.5s, text-shadow 0.5s; }
+
+    > button ~ ul,
+    { transition: margin 0.25s, opacity 0.5s, background-color 0.5s, right 0.5s 0.25s; }
+
+    > button ~ ul > li,
+    { transition: line-height 0.25s, background-color 0.5s, opacity 0.5s, width 0.5s; }
+
+    > button ~ ul > li > a,
+    { transition: line-height 0.25s, background-color 0.5s, opacity 0.25s, width 0.5s 0.25s; }
+  }
 }

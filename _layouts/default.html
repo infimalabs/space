@@ -31,7 +31,7 @@
 
 <header>
   <nav>
-    <button id="nav" class="fas fa-bars" type="button"></button>
+    <button autofocus class="fas fa-bars" type="button"></button>
     <ul>
       {%- for link in site.data.default.nav -%}
       <li><a id="nav-{{link.title|slugify}}"href="{{link.url}}">{{link.title}}</a></li>
