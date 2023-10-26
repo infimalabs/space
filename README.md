@@ -4,19 +4,19 @@
 
 ## _What is infima.space?_
 
-[Infima Space](https://infima.space) showcases research projects from [Infima Labs](https://infimalabs.com). Dedicated to the
-advancement of highly-interconnected virtual spaces, we believe the long-anticipated arrival of mainstream spatial computing is
-near. We use this _space_ to aggregate and present our ideas and research on such technologies.
+[Infima Space](https://infima.space){: target="_self"} showcases research projects from [Infima Labs](https://infimalabs.com){: target="_blank"}.
+Dedicated to the advancement of highly-interconnected virtual spaces, we believe the long-anticipated arrival of mainstream
+spatial computing is near. We use this _space_ to aggregate and present our ideas and research on such technologies.
 
 ### Spatial Computing Research and Experimental Libraries
 
 Below are excerpts from the Abstract or Introduction of current research endeavors. Each area of focus is accompanied by a
 dedicated page on this site. When applicable, original research and code is made available.
 
-#### [A15 Phase Structure](/A15/)
+#### [A15 Phase Structure](/A15/#main){: target="_self"}
 
-* Research [PDF](/A15.pdf) or [HTML](/A15/) (early draft release)
-* `space-rust` [Protocol](https://github.com/infimalabs/space-rust) (under development)
+* Research [PDF](/A15.pdf){: target="_blank"} or [HTML](/A15/#main){: target="_self"} (early draft release)
+* `space-rust` [Protocol](https://github.com/infimalabs/space-rust){: target="_blank"} (under development)
 
 > ... the proposed solution rounds each three-dimensional (3D) floating-point coordinate—and all its unused dynamic range—to the
 > nearest A15-encoded integer representation, one or more dimensions higher. It centers A15 inside the Weaire–Phelan honeycomb,
