@@ -6,6 +6,7 @@ body[id],
   {
     align-items: center;
     display: flex;
+    flex-flow: row wrap;
     height: 5.5rem;
     justify-content: center;
     position: sticky;
