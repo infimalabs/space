@@ -84,7 +84,7 @@ body[id],
         gap: 0 0;
         grid-template-columns: auto;
         list-style: none;
-        margin: 0 0 0 -2.5rem;
+        margin: 0 0 0 -100%;
         max-height: 20vh;
         min-height: 2.5rem;
         min-width: 2.5rem;
@@ -144,7 +144,6 @@ body[id],
       > button ~ ul:hover,
       > button[autofocus]:focus ~ ul,
       {
-        margin-left: 2.5rem;
         overflow-y: auto;
         right: 3rem;
 
@@ -176,8 +175,6 @@ body[id],
         &:focus,
         &:hover,
         { color: lighten($gray-400, 30%); }
-
-        &:last-child { margin-right: -100%; }
 
         &#nav-lt,
         {
@@ -220,7 +217,7 @@ body[id],
     { transition: color 0.5s, text-shadow 0.5s; }
 
     ~ ul,
-    { transition: margin 0.25s, opacity 0.5s, background-color 0.5s, right 0.5s 0.25s; }
+    { transition: opacity 0.5s, background-color 0.5s, right 0.5s 0.25s; }
 
     ~ ul > li,
     { transition: line-height 0.25s, background-color 0.5s, opacity 0.5s, width 0.5s; }
