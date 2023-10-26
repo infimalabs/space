@@ -29,19 +29,13 @@
 
 <body id="{{site.title|slugify}}">
 
-<header>
-  <nav>
-    <button autofocus class="fas fa-bars" type="button"></button>
-    <ul>
-      {%- for link in site.data.default.nav -%}
-      <li><a id="nav-{{link.title|slugify}}" href="{{link.url}}">{{link.title}}</a></li>
-      {%- endfor -%}
-    </ul>
-    {%- for name in site.data.default.brand.name -%}
-    <a id="nav-{{name|slugify}}" href="{% if name=="&lt;" %}/{% endif %}#">{{name}}</a>
-    {%- endfor -%}
-  </nav>
-</header>
+<header><nav><button type="button" class="fas fa-bars" autofocus></button><button type="button"></button><ul>
+{%- for n in site.data.default.nav %}<li><a id="nav-{{n.title|slugify}}" href="{{n.url}}">{{n.title}}</a></li>
+{%- endfor -%}
+</ul>
+{%- for n in site.data.default.brand.name %}<a id="nav-{{n|slugify}}" href="{% if n=="&lt;" %}/{% endif %}#">{{n}}</a>
+{%- endfor -%}
+</nav></header>
 
 <p>
   {%- assign lines = page.intro | default: page.title | strip | split: page.newline %}

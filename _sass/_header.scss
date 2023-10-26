@@ -54,13 +54,21 @@ body[id],
 
         &:focus,
         {
-          @include text-shadow;
-          color: $primary;
-          cursor: default;
-          outline: none;
+          outline: 3px outset $primary;
+          border-radius: 1.25rem;
         }
 
-        &:hover:not(:focus),
+        &[autofocus],
+        { z-index: 3; }
+
+        &[autofocus]:focus,
+        {
+          @include text-shadow;
+          color: $primary;
+          z-index: 2;
+        }
+
+        &:hover:not([autofocus]:focus),
         { color: darken($primary, 20%); }
       }
 
@@ -135,7 +143,7 @@ body[id],
 
       > button ~ ul:focus-within,
       > button ~ ul:hover,
-      > button:focus ~ ul,
+      > button[autofocus]:focus ~ ul,
       {
         animation-play-state: running;
         margin-left: 2.5rem;
@@ -153,7 +161,7 @@ body[id],
         }
       }
 
-      > button:hover:not(:focus) ~ ul:not(:focus-within),
+      > button[autofocus]:hover:not(:focus) ~ ul:not(:focus-within),
       { background-color: lighten($primary, 20%); }
 
       > a,
@@ -189,7 +197,7 @@ body[id],
   }
 }
 
-@keyframes nav-motion-delay-button { from { @include text-shadow; color: $primary; cursor: default; } }
+@keyframes nav-motion-delay-button { from { @include text-shadow; color: $primary; } }
 @keyframes nav-motion-delay-list { from { margin-left: 2.5rem; overflow-y: auto; right: 2.5rem; } }
 @keyframes nav-motion-delay-list-item { from { line-height: 2.5rem; opacity: 1; width: 13rem; } }
 
