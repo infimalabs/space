@@ -207,6 +207,10 @@ body[id],
   body[id] > header::before { content: none; }
 }
 
+@media(prefers-reduced-transparency) {
+  body[id] > header::before { filter: none; }
+}
+
 @media(prefers-reduced-motion:no-preference) {
   body[id] > header > nav > button,
   {
