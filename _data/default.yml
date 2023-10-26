@@ -15,6 +15,6 @@ brand:
 
 nav:
 - title: Spatial Computing
-  url: '/#main'
+  url: '/#readme'
 - title: A15 Phase Structure
-  url: '/A15/#main'
+  url: '/A15/#readme'
