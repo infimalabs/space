@@ -1,10 +1,11 @@
 // Styling for the intro
 
-body[id] > p
+body[id] > strong
 {
   @include intro-font;
   @include text-shadow;
   color: $primary;
+  display: block;
   font-size: 3rem;
   font-weight: 700;
   margin: 0;
@@ -17,7 +18,7 @@ body[id] > p
 }
 
 @media(min-width:72rem) {
-  body[id] > p
+  body[id] > strong
   {
     font-size: 4rem;
     padding: 30vh 0;

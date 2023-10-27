@@ -37,14 +37,15 @@
 {%- endfor -%}
 </nav></header>
 
-<p>
-  {%- assign lines = page.intro | default: page.title | strip | split: page.newline %}
-  {%- for line in lines %}{% assign words = line | split: " " %}
-  {%- for w in words %}<span class="{{w|slugify}}">{{w}}</span>
-    {%- unless forloop.last %}{{" "}}{% endunless %}
-  {%- endfor %}
-  {%- unless forloop.last %}<br>{% endunless %}
-  {%- endfor %}</p>
+<strong>
+{%- assign lines = page.intro | default: page.title | strip | split: page.newline %}
+{%- for line in lines %}{% assign words = line | split: " " %}
+{%- for w in words %}<span class="{{w|slugify}}">{{w}}</span>
+{%- unless forloop.last %}{{" "}}{% endunless %}
+{%- endfor -%}
+{%- unless forloop.last %}<br>{% endunless %}
+{%- endfor -%}
+</strong>
 
 <main id="readme">{{content}}</main>
 
