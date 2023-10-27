@@ -188,7 +188,6 @@ main,
       border-left: medium solid $light;
       color: darken($light, 25%);
       margin: 1rem;
-      max-width: 50rem;
       padding: 0 1rem;
 
       > p,
@@ -359,5 +358,6 @@ main,
     > figure { padding-left: 3rem; padding-right: 3rem; }
     > ol { padding-left: 13rem; padding-right: 13rem; }
     > ul { padding-left: 13rem; padding-right: 13rem; }
+    > blockquote { max-width: 50rem; }
   }
 }
