@@ -185,8 +185,14 @@ main,
 
     > blockquote,
     {
-      color: darken($light, 20%);
-      padding: 0 3em;
+      border-left: medium solid $light;
+      color: darken($light, 25%);
+      margin: 1rem;
+      max-width: 52rem;
+      padding: 0 1rem;
+
+      > p,
+      { margin: 0; }
     }
 
     h2,
@@ -223,7 +229,7 @@ main,
     p { text-align: justify; }
 
     // Pandoc styling on descendants only.
-    > * {
+    > :not(blockquote) {
       p {
         margin: 1em 0;
       }
@@ -348,9 +354,8 @@ main,
 @media(min-width:72rem) {
   main article,
   {
-    > :not(h1, iframe) { max-width: 72rem; padding-left: 10rem; padding-right: 10rem; }
-    > :not(h1, h2, h3, h4, h5, h6, header, footer, iframe) { padding-left: 11rem; padding-right: 11rem; }
-    > blockquote { padding-left: 13rem; padding-right: 13rem; }
+    > :not(h1, iframe, blockquote) { max-width: 72rem; padding-left: 10rem; padding-right: 10rem; }
+    > :not(h1, h2, h3, h4, h5, h6, header, footer, iframe, blockquote) { padding-left: 11rem; padding-right: 11rem; }
     > figure { padding-left: 3rem; padding-right: 3rem; }
     > ol { padding-left: 12rem; padding-right: 12rem; }
     > ul { padding-left: 12rem; padding-right: 12rem; }
