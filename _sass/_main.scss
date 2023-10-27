@@ -48,6 +48,14 @@ main,
     { &::before { background-color: darken($body, 5%); } }
   }
 
+  article::before,
+  {
+    border-bottom: 3px solid $primary;
+    border-left: 0;
+    border-right: 0;
+    border-top: 3px solid $primary;
+  }
+
   article,
   article > header,
   article > footer,
@@ -180,9 +188,6 @@ main,
       color: darken($light, 20%);
       padding: 0 3em;
     }
-
-    > :first-child { border-top: 3px solid $primary; }
-    > :last-child { border-bottom: 3px solid $primary; }
 
     h2,
     h3,
