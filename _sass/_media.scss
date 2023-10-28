@@ -9,7 +9,6 @@
     /* Black prints faster */
     box-shadow: none !important;
     text-shadow: none !important;
-    filter: grayscale(100%) !important;
   }
 
   a,
@@ -47,6 +46,10 @@
   tr,
   img {
     page-break-inside: avoid;
+  }
+
+  img {
+    filter: grayscale(100%) !important;
   }
 
   p,
