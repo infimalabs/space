@@ -1,33 +1,81 @@
-// Print
+// Print styling
+// https://github.com/h5bp/html5-boilerplate/blob/main/dist/css/style.css
 @media print {
-  html,
-  {
-    background-color: white;
+  *,
+  *::before,
+  *::after {
+    background: transparent !important;
+    color: black !important;
+    /* Black prints faster */
+    box-shadow: none !important;
+    text-shadow: none !important;
+    filter: grayscale(100%) !important;
+  }
 
-    * {
-      background-color: transparent !important;
-      color: black !important;
-      filter: grayscale(100%) !important;
-    }
+  a,
+  a:visited {
+    text-decoration: underline;
+  }
 
-    body,
+  a[href]::after {
+    content: " (" attr(href) ")";
+  }
+
+  abbr[title]::after {
+    content: " (" attr(title) ")";
+  }
+
+  /*
+   * Don't show links that are fragment identifiers,
+   * or use the `javascript:` pseudo protocol
+   */
+  a[href^="#"]::after,
+  a[href^="javascript:"]::after {
+    content: "";
+  }
+
+  pre {
+    white-space: pre-wrap !important;
+  }
+
+  pre,
+  blockquote {
+    border: 1px solid #999;
+    page-break-inside: avoid;
+  }
+
+  tr,
+  img {
+    page-break-inside: avoid;
+  }
+
+  p,
+  h2,
+  h3 {
+    orphans: 3;
+    widows: 3;
+  }
+
+  h2,
+  h3 {
+    page-break-after: avoid;
+  }
+
+  body {
+    > :not(main) { display: none !important; }
+
+    > main,
     {
-      > :not(main) { display: none; }
-
-      > main,
-      {
-        * { border-width: 0 !important; }
-        > * { max-width: 90%; }
-        nav { display: none; }
-        h2, h3, h4 { break-after: avoid; }
-        p, h2, h3 { orphans: 3; widows: 3; }
-        details[open] > summary { list-style-type: none; }
-        ::before, ::after { content: none !important; }
-      }
+      * { border-width: 0 !important; }
+      > * { max-width: 90%; }
+      nav { display: none; }
+      h2, h3, h4 { break-after: avoid; }
+      p, h2, h3 { orphans: 3; widows: 3; }
+      details[open] > summary { list-style-type: none; }
+      ::before, ::after { content: none !important; }
     }
   }
 }
-
 
 // Mobile
 @media (max-width: 36rem) {

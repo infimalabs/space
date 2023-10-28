@@ -1,13 +1,31 @@
 // Default styling
 
 *,
+::after,
+::before,
 {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
   background-color: transparent;
+  box-sizing: border-box;
+}
+
+:root,
+{
+  --font-family-serif: "Roboto Slab", "Garamond", "Georgia", serif;
+  --font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  --font-family-sans-serif: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
 }
 
 html,
 {
+  -ms-overflow-style: scrollbar;
+  -ms-text-size-adjust: 100%;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-text-size-adjust: 100%;
+  font-family: var(--font-family-sans-serif);
   height: 100%;
+  line-height: 1.15;
   overflow-y: scroll;
   scroll-padding-top: 4rem;
   scroll-snap-align: none none;
@@ -25,30 +43,64 @@ body,
   background-color: $main;
   background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEMAAAA5CAMAAABarWbmAAAAllBMVEUAAAADAwMAAAAUFBQKCgoKCgoKCgoMDAwKCgoLCwsJCQkLCwsKCgoKCgoKCgoKCgoICAgKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoJCQkKCgoKCgoKCgoKCgoMDAwLCwsKCgoICAgICAgKCgoJCQkKCgoKCgoKCgoKCgoJCQkKCgoLCwsLCwsKCgoGBgYKCgoKCgpu1IxTAAAAMXRSTlMABQMJqNpuDPo1OGvdPyS2Me2BQ/Hf1NDHwXOloVFNGLKVEw7jkIdlYZot5npeWyAbmRC9IgAAAnhJREFUSMftV2uTojAQHIIC6q6CiG/xvb5Wd/v//7nLhHBhzQar7q6u9oMpy8pQTfcwFWYaQps8ci6PGmhQzRLUwpPjv3OIgkP8bR4zEo/yiMkXbgqVh1tFeHQGYfQqMZ6DIXyLEL2FDha+7XUEGgGzLpFvAwTR8YKoF+FylIo2i7ynOwNGJIIEUX9rKckwnQCrmOIVME6/A2z7wCUQMljugd1BKokvgG5DSuRqm4+ARrfKosCHDNgvqcjx3JNKpiyM9fsRBh0h9xyJYCCT9TkyhRgDvbN65uIvHwJzLouObztgveG9ltmsgd2N97oQc2CYm+R5I6ZcllBLTKREbHJXu1YPmOhkQ5llMhWawZT4cw9kV7n/YImFBBtAob/gZD9kcM2A9WeR9R0mZqX0XRZi6tkngi9NZVne0zJLo1Gt9KIJuU5LDbBllicGNBeVQtinao4kdZ9trlWCueJzrS0d0FTP6SZp4qgAbsgULxsSNZBthqAW4FOAZkheHeQFHfKeHE+OJ8e/49jWQsJH723I/UM87B/1E5pOSLh3f48RRR87MdYF0P3Ubtmm+a91P7VkzAQxfV0Iq2dX+3qL77BbtpTIbma+VFmUrJkvt8xu/p78/Z6oMmiPywlyN33GbQboaRwIGVQAubYhnh40RzXSS4xfmIPsqJPzCuMxzEsZlljpUVq1FuVENdPYmBTjTvSljZS4XL/OHd8oKVdgmSXWv2pzQKIzsB2XcRirM51XpTux3RqQdATZFqfqdHaS5c4l2WaJCqslHOd2o3whmxnXsUzHILTINwAbo/yp/X6YR45BaNdNYJ99cr2RfuzXf8h3w5PjDzh+Af+UT66cmpSVAAAAAElFTkSuQmCC");
   color: $dark;
+  font-family: var(--font-family-serif);
   font-kerning: normal;
+  font-size: 1rem;
+  font-weight: 400;
   hyphens: auto;
+  line-height: 1.5;
   margin: 0;
   overflow-wrap: break-word;
   padding: 0;
+  text-align: left;
   text-rendering: optimizeLegibility;
 }
 
-p {
-  line-height: 1.75;
+[tabindex="-1"]:focus,
+{ outline: 0 !important; }
+
+hr,
+{ box-sizing: content-box; height: 0; overflow: visible; }
+
+h1 small,
+h2 small,
+h3 small,
+h4 small,
+h5 small,
+h6 small,
+{
+  font-weight: 400;
+  line-height: 1;
 }
 
-a {
-  text-shadow: 0 0 0.025em $dark;
-  color: darken($primary, 10%);
-  &:hover {
-    color: $primary;
-  }
-  &:visited {
-    color: lighten($secondary, 10%);
-    &:hover {
-        color: $secondary;
-    }
-  }
+h1,
+h2,
+h3,
+{
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+
+h1 small,
+h2 small,
+h3 small,
+{
+  font-size: 65%;
+}
+
+h4,
+h5,
+h6,
+{
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+h4 small,
+h5 small,
+h6 small,
+{
+  font-size: 75%;
 }
 
 h1,
@@ -56,12 +108,106 @@ h1,
   font-size: 2.5rem;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h2,
+{
+  font-size: 2rem;
+}
+
+h3,
+{
+  font-size: 1.75rem;
+}
+
+h4,
+{
+  font-size: 1.5rem;
+}
+
+h5,
+{
+  font-size: 1.25rem;
+}
+
+h6,
+{
+  font-size: 1rem;
+}
+
+ul,
+ol,
+{
+  margin-top: 0;
+  margin-bottom: 10px;
+}
+
+ul ul,
+ol ul,
+ul ol,
+ol ol,
+{
+  margin-bottom: 0;
+}
+
+dl,
+{
+  margin-top: 0;
+  margin-bottom: 20px;
+}
+
+dt,
+dd,
+{
+  line-height: 1.42857143;
+}
+
+dt,
+{
   font-weight: 700;
+}
+
+dd,
+{
+  margin-left: 0;
+}
+
+p,
+{
+  line-height: 1.75;
+  margin-bottom: 1rem;
+  margin-top: 0;
+}
+
+a,
+{
+  color: darken($primary, 10%);
+  text-decoration: none;
+  text-shadow: 0 0 0.025em $dark;
+
+  &:hover,
+  &:focus,
+  { text-decoration: underline; }
+
+  &:hover,
+  { color: $primary; }
+
+  &:visited,
+  { color: lighten($secondary, 10%); }
+
+  &:visited:hover,
+  { color: $secondary; }
+}
+
+h1, h2, h3, h4, h5, h6 {
   @include heading-font;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  margin-top: 0;
+  line-height: 1.2;
+  color: inherit;
 }
 
 img {
+  vertical-align: middle;
   max-width: 100%;
 }
 
@@ -71,46 +217,27 @@ svg {
 }
 
 code {
-  font-family: Menlo, Monaco, Consolas, "Lucida Console", monospace;
+  font-family: var(--font-family-monospace);
   font-size: 85%;
   margin: 0;
   hyphens: manual;
 }
 
-.text-primary {
-  color: $primary !important;
+input,
+button,
+select,
+textarea,
+{
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
 }
 
-.text-justify {
-  text-align: justified;
-}
+figure,
+{ margin: 0; }
 
-// Button Styles
-.btn {
-  @include heading-font;
-  @include text-shadow;
-  font-weight: 700;
-}
-
-.btn-xl {
-  font-size: 18px;
-  padding: 20px 40px;
-}
-
-.btn-primary {
-  background-color: $primary;
-  border-color: $primary;
-  &:active,
-  &:focus,
-  &:hover {
-    background-color: lighten($primary, 7.5%) !important;
-    border-color: lighten($primary, 7.5%) !important;
-    color: white;
-  }
-  &:active,
-  &:focus {
-    box-shadow: 0 0 0 0.2rem rgba(254, 209, 55,.5) !important;
-  }
+[role="button"] {
+  cursor: pointer;
 }
 
 // Highlight color customization
