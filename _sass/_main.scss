@@ -50,10 +50,10 @@ main,
 
   article::before,
   {
-    border-bottom: 3px solid $primary;
+    border-bottom: medium solid $primary;
     border-left: 0;
     border-right: 0;
-    border-top: 3px solid $primary;
+    border-top: medium solid $primary;
   }
 
   article,
@@ -93,8 +93,8 @@ main,
     {
       @include text-shadow;
       background-color: $main;
-      border-bottom: 3px solid $primary;
-      border-top: 3px solid $primary;
+      border-bottom: medium solid $primary;
+      border-top: medium solid $primary;
       color: $light;
       max-width: 100%;
       padding: 8rem 0.5rem 4rem;
@@ -131,8 +131,8 @@ main,
 
     > aside,
     {
-      border-top: 3px solid $primary;
-      border-bottom: 3px solid $primary;
+      border-top: medium solid $primary;
+      border-bottom: medium solid $primary;
 
       > details > summary::after,
       {
@@ -147,8 +147,8 @@ main,
 
     > nav,
     {
-      border-bottom: 3px solid $primary;
-      border-top: 3px solid $primary;
+      border-bottom: medium solid $primary;
+      border-top: medium solid $primary;
       font-size: 1.2em;
       text-align: left;
 
