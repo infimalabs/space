@@ -1,59 +1,46 @@
 <!DOCTYPE html>
 <html lang="{{page.lang|default:site.lang|default:"en-US"}}">
-
 <head>
-
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="description" content="{{site.description}}">
 <meta name="author" content="{{site.author}}">
-
 {% if page.title %}<title>{{site.title}} - {{page.title}}</title>{% else %}<title>{{site.title}}</title>{% endif %}
-
 {% include ga.html id=site.data.default.ident.ga %}
 <link rel="dns-prefetch" href="https://infima.space">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
 <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css2?family=Kanit:wght@100;200;300;400;500;600;700;800;900&display=swap">
 <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100;300;400;700&display=swap">
 <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css2?family=Rubik+Glitch:wght@400&display=swap">
 <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;900&display=swap">
 <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css2?family=Zen+Dots:wght@400;700&display=swap">
-
 <link rel="stylesheet" type="text/css" href="/assets/vendor/fontawesome/css/fontawesome.min.css">
 <style>{% capture style %}{% include style.scss %}{% endcapture %}{{style|scssify|strip}}</style>
-
 </head>
-
 <body id="{{site.title|slugify}}">
-
-<header><nav><button type="button" class="fas fa-bars" autofocus></button><button type="button"></button><ul>
-{%- for n in site.data.default.nav %}<li><a id="nav-{{n.title|slugify}}" href="{{n.url}}">{{n.title}}</a></li>
-{%- endfor -%}
-</ul>
-{%- for n in site.data.default.brand.name %}<a id="nav-{{n|slugify}}" href="{% if n=="&lt;" %}/{% endif %}#">{{n}}</a>
-{%- endfor -%}
-</nav></header>
-
-<strong>
-{%- assign lines = page.intro | default: page.title | strip | split: page.newline %}
+<a title="Skip to content" href="#readme"><strong>
+{%- assign lines = page.intro|default:page.title|strip|split:page.newline %}
 {%- for line in lines %}{% assign words = line | split: " " %}
 {%- for w in words %}<span class="{{w|slugify}}">{{w}}</span>
 {%- unless forloop.last %}{{" "}}{% endunless %}
 {%- endfor -%}
 {%- unless forloop.last %}<br>{% endunless %}
 {%- endfor -%}
-</strong>
-
+</strong></a>
+<header>
+<nav><button type="button" class="fas fa-bars" autofocus></button><button type="button" tabindex="-1"></button><ul>
+{%- for n in site.data.default.nav %}<li><a id="nav-{{n.title|slugify}}" href="{{n.url}}">{{n.title}}</a></li>
+{%- endfor -%}
+</ul>
+{%- for n in site.data.default.brand.name %}<a id="nav-{{n|slugify}}" href="{% if n=="&lt;" %}/{% endif %}#">{{n}}</a>
+{%- endfor -%}
+</nav>
+</header>
 <main id="readme">{{content}}</main>
-
 <footer><b><time>{{"now"|date:"%Y"}}</time><a href="{{site.authorurl|absolute_url}}">{{site.author}}</a></b><ul>
 {%- for network in site.data.default.brand.social -%}
 <li class="list-inline-item"><a href="{{network.url}}"><i class="fab fa-{{network.title}}"></i></a></li>
 {%- endfor -%}
-</ul></footer>
-
-</body>
-
+</ul></footer></body>
 </html>

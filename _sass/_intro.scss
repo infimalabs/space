@@ -1,26 +1,99 @@
-// Styling for the intro
+// Intro styling
 
-body[id] > strong
+body[id] > a,
 {
   @include intro-font;
   @include text-shadow;
+  align-content: center;
+  align-items: center;
   color: $primary;
-  display: block;
-  font-size: 3rem;
+  display: grid;
+  font-size: 1rem;
   font-weight: 700;
+  grid-template-columns: auto;
+  height: 100vh;
+  justify-content: center;
+  justify-items: center;
   margin: 0;
-  padding: 15vh 0;
+  overflow: hidden;
+  padding: 0;
+  position: sticky;
+  scroll-snap-align: start none;
   text-align: center;
+  text-decoration: none;
+  top: calc(-100vh + 4rem);
+  width: 100%;
+  z-index: 1;
+
+  &::before,
+  {
+    background-color: $dark;
+    border-bottom: medium solid $primary;
+    border-radius: 1rem;
+    border-top: medium solid $primary;
+    content: "";
+    filter: blur(0.125rem) opacity(66.666666%);
+    height: 100vh;
+    max-width: 100%;
+    min-width: 20rem;
+    position: absolute;
+    top: 0;
+    width: 70rem;
+    z-index: -1;
+  }
+
+  &::after,
+  {
+    --fa-bounce-height: 1rem;
+    --fa-bounce-jump-scale-x: 1;
+    --fa-bounce-jump-scale-y: 1;
+    --fa-bounce-land-scale-x: 1;
+    --fa-bounce-land-scale-y: 1;
+    --fa-bounce-rebound: 1rem;
+    --fa-bounce-start-scale-x: 1;
+    --fa-bounce-start-scale-y: 1;
+    animation: 2s ease-in-out 4s 3 normal both running fa-bounce;
+    content: "\f078\0a\f078";
+    display: block;
+    font-family: "Font Awesome 6 Free";
+    font-size: 2em;
+    line-height: 0.375em;
+    margin: 0.375em 0.375em 1.75em 0.375em;
+    transition: all 0.5s;
+    white-space: pre;
+  }
+
+  &:visited,
+  { color: $primary; }
+
+  &:focus,
+  { outline: medium outset $primary; }
+
+  &:focus:active,
+  { outline-offset: 0px; }
 
   .accelerate { font-style: italic; }
   .via, .the, .all, .of, .off, .us { font-size: 0.75em; }
   .via, .the, .all, .of, .virtualities, .demand, .speed, .press, .business, .realities { color: $secondary; }
 }
 
+@media(min-width:18rem) {
+  body[id] > a { font-size: 1.5rem; }
+}
+
+@media(min-width:36rem) {
+  body[id] > a { font-size: 2rem; }
+}
+
+@media(min-width:54rem) {
+  body[id] > a { font-size: 3rem; }
+}
+
 @media(min-width:72rem) {
-  body[id] > strong
-  {
-    font-size: 4rem;
-    padding: 30vh 0;
-  }
+  body[id] > a { font-size: 4rem; }
+  body[id] > a::before { content: none; }
+}
+
+@media(prefers-reduced-transparency) {
+  body[id] > a::before { filter: none; }
 }

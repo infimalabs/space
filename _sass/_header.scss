@@ -7,27 +7,12 @@ body[id],
     align-items: center;
     display: flex;
     flex-flow: row wrap;
-    height: 5.75rem;
+    height: 10.75rem;
     justify-content: center;
+    margin: -10.75rem 0 0 0;
     position: sticky;
-    top: -1.75rem;
+    top: -6.75rem;
     z-index: 1;
-
-    &::before,
-    {
-      background-color: $dark;
-      border-bottom: medium solid $primary;
-      border-radius: 0 0 1rem 1rem;
-      content: "";
-      filter: blur(0.125rem) opacity(50%);
-      height: 100%;
-      max-width: 100%;
-      min-width: 20rem;
-      position: absolute;
-      top: 0;
-      width: 70rem;
-      z-index: -1;
-    }
 
     > nav,
     {
@@ -205,11 +190,6 @@ body[id],
 
 @media(min-width:72rem) {
   body[id] > header > nav > button ~ ul { grid-template-columns: auto auto auto auto; }
-  body[id] > header::before { content: none; }
-}
-
-@media(prefers-reduced-transparency) {
-  body[id] > header::before { filter: none; }
 }
 
 @media(prefers-reduced-motion:no-preference) {
