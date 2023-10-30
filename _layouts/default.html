@@ -18,7 +18,7 @@
 <link rel="stylesheet" type="text/css" href="/assets/vendor/fontawesome/css/fontawesome.min.css">
 <style>{% capture style %}{% include style.scss %}{% endcapture %}{{style|scssify|strip}}</style>
 </head>
-<body id="{{site.title|slugify}}">
+<body id="top">
 <a title="Skip to content" href="#readme"><strong>
 {%- assign lines = page.intro|default:page.title|strip|split:page.newline %}
 {%- for line in lines %}{% assign words = line | split: " " %}
@@ -28,19 +28,17 @@
 {%- unless forloop.last %}<br>{% endunless %}
 {%- endfor -%}
 </strong></a>
-<header>
-<nav><button type="button" class="fas fa-bars" autofocus></button><button type="button" tabindex="-1"></button><ul>
+<header><nav><button type="button" class="fas fa-bars" autofocus></button><button type="button" tabindex="-1"></button><ul>
 {%- for n in site.data.default.nav %}<li><a id="nav-{{n.title|slugify}}" href="{{n.url}}">{{n.title}}</a></li>
 {%- endfor -%}
 </ul>
 {%- for n in site.data.default.brand.name %}<a id="nav-{{n|slugify}}" href="{% if n=="&lt;" %}/{% endif %}#">{{n}}</a>
 {%- endfor -%}
-</nav>
-</header>
+</nav></header>
 <main id="readme">{{content}}</main>
 <footer><b><time>{{"now"|date:"%Y"}}</time><a href="{{site.authorurl|absolute_url}}">{{site.author}}</a></b><ul>
 {%- for network in site.data.default.brand.social -%}
-<li class="list-inline-item"><a href="{{network.url}}"><i class="fab fa-{{network.title}}"></i></a></li>
+<li><a href="{{network.url}}" class="fab fa-{{network.title}}"></a></li>
 {%- endfor -%}
 </ul></footer></body>
 </html>
