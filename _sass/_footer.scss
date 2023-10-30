@@ -13,6 +13,7 @@ body[id],
     margin: auto;
     max-width: 72rem;
     padding: 25px 0;
+    scroll-snap-align: end none;
     text-align: center;
 
     > b,
