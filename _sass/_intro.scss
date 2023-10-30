@@ -2,6 +2,7 @@
 
 body[id] > a,
 {
+  --height: 100vh;
   @include intro-font;
   @include text-shadow;
   align-content: center;
@@ -11,7 +12,7 @@ body[id] > a,
   font-size: 1rem;
   font-weight: 700;
   grid-template-columns: auto;
-  height: 100vh;
+  height: var(--height);
   justify-content: center;
   justify-items: center;
   margin: 0;
@@ -21,7 +22,7 @@ body[id] > a,
   scroll-snap-align: start none;
   text-align: center;
   text-decoration: none;
-  top: calc(-100vh + 4rem);
+  top: calc(4rem - var(--height));
   width: 100%;
   z-index: 1;
 
@@ -33,7 +34,7 @@ body[id] > a,
     border-top: medium solid $primary;
     content: "";
     filter: blur(0.125rem) opacity(66.666666%);
-    height: 100vh;
+    height: var(--height);
     max-width: 100%;
     min-width: 20rem;
     position: absolute;
@@ -75,6 +76,10 @@ body[id] > a,
   .accelerate { font-style: italic; }
   .via, .the, .all, .of, .off, .us { font-size: 0.75em; }
   .via, .the, .all, .of, .virtualities, .demand, .speed, .press, .business, .realities { color: $secondary; }
+}
+
+@supports(height: 100dvh) {
+  body[id] > a { --height: 100dvh; }
 }
 
 @media(min-width:18rem) {
