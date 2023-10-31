@@ -98,6 +98,7 @@ main,
       color: $light;
       max-width: 100%;
       padding: 8rem 0.5rem 4rem;
+      scroll-margin-top: calc(-3px - 4rem);
       scroll-snap-align: start none;
       text-align: center;
       width: 96rem;
