@@ -4,7 +4,7 @@
 \documentclass[10pt]{article}
 
 
-\usepackage[en-US]{datetime2}
+\usepackage[en-US]{datetime2} \setctime \setmtime
 
 \usepackage{fontspec}
 
@@ -18,7 +18,7 @@
 
 \usepackage{hyperref}
 
-\hypersetup{
+\DTMsetstyle{pdf} \hypersetup{
   bookmarksopen=false,
   citebordercolor=purp,
   colorlinks=false,
@@ -26,8 +26,7 @@
   pdfauthor={C Anthony Risinger},
   pdfborder={2 2 2},
   pdfcreator={LaTeX},
-  % https://stackoverflow.com/a/41665409
-  pdfinfo={CreationDate={D:20231003150000-00'00}},
+  pdfinfo={CreationDate={\DTMuse{ctime}}, ModDate={\DTMuse{mtime}}},
   pdfkeywords={A15, Beta-Tungsten, Competitive Virtual Reality, Metaverse, Numeric Stability, Pm-3n, Spatial Computing, Tetrastix Prism, Weaire-Phelan Honeycomb, Infima Labs},
   pdfmenubar=true,
   pdfpagelayout=SinglePage,
@@ -38,7 +37,7 @@
   pdftitle={Accelerating the Virtual Experience via Compactification of the Metaverse},
   pdftoolbar=true,
   urlbordercolor=gold,
-}
+} \DTMsetregional
 
 \usepackage[all]{hypcap}
 
@@ -74,7 +73,7 @@
 \begin{document}
 
 
-\received{\DTMDisplaydate{2023}{10}{3}{-1}} \revised{\today}
+\received{\DTMusedate{ctime}} \revised{\DTMusedate{mtime}}
 
 
 \begin{opening}

@@ -43,9 +43,13 @@ finalstampv = false
 
 # Default commands.
 figc = SAVEFIG=$@ $(python) $(addprefix ./,$^)
-pre1 = \newcommand\version{$v}\newcommand\group{$g}\newcommand\stamp{$(or $($(v)stampv),true)}
-pre2 = \newcommand\setgraphicspath{\graphicspath{$(addprefix {,$(addsuffix },$(call reverse,$(sort $(^D)))))}}
-latexc = $(latexmk) -outdir=$(bldtmp) -jobname=$(@F).tmp -usepretex='$(pre1)$(pre2)' -pdflua -quiet -halt-on-error -Werror $< \
+pre = \newcommand\version{$v} \
+	\newcommand\group{$g} \
+	\newcommand\stamp{$(or $($(v)stampv),true)} \
+	\newcommand\setctime{\DTMsavetimestamp{ctime}{$(gittop)}} \
+	\newcommand\setmtime{\DTMsavetimestamp{mtime}{$(gitmod)}} \
+	\newcommand\setgraphicspath{\graphicspath{$(addprefix {,$(addsuffix },$(call reverse,$(sort $(^D)))))}}
+latexc = $(latexmk) -outdir=$(bldtmp) -jobname=$(@F).tmp -usepretex='$(pre)' -pdflua -quiet -halt-on-error -Werror $< \
 				 && $(cp) -a $(bldtmp)/$(@F).tmp.pdf $@
 docsc = $(rm) -f $@ \
 				&& $(pandoc) $g.tex --output=$@ --lua-filter=$g.lua --resource-path=$(bldtmp) \
