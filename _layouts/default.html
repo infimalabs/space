@@ -28,7 +28,7 @@
 {%- unless forloop.last %}<br>{% endunless %}
 {%- endfor -%}
 </strong></a>
-<header><nav><button type="button" class="fas fa-bars" autofocus></button><button type="button" tabindex="-1"></button><ul>
+<header><nav><button type="button" tabindex="0" class="fas fa-bars" autofocus></button><button type="button" tabindex="-1"></button><ul>
 {%- for n in site.data.default.nav %}<li><a id="nav-{{n.title|slugify}}" href="{{n.url}}">{{n.title}}</a></li>
 {%- endfor -%}
 </ul>
