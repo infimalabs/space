@@ -387,8 +387,8 @@ def figure(shape, *shapes, savefig:[bool|str]=False, views:tuple[tuple[int|float
                 x=1+2**-8, y=1-2**-5, transform=ax.transAxes, va="top",
                 ha="right", fontsize=fs*0.75, color="#1a1a1a",
                 s=r"$%s_{azim}\ %s_{elev}\ \mathbf{%s}$" % (
-                    r"\Phi-1" if view[1] == golden else f"{view[1]}^\circ",
-                    r"\Phi-1" if view[0] == golden else f"{view[0]}^\circ",
+                    r"\Phi-1" if view[1] == golden else fr"{view[1]}^\circ",
+                    r"\Phi-1" if view[0] == golden else fr"{view[0]}^\circ",
                     ax.name if ax.name != "3d" else "ortho" if ax._focal_length == numpy.inf else "persp",
                 ),
             ))
@@ -564,7 +564,7 @@ def pretty(h):
             desc += fr"_{{\left(edges={h.edges}, \epsilon={epsilon}\right)}}"
     if desc is None:
         desc = fr"polyhedra_{{\left(edges={h.edges}, vertices={h.vertices}, \epsilon={epsilon}\right)}}"
-    return f"${h.count} \cdot {desc}$"
+    return fr"${h.count} \cdot {desc}$"
 
 
 def configuration(*args, **kwds):
