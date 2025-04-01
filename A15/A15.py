@@ -189,8 +189,8 @@ def lattice(n=0, o=(0, 0, 0), at=lambda xyz: True, fn=lambda xyz: [(0, 0, 0)], *
         yield p + ((xyz + o) * 24), configuration(**kwds)
 
 
-def figure(shape, *shapes, savefig:[bool|str]=False, views:tuple[tuple[int|float]]=V[1], scale:tuple[int]=(1, 96),
-           title:[bool|str]=False, bars:bool=False, axes:bool=False, bg:bool=False):
+def figure(shape, *shapes, savefig:bool|str=False, views:tuple[tuple[int|float]]=V[1], scale:tuple[int]=(1, 96),
+           title:bool|str=False, bars:bool=False, axes:bool=False, bg:bool=False):
     scale = tuple(map(int, scale))
     width = 96 * scale[0] / scale[1]
     base1 = collections.defaultdict(set)
