@@ -6,7 +6,7 @@
 
 </summary>
 
-This [document](https://infima.space/A15.pdf){: target="_blank"} has seen no review---it's _incomplete_. However, its code, research,and outcomes _are_ complete, and we believe [_open
+This [document](https://infima.space/A15.pdf){: target="_blank"} has seen no review---it's _incomplete_. However, its code, research, and outcomes _are_ complete, and we believe [_open
 access_](https://github.com/infimalabs/space){: target="_blank"} to its ideas and related projects are of great value to competitive, full-body VR
 experiences.
 
