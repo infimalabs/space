@@ -4,376 +4,590 @@
 \documentclass[10pt]{article}
 
 
-\usepackage[en-US]{datetime2} \setctime \setmtime
-
+\usepackage[T1]{fontenc}
 \usepackage{fontspec}
-
-\usepackage{caption}
-
-\usepackage{amsmath} \allowdisplaybreaks
-
-\usepackage[luatex]{graphicx} \providecommand{\setgraphicspath}{} \setgraphicspath
-
-\usepackage{xcolor} \definecolor{gold}{RGB}{255, 180, 0} \definecolor{purp}{RGB}{180, 0, 255}
-
+\usepackage[english]{babel}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{siunitx}
+\usepackage[luatex]{graphicx}
+\usepackage{xcolor}
 \usepackage{hyperref}
-
-\DTMsetstyle{pdf} \hypersetup{
-  bookmarksopen=false,
-  citebordercolor=purp,
-  colorlinks=false,
-  linkbordercolor=gold,
-  pdfauthor={C Anthony Risinger},
-  pdfborder={2 2 2},
-  pdfcreator={LaTeX},
-  pdfinfo={CreationDate={\DTMuse{ctime}}, ModDate={\DTMuse{mtime}}},
-  pdfkeywords={A15, Beta-Tungsten, Competitive Virtual Reality, Metaverse, Numeric Stability, Pm-3n, Spatial Computing, Tetrastix Prism, Weaire-Phelan Honeycomb, Infima Labs},
-  pdfmenubar=true,
-  pdfpagelayout=SinglePage,
-  pdfpagemode=FullScreen,
-  pdfproducer={LaTeX},
-  pdfstartview=Fit,
-  pdfsubject={Competitive Virtual Reality},
-  pdftitle={Accelerating the Virtual Experience via Compactification of the Metaverse},
-  pdftoolbar=true,
-  urlbordercolor=gold,
-} \DTMsetregional
-
 \usepackage[all]{hypcap}
-
+\usepackage[capitalise,nameinlink]{cleveref}
+\usepackage[en-US]{datetime2}
+\usepackage{caption}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{tabularx}
+\usepackage{longtable}
+\usepackage{multirow}
+\usepackage{makecell}
 \usepackage{moreverb}
-
+\usepackage{url}
 \usepackage{csagh}
+
 
 \usepackage{draftwatermark} \providecommand{\stamp}{true}
 \DraftwatermarkOptions{stamp=\stamp,angle=0,vpos=0.84375\paperheight,text={\sffamily{DRAFT}}}
 
-\renewcommand\figurename {Figure}
 
-\renewcommand\tablename  {Table}
-
-\renewcommand\refname    {References}
-
-
-\def\listingoffset{\leftmargini}
-
-\def\listinglabel#1{\rlap{\footnotesize\sffamily\the#1}\hskip\listingoffset{}\relax}
+\definecolor{gold}{RGB}{255, 180, 0}
+\definecolor{purp}{RGB}{180, 0, 255}
 
 
 \def\AAAB{\textit{A15}}
+\def\betaW{$\beta$--$W$}
+\def\WP{Weaire--Phelan}
+\def\WPH{\WP{}~Honeycomb}
+\def\TSP{Tetrastix~Prism}
+\def\tWPH{the~\WP{}~Honeycomb}
+\def\tWPh{the~\WP{}~honeycomb}
+\def\tTSP{the~\TSP{}}
+\def\tTSp{the~\TSP{}~prism}
+\def\TWPH{The~\WP{}~Honeycomb}
+\def\TTSP{The~\TSP{}}
+\def\IL{Infima~Labs}
 
-\def\TS{Tetrastix} \def\TSP{Tetrastix~Prism} \def\TTSp{The~Tetrastix~prism} \def\tTSp{the~Tetrastix~prism}
 
-\def\WP{Weaire--Phelan} \def\WPH{Weaire--Phelan~Honeycomb} \def\TWPh{The~Weaire--Phelan~honeycomb}
-\def\tWPh{the~Weaire--Phelan~honeycomb}
+\providecommand{\setgraphicspath}{}
 
-\def\IL{Infima~Labs} \def\il{infimalabs}
 
+\setctime
+\setmtime
+\setgraphicspath
+\allowdisplaybreaks
+\DTMsetstyle{pdf}
+\DTMsetregional
+
+
+\hypersetup{
+    bookmarksopen=false,
+    citebordercolor=purp,
+    colorlinks=false,
+    linkbordercolor=gold,
+    urlbordercolor=gold,
+    pdfauthor={C Anthony Risinger},
+    pdfborder={2 2 2},
+    pdfcreator={LuaLaTeX with hyperref},
+    pdfinfo={
+        CreationDate={\DTMuse{ctime}},
+        ModDate={\DTMuse{mtime}},
+        Keywords={A15, Beta-Tungsten, Competitive Virtual Reality, Coordinate Encoding, Crystallography, Determinism, Deterministic Simulation, Infima Labs, Lattice Encoding, Metaverse, Numeric Stability, Pm-3n, Spatial Computing, Spatial Encoding, Spatial Hashing, Tetrastix Prism, Weaire-Phelan Honeycomb},
+        Subject={Spatial Computing for Deterministic Virtual Environments},
+        Title={Accelerating the Virtual Experience via Compactification of the Metaverse},
+    },
+    pdfmenubar=true,
+    pdfpagelayout=SinglePage,
+    pdfpagemode=UseNone,
+    pdfproducer={LuaLaTeX},
+    pdfstartview=Fit,
+    pdftoolbar=true,
+}
 
 \begin{document}
 
 
-\received{\DTMusedate{ctime}} \revised{\DTMusedate{mtime}}
-
+\received{\DTMusedate{ctime}}
+\revised{\DTMusedate{mtime}}
 
 \begin{opening}
 
 
-  \author[\IL, \URL{https://\il.com}, e-mail: \URL{anthony@\il.com}\\ Snap Game Services, \URL{https://snap.gs}, e-mail:
-  \URL{anthony@snap.gs}]{C Anthony Risinger}
+    \author[%
+        \IL{}, \URL{https://infima.space}, e-mail: \URL{anthony@infima.space}\\
+        Snap Game Services, \URL{https://snap.gs}, e-mail: \URL{anthony@snap.gs}
+    ]{C Anthony Risinger}
 
 
-  \title{\emph{Accelerating} {\normalsize the} Virtual Experience\newline{} {\normalsize via} Compactification {\normalsize of
-  the} Metaverse}
+    \title{%
+        \emph{Accelerating} {\normalsize the} Virtual Experience\newline{}
+        {\normalsize via} Compactification {\normalsize of the} Metaverse
+    }
 
 
-  \begin{abstract}
+    \begin{abstract}
+        \setlength{\parindent}{0em}
+        \setlength{\parskip}{1em}
 
-    \setlength{\parindent}{0em}
+        Spatial computing stands at the heart of immersive, competitive experiences. When reality yields to fast-paced virtual arenas, every millisecond influences the outcome, and every dropped frame can shatter the illusion. Widespread spatial partitioning of diverse virtual realities (VR) using the topologically close-packed \textbf{\AAAB{} phase structure} (\betaW{}) promises to thread new, scalable dimensions of isotropic order into the fabric of the metaverse itself.
 
-    Spatial computing stands at the heart of immersive, competitive experiences. When reality yields to fast-paced virtual
-    arenas, every millisecond can clutch the win, and every dropped frame can shatter the illusion. Widespread spatial
-    partitioning of different virtual realities (VR) with the topologically close-packed \textbf{\AAAB{} phase structure}
-    ($\beta$--$W$) promises to thread new, scalable dimensions of isotropic order into the fabric of the metaverse itself.
+        This research advances the development of a trans-metaversal coordination space. Latency-sensitive, full-body VR experiences---such as online multiplayer tournaments---face significant challenges under current infrastructure, impacting responsiveness and fairness \cite{Claypool2006}. Full immersion demands higher fidelity at greater speeds; simply relaying kinematic coordinates for complex interactions (e.g., a 5-on-5 full-body VR match) can result in aggregate data rates exceeding \SI{100}{\kilo\bit\per\second} per user.
 
-    \setlength{\parskip}{1em}
+        The proposed solution addresses these issues by mapping three-dimensional (3D) floating-point coordinates---and their often-unused dynamic range---to the nearest \AAAB{}-encoded integer representation. By embedding \AAAB{} within structured partitioning geometries like \tWPh{} or \tTSp{} and operating within rigorously defined numerically stable scaling regimes, the framework discretizes 3D space while guaranteeing deterministic fidelity. The result is a higher-order representation that is packable, stackable, significantly smaller (often reducing data size by 50\% or more compared to standard \SI{32}{\bit} float vectors), minimizes directional aliasing, maintains compatibility with global measurement standards, and ensures verifiable consistency---crucial for responsive, fair, and trustworthy virtual experiences.
 
-    This research advances the development of a~trans-metaversal coordination space. Latency-sensitive, full-body VR
-    experiences --- such as online multiplayer tournaments --- are close to insufferable under the current infrastructure. In lieu of
-    a~shared, compact spatial representation, downstream spatial protocols resort to resharing the original floating-point
-    coordinates. Full immersion demands tenfold the coordinates at double the speed --- simply relaying the positional coordinates
-    of a~5-on-5 full-body VR match can exceed 100 kbps per user.
-
-    The proposed solution rounds each three-dimensional (3D) floating-point coordinate --- and all its unused dynamic range --- to
-    the nearest \AAAB{}-encoded integer representation, one or more dimensions higher. It centers \AAAB{} inside \tWPh{}, or
-    \tTSp{}, then equally discretizes all 3D floating-point space. The result is a~numerically-stable, higher-order space that's
-    packable, stackable, and less than half the size in memory --- assigning each high-dimensional coordinate to a~consistent
-    volume of 3D space shrinks the encoding of nearby coordinates, minimizes directional aliasing, and maintains compatibility
-    with global measurement standards.
-
-    In a~quest for instant replay and deterministic fidelity, aligning virtualities with \AAAB{} ensures every bit of space is
-    part of the living, responsive experience.
-
-  \end{abstract}
+        In a quest for instant replay and deterministic fidelity, aligning virtualities with \AAAB{} ensures every part of the discretized space contributes to a consistent and responsive virtual experience.
+    \end{abstract}
 
 
-  \keywords{\AAAB, Beta-Tungsten, Competitive Virtual Reality, Metaverse, Numeric Stability, Pm-3n, Spatial Computing, \TSP,
-  \WPH, \emph{\IL}}
-
+    \keywords{%
+        \AAAB{}, Beta-Tungsten, Competitive Virtual Reality, Coordinate Encoding, Crystallography, Determinism, Deterministic Simulation, \IL{}, Lattice Encoding, Metaverse, Numeric Stability, Pm-3n, Spatial Computing, Spatial Encoding, Spatial Hashing, \TSP{}, \WPH{}%
+    }
 
 \end{opening}
 
+\begin{figure}[!ht]
+    \capstart
+    \centering
+    \includegraphics[trim={150 150 150 155}, scale=0.75]{fig-intro}
+    \caption{Illustration of the \AAAB{} structure (\betaW{}) at three different scales, generated using \texttt{A15.py} (\texttt{fig-intro.png.txt}). The visualization highlights the constituent pyritohedral and tetradecahedral elements, demonstrating how the structure maintains its fundamental $Pm\bar{3}n$ space group symmetry while revealing increasing detail at finer resolutions.}
+    \label{fig:intro}
+\end{figure}
 
-\begin{figure}[!ht]\capstart \includegraphics[trim=150 150 150 155,scale=.75]{fig-intro}\caption{Illustration of \AAAB{} at three
-different scales. \label{fig-intro}}\end{figure}
+\section{Introduction: Floats, Fairness, and the A15 Foundation}\label{sec:introduction}
 
+Binary floating-point numbers, commonly known as ``floats'' and largely governed by the IEEE 754 standard \cite{IEEE754-2019}, are the computational workhorses for representing real numbers. They offer a vast dynamic range essential for graphics and science, yet this reach often comes at the cost of precision. Floats are notorious for providing \emph{approximately correct} answers\footnote{Floats are abundant in software yet maddeningly fickle; among the first one-hundred simple reciprocals ($1/n$), ninety-three require approximation in standard binary float formats \cite{Goldberg1991}.}, representing most values inexactly. These tiny, fundamental representation errors, inherent in their structure (\Cref{eq:float-representation}), can accumulate and interact, particularly challenging the deterministic consistency required for networked virtual reality (VR), distributed simulations, and the burgeoning metaverse. This research confronts these challenges head-on, proposing an alternative spatial representation rooted in the unique crystallographic properties of the \AAAB{} phase structure (\betaW{}, space group $Pm\bar{3}n$, No.~223 \cite{ITCVolumeA2016}), as illustrated in \Cref{fig:intro}.
 
-\section{Introduction to Floats and Spatial Partitioning with \AAAB}\label{introduction-to-floats-and-spatial-partitioning-with-a15}
+\subsection{The Challenge of Floating-Point Precision}\label{subsec:intro-floats}
 
-Binary floating-point numbers, commonly known as \emph{floats}, are notorious for giving slightly different, \emph{approximately
-correct} answers.
+Standard normalized binary floating-point numbers derive their value from three components: a sign bit, a biased exponent, and a significand (mantissa). Conceptually\footnote{This simplified view omits details such as exponent bias, subnormal numbers, infinities, and NaNs, rigorously defined in \cite{IEEE754-2019} but not central to the core issue of approximation.}, their value relates to:
+\begin{equation} \label{eq:float-representation}
+    \text{value} = (-1)^{\text{sign}} \times (1 + \text{significand}) \times 2^{\text{exponent}}
+\end{equation}
+The fixed-size significand offers constant \emph{relative} precision within an exponent range, while the exponent scales the value logarithmically. This design excels at exactly representing powers of two and fractions whose denominators are solely powers of two, but only a finite subset thereof. Consequently, most decimal values and even many simple fractions (e.g., $1/10$) are merely approximated \cite{Goldberg1991}.
 
-\[\dfrac{\mathit{\scriptstyle significand}}{2^{\mathit{exponent}}}\]
+While seemingly minuscule, these representation errors can compound, critically affecting reproducibility. In distributed systems like multiplayer games or collaborative VR, this becomes paramount. Identical logical inputs processed on different hardware architectures, operating systems, or even with different compiler optimizations can yield subtly divergent floating-point results. This variance breaks simulation consistency, undermines fairness in competition \cite{Claypool2006}, complicates debugging and verification, and fundamentally opposes the requirement for determinism. Yet, widespread hardware acceleration makes IEEE 754 formats---primarily binary32 (\SI{32}{\bit}, single-precision) and binary64 (\SI{64}{\bit}, double-precision)---ubiquitous in modern CPUs and GPUs. Binary32, in particular, remains vital for performance-sensitive applications like game development and VR, establishing a key baseline for efficiency comparisons. This work, therefore, accepts the practical necessity of floats but seeks to structure their use, mitigating risks to determinism via the disciplined partitioning and verifiable scaling offered by the \AAAB{} framework detailed in \Cref{sec:framework-design}.
 
-Akin to the expression above\footnote{Exponents are effectively signed --- \emph{bias} is an implementation detail --- and $2^{-n}$
-is $^1/_{2^n}$.}, floats resemble fractions or ratios. Their integer numerators cycle linearly $0$--$\mathit{significand}$ once
-per denominator, whereas their log-linear denominators must double or split on strict powers-of-two. This representation
-approximates the vast majority of rational, base$_{10}$ numbers, and accumulating tiny, order-dependent rounding errors is
-\emph{expected}. There are ninety-three approximations in the first one-hundred $^1/_n$ reciprocals alone, where denominators are
-\emph{most} dense.
+\subsection{The A15 Phase Structure: A Crystallographic Foundation}\label{subsec:intro-a15}
 
-Floats shed the stability of integers to dramatically boost their reach. Hardware-accelerated for decades in pursuit of ever-more
-floating-point operations per second (FLOPS), a~single, fixed-bit memory format meaningfully ranges from quantum foam to cosmic
-web. Floats are \emph{inescapably} abundant --- the sand of software --- their skillful workings endow modern data structures with
-great strength and timeless clarity.
+Effectively partitioning virtual space requires a measure of geometric ``fairness''—a balance between \textbf{isometry} (preserving distances between corresponding points) and \textbf{isotropy} (uniformity of properties across different directions). Discretizing continuous space onto a lattice while preserving both ensures that spatial relationships remain consistent and free from directional bias. While regular lattices achieve perfect isometry through translational symmetry, attaining high isotropy is constrained by fundamental geometric principles. The continuous rotational symmetry group in 3D, $SO(3)$, implies that highly isotropic structures should appear locally spherical. However, the imposition of discrete translational symmetry restricts the allowed rotational symmetries to only 1-, 2-, 3-, 4-, and 6-fold axes. This is the essence of the \textbf{crystallographic restriction theorem} \cite{AshcroftMermin1976}, which explicitly forbids the global 5-fold symmetry characteristic of highly isotropic polyhedra like the icosahedron (associated with the $I_h$ point group symmetry \cite{Coxeter1973}) in periodic lattices.
 
-This research accepts and embraces binary floats as they are. It scales both the \AAAB{} phase structure, also known as
-$\beta$--$W$, and its corresponding Voronoi honeycomb, \tWPh, to align with precise, IEEE 754-2008 floating-point specifications.
-Each honeycomb cell collapses its internal, 3D floating-point coordinates to an integer-encoded \AAAB{} site at its core, and
-together, cores identify a~compact, higher-order space --- a~well-rounded snapshot of the original, 3D floating-point space --- where
-every high-dimensional \AAAB-encoded coordinate mirrors an exact 3D float.
+The \AAAB{} structure ($Pm\bar{3}n$, No.~223 \cite{ITCVolumeA2016}) navigates this restriction with notable elegance. It is based on the simple primitive cubic ($cP$) Bravais lattice but incorporates a complex basis (or motif) containing two distinct types of crystallographic sites within its conventional unit cell \cite{FrankKasper1958, FrankKasper1959}, as illustrated in \Cref{fig:cell2}:
+\begin{itemize} \itemsep0pt
+    \item 25\% are C12 sites: 12-coordinated, occupying Wyckoff position 2a (e.g., at fractional coordinates $(0, 0, 0)$ and $(1/2, 1/2, 1/2)$). Their local coordination environment exhibits characteristics related to pyritohedral symmetry.
+    \item 75\% are C14 sites: 14-coordinated, occupying Wyckoff position 6d (e.g., at $(1/4, 1/2, 0)$ and its symmetry equivalents \cite{ITCVolumeA2016}). Their local environment resembles a tetradecahedron (a 14-faced polyhedron).
+\end{itemize}
+This intricate arrangement results in a high average coordination number, calculated as $Z_{avg} = (0.25 \times 12) + (0.75 \times 14) = 13.5$, suggesting a densely connected local structure conducive to efficient packing. The local symmetry around these sites is described by the crystallographic point group $T_h$ ($m\bar{3}$, order 24). Significantly, $T_h$ is a maximal subgroup common to both the full cubic symmetry group $O_h$ (order 48) and the non-crystallographic icosahedral group $I_h$ (order 120) \cite{CoxeterMoser1972}. While lacking the forbidden 5-fold axes of $I_h$, $T_h$ retains key 3-fold rotational symmetries present in icosahedral structures. This unique symmetry allows the \AAAB{} structure to incorporate significant near-icosahedral local ordering, boosting local isotropy considerably compared to simpler cubic structures, all while maintaining the long-range periodicity required by crystallography. The structure also features alternating left- and right-handed local environments around the 6d sites, adding further complexity relevant to implementation (\Cref{subsubsec:limits-handedness}).
 
-This research applies to IEEE 754-2008 base$_{2}$ floating-point numbers of all bit sizes, and may refer to them as
-\emph{binary$_{64}$}, \emph{binary$_{32}$}, \emph{base$_{2}$ floats}, or simply \emph{floats}. For coding and analysis purposes,
-binary$_{64}$ is preferred, due to its large size and prevalence in modern CPUs. For baselines and performance comparisons,
-binary$_{32}$ is preferred, due to its widespread presence in hardware, software, and network stacks.
+Crucially for this work, the canonical definition of the \AAAB{} structure relies on fractional coordinates inherently suitable for binary representation: $0$, $1/4$, and $1/2$. These values are exactly representable in base-2 systems. When these fractional coordinates are mapped onto an integer lattice (conceptually, by scaling the unit cell coordinates by 4, aligning with the derivation of the 96-unit baseline in \Cref{subsubsec:scaling-baseline}), two characteristic squared site-to-site distances emerge within this integer framework: $d^2 = 4$ (yielding distance 2) and $d^2 = 5$ (yielding distance $\sqrt{5}$). The presence of $\sqrt{5}$, the hypotenuse of a fundamental 2:1 right triangle, connects the structure's geometry directly to the golden ratio $\phi = (1+\sqrt{5})/2$, further reflecting the embedded near-icosahedral characteristics. This intrinsic numerical simplicity and compatibility with base-2 representation ensures that the \AAAB{} structure can be defined and scaled with precision, forming a robust foundation for the numerically stable encoding framework developed herein (\Cref{subsec:stability}).
 
-The nomenclature and parlance used throughout is primarily that of crystallography, borrowing from other disciplines as
-necessary.
+\begin{figure}[!ht]
+    \capstart
+    \centering
+    \includegraphics[trim={25 50 25 0}, scale=0.55]{fig-cell2}
+    \caption{Components illustrating the local arrangement within a left-handed $^1/_2$ unit cell fragment of the \AAAB{} structure. Shows C12 (Wyckoff 2a, center of pyritohedral environment) and C14 (Wyckoff 6d, center of tetradecahedral environment) sites demonstrating the local complexity within the overall $Pm\bar{3}n$ symmetry. Generated via \texttt{A15.py} (\texttt{fig-cell2.png.txt}).}
+    \label{fig:cell2}
+\end{figure}
 
-\begin{figure}[!ht]\capstart \includegraphics[trim=25 50 25 0,scale=.55]{fig-cell2}\caption{Left-handed $^1/_2$ unit cell.
-\label{fig-cell2}}\end{figure}
+\subsection{Local Discretization Methods: WPH and TSP}\label{subsec:intro-partitioning}
 
-\subsection{Foundational Understanding of \AAAB{} and Spatial Partitioning}\label{foundational-understanding-of-a15-and-spatial-partitioning}
+While the \AAAB{} structure defines the target lattice points for coordinate encoding, mapping arbitrary continuous coordinates from a virtual environment onto these discrete identifiers requires a well-defined \emph{local discretization method}. This method effectively defines the boundaries of the region (the ``cell'') surrounding each \AAAB{} site; any continuous point falling within a given cell is quantized or mapped to that specific site's identifier. This framework primarily considers two such methods, both intrinsically linked to the \AAAB{} structure, sharing its $Pm\bar{3}n$ space group symmetry, and implemented within the accompanying \texttt{A15.py} software (\Cref{fig:wp-ts}):
 
-Partitioning virtual spaces is a~matter of fairness. ``Fairness," as it applies to transformations on structures in 3D space, is
-a~measure of isometry and isotropy --- reducing the bit space \emph{must not} significantly warp distances and angles between any
-two sites. While isometry on its own is readily achievable, combining it with isotropy is much more difficult. The $SO(3)$ group,
-or the set of all possible 3D rotations, is spherical --- highly-isotropic structures appear ``rounder" from the perspective of an
-individual site --- and simply cannot fit nicely inside a~cubical lattice ``box". This innate tension between
-translation-preserving symmetries and rotation-preserving symmetries drastically shrinks the pool of N-fold designs available to
-perfectly isometric 3D lattices. In accordance with the crystallographic restriction theorem, C12 is the maximum coordination
-number, and the only possible angles are 180$^{\circ}$ (2-fold), 120$^{\circ}$ (3-fold), 90$^{\circ}$ (4-fold), and 60$^{\circ}$
-(6-fold) --- icosahedral designs (5-fold) with $I_h$ symmetry are not possible.
-
-\AAAB{} eschews 100\% identical sites and perfect isometry for a~blended mix of exactly 75\% C14 major
-sites --- axes-aligned tetradecahedral layers (\WP) or cubes (\TS) with 14 connections each --- 25\% C12 minor sites --- pyritohedral
-voids (\WP) or cubes (\TS) with 12 connections each --- and two different site-to-site distance metrics. True 5-fold symmetry
-appears in the form of alternating left- and right-handed sites with $T_h$ \emph{pyritohedral} symmetry, an isometric subgroup
-(4-of-10 3-fold axes) of the full icosahedral symmetry group $I_h$. This localized asymmetry drastically increases isotropy (13.5
-mean coordination) without impacting long-range isometric order.
-
-\begin{figure}[!ht]\capstart \includegraphics[trim=130 140 80 50,scale=.35]{fig-wp}\includegraphics[trim=130 140 80
-50,scale=.35]{fig-ts}\caption{\TWPh{} (left) and \tTSp{} (right).\label{fig-wp-ts}}\end{figure}
-
-In a~sense, \AAAB{} is already binary. Its fractional lattice coefficients use nothing but the first three multiples of $2^{-2}$,
-and all eight basis sites are perfect binary floats. Quadruple its fractional coordinates into the integers, and its two,
-site-to-site distance metrics become $2$ (major-major) and $\sqrt{5}$ (major-minor). $\sqrt{5}$ is the hypotenuse of a~2:1 right
-triangle and the crux of the golden ratio. \AAAB{} can be defined at unit scale without stability issues. However, at any scale,
-\AAAB{} only represents the destination encoding, leaving open the question of \emph{how} higher-density bit spaces should
-discretize themselves to a~valid \AAAB{} site. In other words, finding the nearest site requires a~precise definition of
-\emph{nearest}.
-
-The first definition, depicted in \autoref{fig-wp-ts} (left), is available to any 3D point set. Starting from an \AAAB{} integer
-crystal lattice, identify its Voronoi honeycomb from the set of inflection points between neighboring \AAAB{} sites --- edges in
-this secondary structure have exactly two nearest neighbors in \AAAB{}, and vertices have three or more --- and \tWPh{} appears.
-A~simpler, less isotropic definition of \emph{nearest} is also available to \AAAB{}. As seen in \autoref{fig-wp-ts} (right), when
-the angle between sites in the secondary structure is fixed to 90° and the entire space is filled with
-\emph{unit} cubes --- \tTSp{} emerges instead. The price for this simplicity is reduced spatial accuracy and more directional
-aliasing.
-
-\subsection{Spatial Indexing and Related Spatial Partitioning Methods}\label{spatial-indexing-and-related-spatial-partitioning-methods}
-
-Spatial partitioning is closely associated with spatial indexing. In this context, the partitioner is more dynamic and
-specific --- space is split on maximally-coincident hyperplanes, or enclosed within minimally-overlapping polytopes, for the
-purposes of cataloging sites and facilitating retrieval. Incoming sites are unlikely to adhere to any meaningful symmetry and
-freely utilize the full range and precision of the ambient space. This ignorance of an implied external structure is critical for
-spatial indexing, but renders well-known binary space partitioners (BSP), like octrees and KD trees, and bounded-polytope
-solutions, like R-trees, R$^*$-trees, and its derivatives, less attractive as \emph{implicit}, memory-efficient, interactive
-virtual space partitioners, because their preferred hyperplanes and polytopes do not maintain the spatial symmetries of the
-ambient space. However, if they did maintain ambient symmetries, the resultant structures might resemble objects that are
-comparable to \AAAB{}: space groups and space-filling honeycombs.
-
-\subsection{Comparative Analysis of \AAAB{} with Space Groups and Honeycombs}\label{comparative-analysis-of-a15-with-space-groups-and-honeycombs}
-
-Three-dimensional space admits fourteen crystallographic lattice types known as Bravais lattices --- fourteen distinct,
-prototypical pairings between one-of-seven lattice systems and one-to-four lattice centerings --- and every discrete,
-\emph{periodic} tesselation of 3D space shares its translational isometries with a~Bravais lattice. Non-translational isometries,
-such as reflections and rotoinversions, are known as 3D point groups, and the thirty-two that satisfy the crystallographic
-restriction theorem are deemed the crystallographic point groups. The complete set of 230 space groups emerges from all
-isomorphic combinations of the fourteen lattice types with the thirty-two crystallographic point groups, and fully characterizes
-any periodic tesselation of 3D space.
-
-\begin{figure}[!ht]\textbf{(todo) Table.} $Pm\bar{3}n$ (223) alongside other groups.\end{figure}
-
-\AAAB{}'s space group, $Pm\bar{3}n$, pairs the $O_h$ symmetry of the $cP$ Bravais lattice with the $T_h$ pyritohedral symmetry of
-the $m\bar{3}$ crystallographic point group. $T_h$ pyritohedral symmetry is an isometric subgroup of the
-\emph{non-crystallographic}, full icosahedral symmetry group, $I_h$. Crystallographic point groups with $T_h$, $O$, and $T_d$
-symmetries are all order 24, and second only to order 48, $O_h$ cubic symmetry. Since $T_h$ is the maximal subgroup between $O_h$
-and $I_h$ --- between the existing cubical-octahedral isometries of \AAAB{}'s Bravais lattice and the highly-desirable,
-\emph{non-crystallographic} icosahedral isometries of $I_h$ --- any point group with higher order than $m\bar{3}$ is also more
-cubical. The link from $m\bar{3}$ to $I_h$ symmetry through $T_h$ symmetry is strong evidence that $m\bar{3}$ is isotropically
-ideal.
-
-\begin{figure}[!ht]\textbf{(todo) Table.} \AAAB{} alongside other honeycombs (mean coordination, etc).\end{figure}
-
-\begin{description}
-
-  \item[(todo) Bitruncated cubic honeycomb] Uniform Voronoi honeycomb of BCC lattice; mean coordination 4; space group
-    $Im\bar{3}m$ (229); vertex-, edge-, and face-transitive; 3-space permutohedron; best-known ideal foam (Kelvin problem) for a
-    century, then superseded by \tWPh{}.
-
-  \item[(todo) Rhombic dodecahedral honeycomb] Non-uniform Voronoi honeycomb of FCC lattice; mean coordination 5.5; space group
-    $Fm\bar{3}m$ (225); edge-, face-, and cell-transitive; 3-space parallelohedron.
-
-  \item[(todo) Tetragonal disphenoid honeycomb] Uniform honeycomb and body-centered cubic (BCC or $A_3^*$ or $D_3^*$) lattice;
-    mean coordination 8; space group $Im\bar{3}m$ (229); vertex-, face-, and cell-transitive; reciprocal lattice is FCC; ideal
-    k-space samples in $R^3$.
-
-  \item[(todo) Tetrahedral-octahedral honeycomb] Simplectic, quasiregular honeycomb and face-centered cubic (FCC or $A_3$ or
-    $D_3$) lattice; mean coordination 12; space group $Fm\bar{3}m$ (225); vertex- and edge-transitive; ideal 3-space packing of
-    identical spheres; reciprocal lattice is BCC.
-
+\begin{description} \itemsep0.5em
+    \item[\WPH{} (WPH) Geometry:] This research utilizes the geometric polyhedral form of the \WP{} structure as a partitioning method. It divides space using cells of two distinct shapes: a 12-faced pyritohedron and a 14-faced tetradecahedron, arranged in a precise 1:3 ratio \cite{WeairePhelan1994}. These cell shapes correspond topologically to the local coordination environments of the C12 and C14 sites within the \AAAB{} structure, respectively. This partitioning is notable for its high degree of isotropy, closely mirroring the symmetry characteristics of the underlying lattice. (It is important to distinguish this geometric, space-filling honeycomb from the related but distinct relaxed, minimal-surface structure which famously provided a counter-example to Kelvin's conjecture on foam partitioning \cite{Kelvin1887, Kusner1996, WeaireHutzler2001}.)
+    \item[\TSP{} (TSP) Geometry:] A structurally simpler alternative partitioning method, activated within \texttt{A15.py} via the \texttt{stix=True} configuration option. This method employs axis-aligned planar faces, effectively dividing space into cubic blocks centered on the \AAAB{} lattice sites. While offering computational advantages for certain operations (such as point-in-cell tests) due to its simpler geometry, this approach generally exhibits lower isotropy compared to \tWPH{} method.
 \end{description}
 
+Crucially, both \tWPH{} and \tTSP{} serve as interchangeable local discretization methods within this framework. They define the specific geometry used to quantize continuous space around each \AAAB{} lattice site. The choice influences the precise shape of these local regions and boundaries, impacting factors like the resulting partition's isotropy and the computational cost of the quantization step itself. However, the fundamental coordinate identifier that is ultimately transmitted or stored remains based on the position within the underlying \AAAB{} lattice, regardless of which local method is used for the mapping.
 
-\section{Experimental Design, Implementation, and Validation}\label{experimental-design-implementation-and-validation}
+\begin{figure}[!ht]
+    \capstart
+    \centering
+    \includegraphics[trim={130 140 80 50}, scale=0.35]{fig-wp}%
+    \includegraphics[trim={130 140 80 50}, scale=0.35]{fig-ts}
+    \caption{Visualization of local discretization methods related to the underlying \AAAB{} structure. Left: The geometric polyhedral variant of the \textbf{\WPH{}}, featuring pyritohedra (12 faces) and tetradecahedra (14 faces). Right: The simpler \textbf{\TSP{}} partitioning using axis-aligned planar faces resulting in cubic blocks centered on \AAAB{} sites. Both share the $Pm\bar{3}n$ space group symmetry. Generated using \texttt{A15.py} (\texttt{fig-wp.png.txt} and \texttt{fig-ts.png.txt}).}
+    \label{fig:wp-ts}
+\end{figure}
 
-\textbf{(todo)} State reasoning for finding the smallest-possible integer representation, if any; show unstable configuration;
-walk through construction of \AAAB{} and surrounding it with \tWPh, identifying its minimum prescale factor along the way; relate
-integer scaling to fraction-like floating-point definition from introduction; add the next layer of lattice and additional
-prescale due to separation distance; binary splits of this final prescale are ``binary" scales, multiples of these splits are
-``stable" scales, and everything else is ``unstable"; bits shuffle cleanly between range and density, facilitating the definition
-of subspaces; show \TS{} at \WP's prescale and frame volume difference as an error domain.
+\subsection{Distinction from Traditional Spatial Indexing}\label{subsec:comparison-indexing}
 
-\newpage{} % TODO: Remove when section above is complete.
+The \AAAB{}-based partitioning approach presented here relates to, yet fundamentally differs from, traditional spatial indexing techniques commonly employed in databases, geographic information systems (GIS), and various domains of computer graphics (e.g., octrees \cite{Finkel1974}, R-trees \cite{Guttman1984}, k-d trees \cite{Bentley1975}; see \cite{Samet1990} for a comprehensive overview). Conventional indexing methods typically utilize data-driven, adaptive strategies; their partitioning boundaries often adjust dynamically based on the distribution and density of existing spatial objects, with the primary goal of optimizing query performance (such as range searches or nearest neighbor lookups) for that specific dataset.
 
-\subsection{\AAAB.py's Experimental Design and Exploration}\label{a15pys-experimental-design-and-exploration}
+In stark contrast, the \AAAB{} framework imposes a predetermined, regular, crystallographically-inspired structure onto the virtual space itself, largely independent of the dynamic content residing within it. This \emph{structure-first} methodology prioritizes the creation of a universal, efficient, and geometrically sound fabric for spatial representation and encoding. The key distinctions are summarized in \Cref{tab:comparison-indexing}. The \AAAB{} approach deliberately trades the dynamic query optimization focus of traditional indexing for significant advantages in predictability, communication efficiency (via compact identifiers that implicitly encode the regular structure), guaranteed numerical determinism (when using stable scaling regimes), and inherent geometric consistency derived from crystallographic symmetry—properties particularly valuable for networked virtual environments demanding shared spatial understanding, robustness against floating-point discrepancies, and efficient state synchronization.
 
-\textbf{(todo)} Explain \AAAB.py generation process, reasoning, capabilities, and assertions; describe main image and such things
-as $N_1$ (cell width), $\epsilon_N$, $\epsilon_\delta$, $\epsilon_\Delta$, and $\epsilon$.
+\begin{table}[!ht]
+\centering
+\caption{Comparison of Spatial Organization Approaches.}
+\label{tab:comparison-indexing}
+\begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}p{0.21\textwidth} >{\raggedright\arraybackslash}p{0.38\textwidth} >{\raggedright\arraybackslash}X}
+\toprule
+\textbf{Characteristic} & \textbf{Traditional Spatial Indexing}\newline (e.g., Octree \cite{Finkel1974}, R-tree \cite{Guttman1984}, k-d tree \cite{Bentley1975}) & \textbf{\AAAB{} Crystallographic Partitioning} \\
+\midrule
+Primary Objective & Efficient query/retrieval of existing, often arbitrary, data & Uniform, deterministic spatial discretization and efficient coordinate encoding \\ \addlinespace
+Partition Strategy & Data-driven; adaptive boundaries; often hierarchical; structure follows data & Structure-driven; regular lattice; predetermined boundaries (via WPH/TSP local methods); data follows structure \\ \addlinespace
+Symmetry Awareness & Generally low; structure adapts to data, often breaking ambient symmetries & High; leverages crystallographic symmetry ($T_h$, $Pm\bar{3}n$) of the imposed lattice \\ \addlinespace
+Coordinate Handling & Typically preserves input precision (e.g., float coordinates) & Quantizes coordinates to discrete representations (\AAAB{} identifiers, often integers) \\ \addlinespace
+Memory Usage & Variable, depends on data density/distribution; includes tree/node overhead & Predictable based on defined scale/volume; highly efficient storage using integer identifiers \\ \addlinespace
+Isotropy & Variable; depends heavily on data distribution and algorithm specifics & High local isotropy inherent in the \AAAB{} structure, especially when using \WPH{} partitioning \\ \addlinespace
+Neighborhood Info & Requires explicit tree traversal or complex range/proximity queries & Implicit, regular neighbor relationships directly derivable from the lattice structure \\ \addlinespace
+Temporal Stability & Partitioning structure can change significantly as data moves or updates & Fixed partitioning grid provides temporal coherence for coordinate mapping (though content moves within) \\ \addlinespace
+Determinism Guarantee & Generally low; susceptible to float variance affecting boundary tests/traversal & High; guaranteed bit-level consistency achievable with stable scaling regimes ($\epsilon_\Delta = 0$) \\ \addlinespace
+Primary Use Case & Databases, GIS \cite{Samet1990}, dynamic collision detection, view frustum culling & Foundational spatial fabric for deterministic VR/simulations, compact coordinate encoding, networked state consistency, verifiable replays \\
+\bottomrule
+\end{tabularx}
+\end{table}
 
-\begin{figure}[!hb]\capstart \includegraphics[scale=.5]{fig-main}\label{fig-main}\end{figure}
+\subsection{Comparative Context: Other Symmetric Structures}\label{subsec:comparison-structures}
 
-\subsection{Validation Techniques and Statistical Analysis}\label{validation-techniques-and-statistical-analysis}
+The 230 crystallographic space groups categorize all possible ways to combine periodic translational symmetry (defined by the 14 Bravais lattices) with rotational and reflectional symmetries (defined by the 32 crystallographic point groups) in 3D space \cite{ITCVolumeA2016}. Situating the \AAAB{} structure (space group $Pm\bar{3}n$, No.~223) within this framework highlights its distinctive characteristics relevant to packing and partitioning (\Cref{tab:spacegroups}).
 
-\begin{figure}[!hb]\capstart
-\includegraphics[width=.26\textwidth]{fig-histb}\includegraphics[width=.265\textwidth]{fig-hists}\includegraphics[width=.325\textwidth]{fig-histu}\caption{Example
-\emph{binary} (left) \emph{stable} (middle) and \emph{unstable} (right) configurations.\label{fig-hist}}\end{figure}
+\begin{table}[!ht]
+    \centering
+    \caption{Comparison of Relevant Cubic Space Groups.}
+    \label{tab:spacegroups}
+    \begin{tabular}{l c c c c l}
+        \toprule
+        \textbf{Structure Type} & \textbf{No.} & \textbf{HM Symbol} & \textbf{Point Group} & \textbf{Order} & \textbf{Bravais Lattice} \\
+        \midrule
+        \textbf{\AAAB{} Type}  & \textbf{223} & $\boldsymbol{Pm\bar{3}n}$ & $\boldsymbol{m\bar{3}}$ $\boldsymbol{(T_h)}$ & \textbf{24} & \textbf{Primitive (cP)} \\ \addlinespace
+        Simple Cubic (SC)      & 221          & $Pm\bar{3}m$              & $m\bar{3}m$ $(O_h)$                  & 48             & Primitive (cP) \\
+        BCC Type (e.g., W)     & 229          & $Im\bar{3}m$              & $m\bar{3}m$ $(O_h)$                  & 48             & Body-Centered (cI) \\
+        FCC Type (e.g., Cu)    & 225          & $Fm\bar{3}m$              & $m\bar{3}m$ $(O_h)$                  & 48             & Face-Centered (cF) \\
+        \bottomrule
+    \end{tabular}
+    \vspace*{0.5ex}
+    \par
+    \footnotesize Data sourced from International Tables for Crystallography, Vol A \cite{ITCVolumeA2016}. HM Symbol: Hermann-Mauguin notation.
+\end{table}
 
-\textbf{(todo)} Explain \AAAB.py histogram bar graph and its epsilons; show unstable configurations generating a~smattering of
-epsilons and unused gaps; contrast this with gapless, sequential configurations that always generate a~limited number of epsilons
-(stable) or an exact number (binary).
+As shown, \AAAB{}'s $Pm\bar{3}n$ space group utilizes the primitive cubic ($cP$) Bravais lattice but applies the $T_h$ point group symmetry (order 24). This group possesses lower overall symmetry than the full cubic $O_h$ group (order 48) characteristic of the highest-symmetry simple cubic, body-centered cubic (BCC, $cI$), and face-centered cubic (FCC, $cF$) structures. However, as discussed (\Cref{subsec:intro-a15}), the specific $T_h$ symmetry is significant because it represents a maximal crystallographic subgroup linking cubic ($O_h$) and non-crystallographic icosahedral ($I_h$) symmetries \cite{CoxeterMoser1972}. This unique combination allows the \AAAB{} structure to accommodate its complex basis with distinct C12 and C14 sites, enabling its exceptionally high average coordination number (13.5), which relates to efficient local packing and high connectivity.
 
+When compared to common space-filling honeycombs and related sphere packings, the \AAAB{} structure, particularly when coupled with \tWPH{} partitioning method, offers further distinctions relevant to this framework:
+\begin{itemize} \itemsep0pt
+    \item \textbf{vs. BCC-derived Structures:} The body-centered cubic lattice (BCC, coordination number Z=8) and its dual, the bitruncated cubic honeycomb (Kelvin's structure \cite{Kelvin1887}), have lower fundamental coordination than \AAAB{} (13.5), suggesting a less densely connected local environment.
+    \item \textbf{vs. FCC-derived Structures:} The face-centered cubic lattice (FCC, coordination Z=12) represents the densest packing of identical spheres \cite{ConwaySloane1999} and is related to the rhombic dodecahedral honeycomb. While achieving maximal coordination for identical points, \AAAB{} surpasses this average by utilizing two distinct, efficiently arranged site types.
+    \item \textbf{vs. \tWPH{}:} The geometric \WPH{}, used as a local discretization method, shares the $Pm\bar{3}n$ space group and its cell types correspond topologically to the A15 site environments. This ensures the partitioning boundaries naturally align with the symmetries and neighborhood relationships of the underlying A15 encoding lattice, a unique synergy not offered by partitions derived from simpler lattices.
+\end{itemize}
+In summary, the unique combination offered by the \AAAB{} structure—its high mean coordination, significant local isotropy via $T_h$ symmetry, a direct relationship to the compatible \WPH{} partitioning structure, and inherently binary-suitable base coordinates—makes it exceptionally well-suited for the deterministic, efficient, and geometrically sound spatial encoding framework proposed here.
 
-\section{Results Interpretation, Insights, and Limitations}\label{results-interpretation-insights-and-limitations}
+\section{The \AAAB{} Encoding Framework: Design and Implementation}\label{sec:framework-design}
 
-\AAAB{} has a~long and storied history, from holding the high-temperature superconductor record for decades, to its close
-association with other interesting structures --- such as \tWPh{} and \tTSp --- each with their own unique qualities. \TWPh, in its
-relaxed, non-polyhedral ``bubble" form (combinatorially equivalent to the polyhedral honeycomb), consistently yields
-highly-isotropic measurements from different physical quantities, including thermal expansion rate, compressional load transfer,
-photonic wave propagation, and quantum noise distribution. \AAAB's position is further reinforced through its crystallographic
-space group properties, such as an exceptionally high coordination number (mean of 13.5 connections per site), second-highest
-symmetry order (24), and maximal intersection with the \emph{non-crystallographic} $I_h$ group. Centered on \tWPh --- the
-best-known equal-volume partitioner of 3D space and lowest-energy solution to the Kelvin problem --- and simultaneously compatible
-with \tTSp --- an attractive alternative to \WP-based discretization when trading spatial inaccuracy for performance is acceptable
-or desirable --- makes \AAAB{} uniquely qualified for partitioning interactive 3D space.
+The heart of this research lies in translating the idealized crystallographic description of the \AAAB{} structure (\Cref{subsec:intro-a15}) into a practical, numerically robust system for partitioning continuous 3D space and encoding coordinates. This requires establishing an appropriate and consistent scale, mapping continuous coordinates to discrete lattice identifiers, and ensuring the process avoids the pitfalls of floating-point approximation (\Cref{subsec:intro-floats}). The framework achieves this through a carefully staged approach to coordinate scaling, primarily operating within an internal integer coordinate system during geometric construction to preserve fidelity and defer floating-point conversion until the final output step. This section details this methodology and introduces the reference implementation, \texttt{A15.py} \cite{Risinger2024A15}, used throughout this work for generation, analysis, and validation.
 
-\subsection{Interpretation of Findings and In-Depth Insights}\label{interpretation-of-findings-and-in-depth-insights}
+\subsection{Core Principle: Internal Integer Representation}\label{subsec:scaling-framework}
 
-This research presents \AAAB{} as the ideal, coordinated partitioner of shared, interactive virtual space. It highlights \AAAB's
-innate mapping to hardware floating-point representations, and its compatibility with global measurement systems. It details two,
-high-dimensional addressing schemes, and explains their differences in terms of lattice centering, chiral balancing, and
-interlocking extrema. \AAAB's numeric floating-point stability is confirmed, and three distinct classifications --- \emph{binary},
-\emph{stable}, and \emph{unstable} --- are identified. It asserts the binary floating-point stability of \tWPh, \tTSp, and \AAAB{}
-itself, using both a~series of mathematical statements and generated empirical evidence. It constructs well-defined,
-heterogeneous environments, and characterizes how additional bits either double the range or double the density. Original code is
-shared in full, alongside detailed examples and documentation. This outcome, combined with \AAAB's body of existing materials
-research, makes \AAAB{} an excellent candidate for \emph{reshaping} the metaverse.
+Applying a discrete lattice like \AAAB{} to represent continuous space necessitates a rigorous scaling framework. Simply using floating-point coordinates throughout the geometric construction risks introducing the very numerical inconsistencies the framework aims to eliminate. Therefore, the methodology prioritizes calculations within a well-defined internal integer coordinate system, delaying the mapping to inexact output formats until the final step. This preserves the precise geometric relationships inherent in the \AAAB{} structure and forms the bedrock for numerical stability.
 
-\subsection{Noteworthy Limitations and Topics of Concern}\label{noteworthy-limitations-and-topics-of-concern}
+\subsection{Multi-Stage Scaling Pipeline}\label{subsec:scaling-pipeline}
 
-Regardless of addressing scheme, most on-lattice symmetry operations require follow-up translations to maintain \AAAB's desirable
-invariants. \AAAB{}'s primitive unit cell contains eight valid sites --- known as its basis, or crystal motif --- but only one is
-also a~valid lattice point.
+The conversion from the abstract \AAAB{} definition to concrete coordinates involves a systematic, multi-stage pipeline implemented within \texttt{A15.py}. This process uses several interacting parameters and fixed factors to progressively build the structure within the internal integer system before final output scaling. The key stages are detailed below, and the parameters are summarized in \Cref{tab:scaling-params}.
 
-\AAAB{} is a~linear space partitioner. Creating massive, open-world virtual environments is less straightforward because \AAAB{}
-spaces are small, irregularly sized, and end abruptly. Federating virtual real estate in a~fifty-story skyscraper might require
-independent \AAAB{} spaces per floor, or per delegable unit. This matches expectations after reclaiming unused dynamic
-floating-point range as memory savings, but fast-paced transitions at spatial joins are potential sources of bugs, complexity,
-and overhead.
+\subsubsection{Primitive Definition and Resolution (\texttt{prescale})}\label{subsubsec:scaling-prescale}
+The pipeline originates with the definition of the fundamental geometric units associated with the \AAAB{} basis sites—typically the pyritohedra and tetradecahedra related to the \WPH{} method (\Cref{subsec:intro-partitioning}), or the cubic blocks for the \TSP{} method. Functions within \texttt{A15.py} (e.g., \texttt{pyritohedron()}, \texttt{tetradecahedra()}) apply an internal integer multiplier, the \texttt{prescale} parameter, to the canonical \emph{dimensionless fractional} coordinates (like $0, 1/4, 1/2$) defining the vertices of these shapes. This crucial first step converts the fractional values into \emph{primitive-relative integer coordinates}, establishing the minimum resolution necessary to accurately represent the individual geometric primitives without internal approximation. Default \texttt{prescale} values in \texttt{A15.py} (typically \num{20} for standard WPH-derived shapes, \num{24} for TSP-derived shapes via \texttt{stix=True}) are chosen specifically to ensure these base vertices land precisely on an integer grid relative to the shape's center.
 
-This research generates \AAAB{} crystal-lattice cuboids with rectangular faces, and with edge lengths in proportion to each
-dimension's allocation of the total bit space. Cuboids best-encode spaces like playing fields and office buildings --- spaces with
-high average utilization, and clear, axes-aligned boundaries --- and are less efficient for spaces with arbitrary terrain,
-irregular boundaries, or internal holes. Such features generate effectively unreachable pockets of addressable space. However,
-compared to the unused dynamic range of floats, this underutilization is much simpler to quantify.
+\subsubsection{Lattice Placement (Factor 24)}\label{subsubsec:scaling-lattice}
+The \texttt{lattice()} function in \texttt{A15.py} replicates these integer-vertex polyhedra periodically across 3D space according to the $Pm\bar{3}n$ symmetry rules. It determines the positions for the \emph{centers} of these polyhedra based on \emph{integer lattice vectors} \texttt{xyz} relative to an origin offset \texttt{o}. A key element in this placement is the fixed \textbf{Lattice Spacing Factor of 24 units}. Within the \texttt{lattice()} function, the calculation \texttt{(xyz + o) * 24} multiplies the integer lattice vector by this factor. This defines the spacing between the nominal lattice points (i.e., the centers of the polyhedra) \emph{measured in the integer units established by \texttt{prescale}}. This factor ensures the correct relative positioning of the repeating units within the overall \AAAB{} lattice framework.
 
-Cited \WP{} research uses a~relaxed form of \tWPh{} to satisfy Plateau's laws and the constraints of the Kelvin problem. This
-structure is combinatorially equivalent to the polyhedral form, albeit with softer angles and perfectly equal-volume pyritohedra
-and tetradecahedra. Results from these studies may not transfer cleanly. However, discrepancies are limited to \WP-based
-discretization claims and not \AAAB{} itself.
+\subsubsection{Basis Accommodation (Factor 96 Baseline)}\label{subsubsec:scaling-baseline}
+The \AAAB{} structure's complexity arises from its multi-atom basis; it contains distinct crystallographic sites (Wyckoff 2a and 6d) not just at the nominal lattice points defined above, but also at specific fractional offsets, notably involving $1/4$ for the 6d sites. To place \emph{all} required sites onto a single, consistent internal integer grid requires a resolution finer than the 24-unit spacing factor alone provides. The smallest denominator involved is 4 (from $1/4$). Therefore, the internal integer grid must be conceptually scaled such that one unit step along a primitive lattice vector corresponds to $4 \times 24 = 96$ internal integer units along each principal axis.
 
-This research facilitates the long-term storage and analysis of human-generated spatial tracking data --- personally identifiable
-information (PII) with both legal and ethical requirements --- and \emph{demands} that implementers honor and regard it with the
-utmost care and respect.
+This derived \textbf{Effective Lattice Unit Factor of 96} represents the fundamental period or effective unit dimension of the comprehensive internal integer grid required to represent the \emph{complete} \AAAB{} structure (including its basis) without loss of precision due to these fractional offsets. This factor of 96 establishes the crucial \textbf{baseline dimension} relative to which the structure's inherent numerical precision requirements ($\epsilon_N$, see \Cref{subsubsec:stability-epsilon-n}) are determined and against which the final output scale ($\epsilon_\delta$) is compared for stability analysis.
 
+\subsubsection{Optional Binary Rescaling (\texttt{rescale})}\label{subsubsec:scaling-rescale}
+Before the lattice generation stage fully populates the internal integer coordinates, an optional power-of-two scaling factor, \texttt{rescale}, can be applied. This factor is specified via the \texttt{-rescale} command-line flag or implicitly through `+/-` suffixes appended to shape names in the input (e.g., \texttt{pyritohedra++} implies a rescale factor of $2^2=4$ in \texttt{A15.py}). This \texttt{rescale} factor multiplies the effective size represented by the internal integer coordinates relative to the 96-unit baseline established above. It allows adjustments to the overall size or relative proportions of different generated components \emph{before} the final output scaling step, operating purely in powers of two within the integer domain. Importantly, the choice of \texttt{rescale} influences the resulting inherent base scale $\epsilon_N$ of the internal geometry.
 
-\section{Immediate Potential and Future Prospects}\label{immediate-potential-and-future-prospects}
+\subsubsection{Resultant Internal Integer Coordinates}\label{subsubsec:scaling-internal}
+The cumulative effect of the initial \texttt{prescale} (\Cref{subsubsec:scaling-prescale}), the lattice placement logic (\Cref{subsubsec:scaling-lattice}, establishing the 96-unit effective baseline \Cref{subsubsec:scaling-baseline}), and any applied \texttt{rescale} factor (\Cref{subsubsec:scaling-rescale}) collectively defines the complete set of vertex coordinates for the entire generated structure. These coordinates exist within a consistent, potentially large-valued, \emph{internal integer} system referenced against the 96-unit effective lattice baseline. By prioritizing integer arithmetic throughout these construction stages, \texttt{A15.py} preserves the precise geometric relationships inherent in the \AAAB{} structure, deferring any floating-point approximation until the very last output step. This internal integer representation forms the bedrock for the numerical stability analysis detailed next.
 
-\subsection{Universal Compatibility and Widespread Applicability}\label{universal-compatibility-and-widespread-applicability}
+\begin{table}[!ht]
+\centering
+\caption{Summary of Key Scaling Parameters and Factors in \texttt{A15.py}.}
+\label{tab:scaling-params}
+\begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}p{0.18\textwidth} >{\raggedright\arraybackslash}X}
+\toprule
+\textbf{Parameter/Factor} & \textbf{Role and Implementation in \texttt{A15.py}} \\
+\midrule
+\texttt{prescale} & Internal integer multiplier applied within shape functions (e.g., \texttt{pyritohedron()}). Converts base fractional coordinates (0, 1/4, 1/2, etc.) to integer vertices relative to shape center. Establishes primitive resolution (Defaults: \num{20} WPH, \num{24} TSP). \\ \addlinespace
+Lattice Spacing Factor (\num{24}) & Fixed factor used in \texttt{lattice()}. Multiplies integer lattice vectors \texttt{xyz} to determine nominal lattice point positions relative to origin offset \texttt{o}, measured in units defined by \texttt{prescale}. \\ \addlinespace
+Effective Lattice Unit Factor (\num{96}) & Derived factor ($4 \times 24 = 96$). Represents the fundamental period of the internal integer grid along a principal axis needed to accommodate \AAAB{} basis site offsets (like 1/4) precisely. \textbf{This is the internal baseline dimension} relative to which inherent precision $\epsilon_N$ and output scale $\epsilon_\delta$ are compared. \\ \addlinespace
+\texttt{rescale} & Optional pre-generator power-of-two scaling (via \texttt{-rescale} flag or \texttt{+/-} suffixes). Multiplies internal integer coordinates, adjusting size relative to the 96-unit baseline \textit{before} final output scaling. Affects the resulting $\epsilon_N$. \\ \addlinespace
+\texttt{scale} ($\epsilon_\delta$) & Final global scaling factor (\texttt{-scale=<value>}) applied by \texttt{figure()} after internal integers are generated. Maps internal integers (relative to the 96-unit baseline) to output coordinates (typically float). Sets real-world size and determines numerical stability regime ($\epsilon_\Delta$) by comparison with $\epsilon_N$. Accepts various formats (integer, fraction, power, float). \\ \addlinespace
+\texttt{n} & Controls lattice extent (\texttt{-n=<value>}). Integer specifies cuboid dimensions (number of lattice cells defined by the 96-unit baseline along axes); float specifies a spherical radius cutoff based on lattice vector magnitude relative to the origin. \\
+\bottomrule
+\end{tabularx}
+\end{table}
 
-\textbf{(todo)} L/R balancing for both Unreal and Unity; reliably mutate, consolidate, or replay from the edge; clean mapping
-into global measurement systems; spatial range limits are implicit anti-cheating mechanisms; range limiting combined with other
-symmetry-reliant techniques expected to save more memory than \emph{baseline} of 50\%.
+\subsection{Numerical Stability: Regimes and Validation}\label{subsec:stability}
 
-\subsection{Future Investigations and Potential for Immersive Experience}\label{future-investigations-and-potential-for-immersive-experience}
+Achieving deterministic spatial representation—ensuring that identical logical operations yield bit-identical results across different systems—is a primary motivation for this framework. This guarantee hinges critically on the relationship between the scale chosen for the final output coordinates ($\epsilon_\delta$) and the inherent precision requirements ($\epsilon_N$) of the underlying \AAAB{} geometry, as captured by the internal integer representation (\Cref{subsec:scaling-framework}). The framework defines specific, verifiable conditions under which the mapping from the precise internal structure to the output coordinate system can be performed without introducing floating-point approximation errors relative to that internal structure.
 
-\textbf{(todo)} Expecting to train AI bots; expecting to capture high speed games; resultant libraries not limited to metric
-spaces, could also apply to eg. function spaces; investigate rotating \AAAB{} favorably with respect to expected traversal
-patterns, eg. Miller index $(111)$, and boost effective isotropy; consider ways to efficiently carve terrain, holes, and
-non-planar or axes-misaligned boundaries; seek esoteric 3-space objects outside crystallography and convex geometry, eg. stars,
-gyroids, quasicrystals, plesiohedra, Delone sets, and centroid network of the Laves graph; continue search for higher-dimensional
-polytopes to fold and project into 3D space.
+\subsubsection{Global Output Scaling Factor ($\epsilon_\delta$)}\label{subsubsec:stability-epsilon-d}
+The primary user control over the final representation's physical scale or resolution is the \texttt{scale} parameter, specified via the \texttt{-scale=<value>} command-line option in \texttt{A15.py}. We denote this crucial factor as $\epsilon_\delta$. It is applied globally by the \texttt{figure()} function \emph{after} all internal integer coordinates (relative to the 96-unit baseline) have been generated. This $\epsilon_\delta$ defines the mapping from the dimensionless internal integer system to the output coordinate system (typically floating-point). Therefore, $\epsilon_\delta$ effectively sets the real-world size represented by one unit of the internal 96-unit baseline dimension, and its specific value is the key determinant of the resulting numerical stability regime.
 
+\subsubsection{Inherent Base Scale ($\epsilon_N$)}\label{subsubsec:stability-epsilon-n}
+The internal integer geometry produced by the construction process (\Cref{subsec:scaling-pipeline}) possesses an intrinsic precision limit relative to the 96-unit baseline. This limit arises from the specific combination of the \AAAB{} basis site coordinates (involving factors of $1/4$), the chosen \texttt{prescale} value, and any applied \texttt{rescale} factor. We define $\epsilon_N$ as the \textbf{inherent base scale} required to represent this specific internal geometry exactly when mapped to a base-2 representation. Conceptually, $\epsilon_N$ is the finest scaling factor, expressible as a power of two ($1/2^N$ for some integer $N$), that allows all generated internal integer vertex coordinates to be represented perfectly as rational numbers without approximation when measured against the 96-unit baseline. It captures the structure's intrinsic geometric precision limit within the binary system used by floating-point numbers. The \texttt{A15.py} script computationally infers $\epsilon_N$ by analyzing the power-of-two denominators required for the exact rational representation of the generated internal integer geometry relative to the 96-unit baseline.
 
-\section{Supplementary Materials and Extended Analyses}\label{supplementary-materials-and-extended-analyses}
+\subsubsection{Stability Condition and Difference ($\epsilon_\Delta$)}\label{subsubsec:stability-diff}
+Numerical stability is achieved if, and only if, the chosen global output scale ($\epsilon_\delta$) is commensurate with the inherent base scale ($\epsilon_N$). Specifically, the mapping from the internal integer representation to the output coordinate system is guaranteed to be exact (free from representation error relative to the internal grid) if $\epsilon_\delta$ is a positive integer multiple ($m$) of $\epsilon_N$. The \texttt{A15.py} script quantifies this relationship by calculating the \textbf{stability difference}, $\epsilon_\Delta$. Conceptually, $\epsilon_\Delta$ measures the mismatch or residual error when checking if $\epsilon_\delta$ aligns perfectly with the grid defined by $\epsilon_N$:
+\begin{equation}\label{eq:stability-condition}
+\text{Stability Condition:} \quad \epsilon_\Delta = 0 \quad \iff \quad \epsilon_\delta = m \cdot \epsilon_N \quad \text{for some integer } m \ge 1
+\end{equation}
+If this condition holds ($\epsilon_\Delta = 0$), the framework operates in a stable regime. Otherwise ($\epsilon_\Delta \neq 0$), the scaling is unstable, and approximation errors are necessarily introduced relative to the internal structure.
 
-\subsection{Comprehensive Code Guidelines and Replication Protocols}\label{comprehensive-code-guidelines-and-replication-protocols}
+\subsubsection{Stability Regimes}\label{subsubsec:stability-regimes}
+The stability condition leads to three distinct operational regimes:
 
-\textbf{(todo)} Share commands to rebuild figures in this research; illuminate \AAAB.py's dark, undocumented corners; note the
-binary scale's clean steppings compared to stable scaling; in some addressing schemes, the L/R orientation of major sites is
-independent from that of minor sites, with four or more valid, internal orientations possible; when more than one internal
-orientation is available, this research arbitrarily chooses one; all parties must know, negotiate, or discover an orientation
-before transmitting coordinates; some orientations might be more favorable than others, both at the boundary and in the bulk.
+\begin{description} \itemsep0.5em
+    \item[Binary Scaling ($\epsilon_\Delta = 0$ with $m=1$):] This optimal regime occurs when the chosen output scale precisely matches the minimum required inherent base scale ($\epsilon_\delta = \epsilon_N$). All internal integer coordinates map directly and exactly onto the binary floating-point grid defined by $\epsilon_N = 1/2^N$ without any approximation relative to the internal structure.
+    \begin{equation}\label{eq:scaling-binary}
+    \textbf{Binary}: \quad \epsilon_\delta = \epsilon_N = \frac{1}{2^N} \quad \implies \quad \epsilon_\Delta = 0
+    \end{equation}
+    This represents the most compact scale that allows exact representation and guarantees determinism. The validation histogram (\Cref{fig:hist}, left) shows a single, sharp peak at the exponent $-N$.
 
-\subsection{Additional Data, Visualizations, and Mathematical Exploration}\label{additional-data-visualizations-and-mathematical-exploration}
+    \item[Stable Scaling ($\epsilon_\Delta = 0$ with $m > 1$):] This regime occurs when the output scale is an exact positive integer multiple ($m$) of the inherent base scale ($\epsilon_\delta = m \cdot \epsilon_N$). All internal coordinates still map exactly to representable binary floating-point values without approximation error relative to this scaled grid.
+    \begin{equation}\label{eq:scaling-stable}
+    \textbf{Stable}: \quad \epsilon_\delta = m \cdot \epsilon_N = \frac{m}{2^N}, \quad m \in \mathbb{Z}^+, m > 1 \quad \implies \quad \epsilon_\Delta = 0
+    \end{equation}
+    This regime maintains perfect representability and determinism while providing flexibility in choosing the overall physical scale. The smallest resolvable difference (Unit of Least Precision, \Cref{subsubsec:notes-ulp}) corresponds to $m$ units at the $\epsilon_N$ scale, effectively making the ULP equal to $\epsilon_\delta$. The validation histogram (\Cref{fig:hist}, middle) displays a contiguous block of exponents reflecting the integer scaling factor $m$.
 
-\textbf{(todo)} \url{https://infima.space}; A15.py itself; proofs of different assertions made, eg. 5v5 100 kbps per user
-baseline; tables of vertices; list figures of interesting heterogenous environments; note how surrounding minor sites with a~7/5
-pyritohedron generates correct \WP{} spacing and possible dual space; support and recommend $2^{-6}$ as the preferred default
-scale; note coincidence of \AAAB{} integer scale, \TS{} unit scale, and favorable $2^{-6}$ overall scale; demonstrate generating
-other crystal lattices; unit of least precision; meets meet joins join meets meet joins join...
+    \item[Unstable Scaling ($\epsilon_\Delta \neq 0$):] This regime occurs whenever the chosen output scale $\epsilon_\delta$ is \emph{not} a positive integer multiple of the inherent base scale $\epsilon_N$. Under these conditions, the precise internal integer geometry cannot be perfectly represented on the binary floating-point grid implied by $\epsilon_\delta$. Rounding errors are necessarily introduced during the final scaling from internal integers to output floats.
+    \begin{equation}\label{eq:scaling-unstable}
+    \textbf{Unstable}: \quad \epsilon_\delta \neq m \cdot \epsilon_N \quad \text{for any} \quad m \in \mathbb{Z}^+ \quad \implies \quad \epsilon_\Delta \neq 0
+    \end{equation}
+    Utilizing unstable scales fundamentally compromises the core benefit of the framework regarding determinism. It introduces representation errors, leading to subtle geometric inconsistencies, non-deterministic outcomes in sensitive calculations, and significant challenges in achieving reliable state synchronization. The validation histogram (\Cref{fig:hist}, right; also \Cref{fig:main}) clearly reveals this instability through a broad, sparse, or gapped distribution of denominator exponents.
+\end{description}
+Therefore, operating exclusively within the \textbf{Binary} or \textbf{Stable} scaling regimes ($\epsilon_\Delta = 0$) is essential for numerical consistency, reproducibility, and guaranteed deterministic behavior.
+
+\subsection{Validation via \texttt{A15.py} Histogram Analysis}\label{subsec:stability-validation}
+
+The \texttt{A15.py} script provides not only the means to generate structures based on this framework but also includes a direct, quantitative method for validating the numerical stability regime resulting from any chosen set of parameters, particularly the global output scale $\epsilon_\delta$. This validation capability is accessed via the \texttt{-bars} command-line option and provides empirical confirmation of the stability concepts discussed above (\Cref{subsec:stability}). When enabled, the script performs the following analysis within its \texttt{figure()} function:
+
+\begin{enumerate}\itemsep0pt
+    \item It calculates the final vertex coordinates by applying the selected \texttt{scale} factor ($\epsilon_\delta$) to the meticulously generated internal integer coordinates (\Cref{subsubsec:scaling-internal}).
+    \item It then iterates through the components (x, y, z) of these resulting output floating-point coordinates. For each component, it obtains the exact rational representation $(k, d)$ using Python's built-in \texttt{float.as\_integer\_ratio()} method \cite{PythonDocsFloatRatio}. This captures the precise value representable by the float variable, including any approximation introduced if the scaling was unstable relative to the internal grid.
+    \item The script analyzes the denominator $d$ of this exact rational representation. Since the framework operates within a base-2 context, the denominator $d$ ideally simplifies to $2^n$ for some integer exponent $n$ if the value is exactly representable at a stable scale. The script extracts this effective exponent $n = \log_2 d$, which conceptually represents $-\log_2$ of the fractional part's required precision at the output scale $\epsilon_\delta$.
+    \item Finally, it visualizes the distribution of these calculated exponents $n$ across all analyzed vertex components as a histogram (\Cref{fig:hist}). This histogram provides immediate visual feedback on the numerical stability of the chosen configuration.
+\end{enumerate}
+
+The shape of this generated histogram directly corresponds to the theoretical stability regimes (\Cref{subsubsec:stability-regimes}): a single peak signifies Binary scaling; a contiguous block signifies Stable scaling; and a sparse, broad, or gapped distribution signifies Unstable scaling, revealing the introduction of approximation errors relative to the internal geometry. Furthermore, the script explicitly calculates and displays the stability difference $\epsilon_\Delta$ alongside the histogram (\Cref{fig:main}), offering direct numerical confirmation of the regime. This built-in quantitative validation provides objective criteria for selecting scaling parameters that correctly balance spatial resolution, memory efficiency, and the critical requirement for numerical robustness and determinism.
+
+\begin{figure}[!htb]
+    \capstart
+    \centering
+    \includegraphics[width=.26\textwidth]{fig-histb}%
+    \includegraphics[width=.265\textwidth]{fig-hists}%
+    \includegraphics[width=.325\textwidth]{fig-histu}%
+    \caption{Example histograms generated by \texttt{A15.py} (\texttt{-bars} option) illustrating numerical stability regimes for different output scaling factors ($\epsilon_\delta$). Left (\texttt{fig-histb.png.txt}, $\epsilon_\delta=1/64$): A \textbf{Binary} scale ($\epsilon_\Delta=0$) showing a single dominant denominator exponent ($n = \log_2 d$). Middle (\texttt{fig-hists.png.txt}, $\epsilon_\delta=683/2^{16}$): A \textbf{Stable} scale ($\epsilon_\Delta=0$) showing a contiguous block of exponents. Right (\texttt{fig-histu.png.txt}, $\epsilon_\delta=1/96$): An \textbf{Unstable} scale ($\epsilon_\Delta \neq 0$) showing a widely spread distribution with gaps, indicating floating-point approximation errors introduced during final scaling relative to the internal integer geometry.}
+    \label{fig:hist}
+\end{figure}
+
+\subsection{\texttt{A15.py} Reference Implementation Overview}\label{subsec:implementation-a15py}
+
+The Python script \texttt{A15.py} \cite{Risinger2024A15} serves as the reference implementation, exploratory tool, and validation instrument for the concepts presented in this research. It requires Python 3 and leverages standard scientific libraries—NumPy \cite{Harris2020} for efficient numerical array operations, SciPy \cite{Virtanen2020} for geometric computations (such as convex hull calculations used for visualization via \texttt{scipy.spatial.ConvexHull}), and Matplotlib \cite{Hunter2007} for versatile 2D and 3D visualization. The script's workflow systematically applies the principles of the \AAAB{} encoding framework, incorporating the crucial multi-stage scaling logic (\Cref{subsec:scaling-pipeline}) and the quantitative numerical stability analysis (\Cref{subsec:stability-validation}) described previously. \Cref{tab:a15py-workflow} summarizes the core stages of its operation, from parameter parsing to final visualization and validation. This structured process allows \texttt{A15.py} to generate, visualize, and analyze configurations, providing concrete examples and empirical validation of the framework's properties, such as the composite output shown in \Cref{fig:main}.
+
+\begin{table}[!ht]
+\centering
+\caption{Core Workflow Stages in the \texttt{A15.py} Implementation.}
+\label{tab:a15py-workflow}
+\begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}p{0.18\textwidth} >{\raggedright\arraybackslash}X}
+\toprule
+\textbf{Stage} & \textbf{Key Functions \& Purpose in \texttt{A15.py}} \\
+\midrule
+Configuration Processing & \texttt{flags()}, \texttt{configuration()} \\
+& Parses command-line arguments/files (\texttt{*.txt}). Interprets parameters (e.g., \texttt{scale}, \texttt{rescale}, \texttt{n}, \texttt{prescale}, \texttt{stix}, visualization flags like \texttt{-edges}, \texttt{-faces}, \texttt{-bars}). Handles defaults, automatic configurations (\texttt{-auto}), inheritance (colon notation). Determines final parameter set for generation and visualization. \\ \addlinespace
+Shape Definition & \texttt{pyritohedron()}, \texttt{tetradecahedra()} \\
+& Constructs fundamental geometric units based on parameters. Applies internal \texttt{prescale} factor converting base fractional coordinates to integer vertices relative to shape center. Handles local symmetry (handedness). \\ \addlinespace
+Lattice Generation & \texttt{lattice()} \\
+& Replicates shape units across 3D grid based on extent \texttt{n} and \texttt{at} filter (for basis site mapping). Calculates center positions using integer vectors \texttt{xyz}, origin offset \texttt{o}, and the fixed \texttt{* 24} spacing factor (relative to \texttt{prescale}d units), implicitly establishing the 96-unit effective baseline. Yields (vertex\_array, config\_object) pairs representing internal integer geometry. \\ \addlinespace
+Scaling \& Stability Analysis & \texttt{figure()} \\
+& Collects internal integer vertex arrays. Applies global \texttt{scale} parameter ($\epsilon_\delta$) mapping internal integers (relative to the 96-unit baseline) to output floats. Infers inherent base scale $\epsilon_N$. Calculates stability difference $\epsilon_\Delta$ (verifying if $\epsilon_\delta = m \cdot \epsilon_N$ for $m \in \mathbb{Z}^+ \implies \epsilon_\Delta=0$). \\ \addlinespace
+Visualization \& Validation & \texttt{figure()} \\
+& Renders 3D geometry via Matplotlib \cite{Hunter2007} using specified options (\texttt{-edges}, \texttt{-faces}, etc.). Uses SciPy \cite{Virtanen2020} for hull calculations if needed. If \texttt{-bars} requested, performs stability analysis (via \texttt{float.as\_integer\_ratio()} \cite{PythonDocsFloatRatio} denominators) and generates histogram (\Cref{fig:hist}), visualizing the stability regime and displaying $\epsilon_\Delta$. Outputs to screen (\texttt{-interactive} option implies pop-up) or file (\texttt{-savefig}). Includes annotations (\Cref{fig:main}). Relies heavily on NumPy \cite{Harris2020} throughout. \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\begin{figure}[!htb]
+    \capstart
+    \centering
+    \includegraphics[width=0.8\textwidth]{fig-main}
+    \caption{Composite visualization generated by \texttt{A15.py} (\texttt{fig-main.png.txt}) showing pyritohedra and tetradecahedra components alongside stability analysis. This example uses an \textbf{Unstable} output scale $\epsilon_\delta = 1/96$. The calculated non-zero stability difference ($\epsilon_\Delta \approx \num{0.0104} \neq 0$) is explicitly annotated in the histogram sidebar (left), confirming instability relative to the internal integer geometry. The histogram visually reflects this instability through its wide, gapped distribution of floating-point denominator exponents ($n = \log_2 d$). Main 3D views use dimensionless coordinates $N_X, N_Y, N_Z$ relative to the basic unit width $N_1$. For this specific unstable scale, $N_1$ corresponds to \SI{1.0}{\milli\meter}, derived from applying $\epsilon_\delta=1/96$ to the internal 96-unit effective lattice baseline. Counts shown refer to the number of float components analyzed for the histogram.}
+    \label{fig:main}
+\end{figure}
+
+\section{Interpretation, Benefits, and Limitations}\label{sec:discussion}
+
+The investigation detailed in the preceding sections confirms the distinctive suitability of the \AAAB{} phase structure, when employed within the numerically stable scaling framework (\Cref{sec:framework-design}), for partitioning interactive 3D spaces. The confluence of its inherent crystallographic properties (\Cref{sec:introduction}) and the demonstrable numerical stability achievable through disciplined scaling ($\epsilon_\Delta = 0$, \Cref{subsubsec:stability-diff}) yields a framework that is both geometrically sophisticated and computationally practical for demanding immersive applications. This section interprets these findings, highlights the quantifiable benefits derived directly from the framework's mechanics, and candidly discusses practical limitations and engineering considerations relevant to its implementation.
+
+\subsection{Interpretation and Core Findings}\label{subsec:discussion-interpretation}
+
+This research establishes \AAAB{} encoding as a robust structural foundation for coordinated spatial partitioning. The core finding is that by leveraging the specific crystallographic symmetries and binary-friendly coordinates of the \AAAB{} structure, and by rigorously adhering to the multi-stage scaling pipeline culminating in a stable output scale ($\epsilon_\Delta = 0$), it is possible to create a spatial representation that fundamentally eliminates floating-point representation errors relative to its own discrete grid. This provides a pathway to achieving verifiable determinism in spatial computations, a critical enabler for next-generation networked virtual environments.
+
+\subsection{Quantifiable Benefits}\label{subsec:discussion-benefits}
+
+The \AAAB{} encoding framework, when implemented correctly within stable scaling regimes, offers several key advantages validated by theoretical analysis and the \texttt{A15.py} \cite{Risinger2024A15} reference implementation:
+
+\subsubsection{Guaranteed Determinism via Stable Scaling}\label{subsubsec:benefits-determinism}
+Arguably the most significant contribution stems directly from operating within the rigorously defined \textbf{Binary} or \textbf{Stable} scaling regimes ($\epsilon_\Delta = 0$, \Cref{subsubsec:stability-regimes}). By precisely aligning the chosen output scale ($\epsilon_\delta$) with the structure's inherent geometric precision requirements ($\epsilon_N$, relative to the 96-unit baseline derived in \Cref{subsubsec:scaling-baseline}), the framework guarantees that all \AAAB{} lattice points and derived vertex coordinates map exactly onto hardware binary floating-point formats \emph{relative to that chosen stable scale}. This systematically eliminates the representation errors inherent in approximating arbitrary spatial positions with floats, at least within the context of the framework's quantized representation derived from the internal integer grid (\Cref{subsubsec:scaling-internal}). The result is guaranteed bit-level consistency and numerical determinism across disparate machines, platforms, and even different compilation environments—a fundamental prerequisite for reliable state synchronization in networked systems, reproducible physics simulations, efficient network delta compression strategies, verifiable event sequences and replays, and ultimately, fair and trustworthy competitive experiences.
+
+\subsubsection{Memory and Bandwidth Efficiency}\label{subsubsec:benefits-efficiency}
+Mapping continuous coordinates onto compact, often integer-based, \AAAB{} identifiers provides substantial memory and bandwidth savings compared to standard floating-point vector representations (\Cref{subsec:intro-floats}). This advantage is particularly pronounced when quantizing explicitly defined or bounded volumes where the full dynamic range and mantissa precision of standard floats represent unnecessary overhead. Storing or transmitting a 3D coordinate using a suitable \AAAB{}-based integer representation—for instance, a \SI{48}{\bit} integer capable of encoding both a vast cell index range and precise intra-cell positioning information—can reduce the data size by \textbf{50\% or more} compared to the \SI{96}{\bit} typically required for three standard single-precision (\SI{32}{\bit}) floats, as shown in \Cref{eq:efficiency-memory}.
+\begin{equation} \label{eq:efficiency-memory}
+    \text{Savings} = \frac{(\SI{96}{\bit} - \SI{48}{\bit})}{\SI{96}{\bit}} \times 100\% = 50\%
+\end{equation}
+This efficiency translates directly into reduced memory footprints for spatial data structures and significantly lower network traffic for coordinate updates. Considering just baseline kinematic tracking data (\Cref{eq:bandwidth-baseline}), this reduction from approximately \SI{67.2}{\kilo\bit\per\second} down to \SI{34}{\kilo\bit\per\second} or less offers significant leverage on aggregate bandwidth, especially in complex scenarios often exceeding \SI{100}{\kilo\bit\per\second} per user for kinematics alone.
+\begin{equation} \label{eq:bandwidth-baseline}
+    \text{Rate}_{\text{3xFloat}} = 20\,\text{jts} \times (3_{\text{pos}} + 4_{\text{quat}})\,\tfrac{\text{floats}}{\text{jt}} \times 4\,\tfrac{\text{bytes}}{\text{float}} \times \SI{15}{\hertz} = \SI{8400}{\byte\per\second} \approx \SI{67.2}{\kilo\bit\per\second}
+\end{equation}
+The \AAAB{} integer encoding effectively reclaims storage and bandwidth otherwise consumed by unused float exponent bits and excess significand precision within suitably bounded contexts. Practical applications, such as the related \texttt{layoutc} project which encodes physical layouts using similar principles \cite{Risinger2024Layoutc}, demonstrate the utility of such compact, deterministic encodings.
+
+\subsubsection{Geometric Fidelity and Isotropy}\label{subsubsec:benefits-geometry}
+Leveraging the intrinsic crystallographic properties of the \AAAB{} structure (\Cref{subsec:intro-a15}) imparts beneficial geometric qualities to the spatial representation. Its verified high mean coordination number (13.5) indicates efficient local packing and dense connectivity between neighboring regions. The crucial $T_h$ point group symmetry provides a high degree of local isotropy by incorporating near-icosahedral geometric elements within a globally cubic (and thus perfectly periodic) framework (\Cref{subsec:intro-a15}). This structural integrity, especially when combined with the topologically matched \WPH{} local discretization method (\Cref{subsec:intro-partitioning}), fosters a spatially uniform or ``fair'' representation, helping to minimize the directional biases or artifacts that can plague simpler grid-based partitioning schemes.
+
+\subsubsection{Validated Implementation Framework}\label{subsubsec:benefits-validation}
+The accompanying \texttt{A15.py} script (\Cref{subsec:implementation-a15py}) serves as more than just a visualization aid; it is a validated reference implementation and analysis framework. It demonstrates the practical construction of \AAAB{}-based structures, rigorously implements the multi-stage scaling logic essential for achieving numerical stability (\Cref{subsec:scaling-pipeline}), and provides the quantitative histogram analysis (\Cref{subsec:stability-validation}, \Cref{fig:hist}) that empirically confirms the existence and accessibility of the stable scaling regimes ($\epsilon_\Delta = 0$). This ensures the reproducibility of the core findings regarding numerical stability and offers a concrete, verifiable starting point for developers seeking to implement or explore the \AAAB{} encoding framework for their own applications.
+
+\subsection{Limitations and Engineering Considerations}\label{subsec:discussion-limits}
+
+Despite its significant advantages for achieving determinism and efficiency, adopting the \AAAB{}-based partitioning approach involves several practical limitations and engineering challenges that require careful consideration during implementation. These represent addressable design aspects rather than fundamental flaws in the underlying concept:
+
+\subsubsection{Complexity of Arbitrary Rotations}\label{subsubsec:limits-symmetry}
+Applying arbitrary symmetry operations, particularly rotations not aligned with the primary crystallographic axes ($x,y,z$), directly to the integer lattice coordinates used in \AAAB{} encoding can be intricate. A simple rotation matrix applied to integer coordinates might not map points onto valid \AAAB{} basis sites (Wyckoff 2a or 6d) within the target unit cell, violating the required $Pm\bar{3}n$ symmetry or disrupting the intended mapping. Correct implementation necessitates carefully calculated compensatory translations based on the specific rotation and lattice position, transformation logic that is explicitly aware of the crystal basis and space group operations \cite{ITCVolumeA2016}, pre-computed look-up tables for allowed transformations, or performing complex transformations in a continuous coordinate space before re-quantizing back into the \AAAB{} grid. Adhering strictly to a canonical orientation convention (\Cref{subsubsec:limits-handedness}) can also mitigate some rotation-related complexities.
+
+\subsubsection{Scalability and Spatial Federation}\label{subsubsec:limits-federation}
+The framework naturally defines discrete, structured zones based on the generated \AAAB{} lattice extents (controlled by the \texttt{n} parameter in \texttt{A15.py}). Seamlessly extending this model to create massive, open-world environments requires robust mechanisms for managing transitions and maintaining coordinate and state consistency across the boundaries between independent \AAAB{} zones. Addressing this likely involves developing standardized inter-zone boundary protocols for coordinate transformations (potentially involving scale changes), object state hand-offs, and perhaps authority transfer between simulation domains. Level-of-Detail (LOD) systems \cite{Luebke2002} utilizing multi-resolution \AAAB{} grids (employing coarser quantization for distant or less critical zones) might also play a role in managing complexity at large scales.
+
+\subsubsection{Encoding Efficiency for Irregular Volumes}\label{subsubsec:limits-complex}
+Using lattice-aligned cuboidal extents for defining \AAAB{} zones, while straightforward to implement via the \texttt{n} parameter, can lead to inefficient use of the addressable integer coordinate space when representing environments with highly irregular external boundaries, complex internal terrain features (like mountains or caves), or significant voids (e.g., the interior of large, non-rectangular buildings). This may result in significant portions of the allocated integer coordinate range being unused or unreachable within the playable or interactive space. Potential mitigations could include implementing secondary encoding or metadata schemes (e.g., run-length encoding of valid zones along axes, hierarchical spatial masks, sparse data structures like sparse voxel octrees adapted to the A15 lattice) to identify and perhaps compress unoccupied regions, or exploring hybrid approaches that combine the regular \AAAB{} grid with adaptive structures primarily for managing boundary details or sparse areas (though this might reintroduce some complexity).
+
+\subsubsection{Distinction from Minimal Surface \WPH{}}\label{subsubsec:limits-wp-form}
+It bears repeating that this research primarily utilizes the computationally tractable \emph{geometric polyhedral} form of the \WPH{} for local discretization (\Cref{subsec:intro-partitioning}). This form shares the essential topology and $Pm\bar{3}n$ symmetry with the A15 structure but is distinct from the theoretical, relaxed minimal-surface area structure associated with the Kelvin conjecture counter-example \cite{WeairePhelan1994}. Consequently, properties derived strictly from minimal surface studies (e.g., relating to precise surface tensions or the guarantee of absolutely equal cell volumes between the pyritohedral and tetradecahedral cells in the relaxed state \cite{Kusner1996}) do not necessarily translate directly to the geometric partitioning method employed here.
+
+\subsubsection{Requirement for Handedness Convention}\label{subsubsec:limits-handedness}
+While the overall $Pm\bar{3}n$ space group is centrosymmetric (achiral), the specific arrangement of atoms in the \AAAB{} structure's basis results in alternating left- and right-handed local coordination environments around the 6d sites (\Cref{subsec:intro-a15}). This local chirality is implemented deterministically based on lattice position within the \texttt{A15.py} reference code. However, for interoperability in any practical application, particularly networked ones, all participating systems \textbf{must establish and strictly adhere to a shared global orientation convention}. This convention dictates how these local chiralities are interpreted, represented, and transformed, ensuring consistency between different client implementations and, crucially, when interfacing with host environments or game engines that may use different native coordinate system handedness (e.g., left-handed systems common in Unity \cite{UnityCoords} and Unreal Engine \cite{UnrealCoords} versus right-handed systems standard in physics and mathematics). Without such a shared convention, mirrored or incorrectly oriented geometry could easily result from exchanging \AAAB{}-encoded coordinates.
+
+\subsubsection{Privacy and Security of Tracking Data (PII)}\label{subsubsec:limits-privacy}
+The application of this efficient encoding framework to fine-grained spatial tracking data, especially full-body kinematics derived from VR/AR systems, carries significant privacy implications that \textbf{must} be addressed with utmost seriousness. Such detailed movement data constitutes \textbf{Personally Identifiable Information (PII)} and may qualify as sensitive biometric data under various regulations (e.g., GDPR \cite{GDPR-2016}, CCPA \cite{CCPA-2018}). Handling this data demands rigorous privacy safeguards and unwavering ethical considerations as a \textbf{non-negotiable} aspect of implementation. Developers and deployers \textbf{must} integrate robust security measures as a foundational requirement. This includes, at a minimum:
+\begin{itemize} \itemsep0pt
+    \item Employing strong \textbf{end-to-end encryption (E2EE)} for all \AAAB{}-encoded coordinate streams and associated tracking data during network transmission and persistent storage.
+    \item Strict adherence to \textbf{data minimization principles} (collecting only the data essential for the application's functionality).
+    \item Implementing transparent \textbf{user consent mechanisms} before any tracking begins.
+    \item Establishing clearly defined \textbf{data retention and deletion policies}.
+    \item Utilizing effective \textbf{anonymization or aggregation strategies} whenever full individual fidelity is not strictly required (e.g., for analytics or heatmaps).
+    \item Ensuring full compliance with all relevant legal and ethical regulations.
+\end{itemize}
+This data represents individuals and their behavior; it \textbf{must} be treated with the highest degree of care, respect, security, and transparency. Failure to do so carries significant legal, ethical, and reputational risks.
+
+\section{Immediate Potential and Future Prospects}\label{sec:outlook}
+
+The \AAAB{}-based spatial partitioning and encoding framework, validated for its numerical stability and efficiency (\Cref{sec:discussion}), offers immediate potential for enhancing current virtual environments and provides a solid foundation for future advancements in spatial computing. Its inherent structural and numerical properties lend themselves to broad applicability, while also opening intriguing avenues for further research and development aimed at refining and extending its capabilities.
+
+\subsection{Immediate Practical Applications}\label{subsec:applications}
+
+The practical adoption of \AAAB{} partitioning across diverse virtual platforms is facilitated by several key features, yielding tangible benefits for various applications available today:
+
+\subsubsection{Cross-Platform Compatibility}\label{subsubsec:apps-coordsys}
+The underlying $Pm\bar{3}n$ space group of the \AAAB{} structure is centrosymmetric, lacking inherent global chirality \cite{ITCVolumeA2016}. This structural property means the fundamental lattice encoding can be consistently represented within both \textbf{left-handed coordinate systems} (common in game engines like Unity \cite{UnityCoords} and Unreal Engine \cite{UnrealCoords}) and \textbf{right-handed systems} (standard in mathematics and physics) through straightforward external affine transformations (combinations of translation, rotation, uniform scaling, and reflection). While this simplifies cross-platform integration, achieving unambiguous interoperability absolutely requires establishing and adhering to a shared global orientation convention for interpreting the alternating local chiral environments arising from the 6d Wyckoff sites (\Cref{subsubsec:limits-handedness}).
+
+\subsubsection{Alignment with Global Measurement Standards}\label{subsubsec:apps-measurement}
+The explicit output scaling mechanism ($\epsilon_\delta$, controlled via the \texttt{-scale} parameter in \texttt{A15.py}) allows the dimensionless internal \AAAB{} lattice coordinates (relative to the 96-unit effective baseline, \Cref{subsubsec:scaling-baseline}) to map directly and predictably onto standard physical units, such as SI meters or Imperial feet. Critically, selecting a scale factor within the Binary or Stable regimes ($\epsilon_\Delta=0$, \Cref{subsubsec:stability-regimes}) ensures this mapping is exact relative to the framework's chosen resolution, facilitating interoperability with real-world measurements and enhancing user comprehension. For instance, the recommended baseline scale of $\epsilon_\delta = 2^{-6}$ (\texttt{-scale=1/64}) provides robust sub-millimeter precision while operating within a numerically stable regime. This yields a basic unit width ($N_1$, the physical size corresponding to the 96-unit internal baseline scaled by $\epsilon_\delta$) of $N_1 = 96 \times (1/64) = 1.5$ (assuming the base unit aligns with millimeters, resulting in \SI{1.5}{\milli\meter}), suitable for many human-scale interactions.
+
+\subsubsection{Foundation for Networked Systems}\label{subsubsec:apps-network}
+As established (\Cref{subsubsec:benefits-efficiency}, \Cref{subsubsec:benefits-determinism}), the combination of compact integer-based representation and guaranteed coordinate consistency achieved within stable scaling regimes ($\epsilon_\Delta = 0$) is arguably the framework's most crucial advantage for networked systems. It significantly reduces bandwidth requirements, especially for high-frequency data like kinematic tracking (\Cref{eq:bandwidth-baseline}), while providing an essential foundation for reliable state synchronization, eliminating a major source of divergence caused by floating-point variance. This enables more efficient network delta compression, consistent physics interactions, verifiable command processing, and robust replay capabilities—all vital for fair, coherent, and maintainable shared virtual experiences.
+
+\subsubsection{Implicit Spatial Constraints}\label{subsubsec:apps-constraints}
+Mapping potentially vast continuous space onto the finite set of coordinates defined by the \AAAB{} partitioning inherently establishes the boundaries of the addressable virtual space for a given zone and scale. This acts as a passive, built-in mechanism for enforcing spatial limits. It can naturally prevent certain classes of common exploits involving out-of-bounds positioning and may simplify application logic required for validating entity positions relative to the defined interactive space, especially compared to managing complex boundary conditions in a purely floating-point environment.
+
+\subsubsection{Potential for Computation Optimization}\label{subsubsec:apps-optimization}
+Beyond memory savings, the regular lattice structure enables integer-based addressing and highly predictable neighbor relationships. This regularity could potentially be leveraged for optimized spatial query algorithms (e.g., proximity searches, ray casting within the lattice using integer arithmetic) compared to navigating complex adaptive tree structures common in traditional spatial indexing (\Cref{subsec:comparison-indexing}), offering computational performance benefits in certain scenarios. Further investigation and benchmarking are needed to quantify these potential gains.
+
+\subsubsection{Exemplar Use Cases}\label{subsubsec:apps-usecases}
+These features position \AAAB{} partitioning as a robust foundation suitable \emph{now} for demanding applications. Examples include: competitive multiplayer VR esports requiring fairness and low latency; industrial digital twins demanding precise spatial fidelity and deterministic simulation; large-scale distributed physics or agent-based simulations needing reliable state consistency; collaborative mixed-reality (MR) systems requiring shared spatial understanding across diverse devices; and procedural content generation systems benefiting from deterministic spatial addressing. The related \texttt{layoutc} project, encoding physical layouts \cite{Risinger2024Layoutc}, provides a concrete example of applying similar compact, deterministic principles in practice.
+
+\subsection{Future Research Directions}\label{subsec:outlook-research}
+
+The \AAAB{} partitioning framework, while demonstrating immediate utility, also catalyzes numerous avenues for future research aimed at further enhancing immersive experiences and extending the capabilities of spatial computing:
+
+\subsubsection{AI and Machine Learning Integration}\label{subsubsec:outlook-ai-ml}
+The structured, high-fidelity, and deterministic spatial data encoded via \AAAB{} could provide a superior substrate for training artificial intelligence (AI) agents (e.g., non-player characters (NPCs), physics predictors, behavioral models). A consistent spatial representation might reduce environmental noise and improve learning efficiency for tasks involving complex spatial reasoning, navigation, pathfinding, prediction, and interaction within precisely defined virtual environments.
+
+\subsubsection{Metaverse Interoperability Protocols}\label{subsubsec:outlook-interop}
+Standardized protocols built upon \AAAB{} encoding (or similar deterministic lattice-based systems) could define universal mechanisms for agent state representation, coordinate referencing, interaction semantics, and capability negotiation across different \AAAB{}-partitioned virtual spaces or worlds. This could enable seamless transitions between independently managed environments, facilitate dynamic federation of spaces (\Cref{subsubsec:limits-federation}), and provide consistent object or avatar referencing across a heterogeneous metaverse built on deterministic spatial principles.
+
+\subsubsection{Lattice Optimization and Alignment}\label{subsubsec:outlook-lattice}
+Further investigation could explore the performance or perceptual benefits of aligning specific \AAAB{} crystallographic directions (e.g., high-density directions like $\langle 111 \rangle$ or $\langle 100 \rangle$) with dominant axes of expected user movement or interaction within particular virtual environment designs. Such alignment might yield computational performance gains (e.g., improved cache locality for neighborhood queries) or perceptual benefits (e.g., reduced spatial aliasing effects along common traversal paths).
+
+\subsubsection{Advanced Complex Geometry Representation}\label{subsubsec:outlook-complex}
+Developing robust and efficient methods for representing non-cuboid volumes or complex geometric features within the A15 framework (\Cref{subsubsec:limits-complex}) remains a key area for practical improvement. Research could explore hybrid approaches combining the base A15 grid with techniques like sparse octrees or boundary representations for detail, investigate constructive solid geometry (CSG) operations defined relative to A15 cells, or develop multi-resolution \AAAB{} representations (spatial Level-of-Detail, LOD \cite{Luebke2002}) to handle varying levels of detail across large or intricate spaces more effectively.
+
+\subsubsection{Exploration of Alternative Geometric Structures}\label{subsubsec:outlook-geometry}
+While A15 offers a compelling balance of properties derived from crystallography, exploration of alternative partitioning or encoding schemes derived from related or more exotic mathematical structures could yield novel insights or properties advantageous for specific applications. Areas for investigation include:
+\begin{itemize} \itemsep0pt
+    \item \textbf{Triply Periodic Minimal Surfaces (TPMS):} Structures like the Gyroid \cite{Schoen1970} possess complex topology useful for flow simulation or intricate environment design, likely requiring implicit surface representations.
+    \item \textbf{Quasicrystalline Patterns:} Non-periodic tilings exhibiting symmetries forbidden in periodic crystals (like 5-fold rotation \cite{Shechtman1984}) could enable partitioning schemes with unique tiling properties or isotropy characteristics.
+    \item \textbf{Optimized Point Sets (e.g., Delone Sets):} Computationally generated point distributions balancing criteria like density and minimum separation guarantees \cite{Gruber2007} could tailor partitioning more closely to specific application requirements than regular lattices.
+    \item \textbf{Higher-Dimensional Projections:} Projecting regular polytopes or honeycombs (e.g., from 4D \cite{Coxeter1973}) can generate novel 3D structures with useful partitioning properties.
+\end{itemize}
+
+\subsubsection{Perceptual and Cognitive Impact Studies}\label{subsubsec:outlook-perception}
+Interdisciplinary research involving human-computer interaction (HCI) and cognitive science is needed to investigate how the specific geometric properties of different underlying spatial partitioning schemes (e.g., \AAAB{} or \WPH{} vs. simpler grids) affect human spatial perception, navigation efficiency, wayfinding accuracy, cognitive load, and the subjective sense of presence or realism within virtual environments. Such studies could provide valuable empirical data for human-centered design of virtual spaces.
+
+\subsubsection{Hardware Acceleration Opportunities}\label{subsubsec:outlook-hardware}
+The computational demands of real-time \AAAB{}-based spatial operations (quantization, neighborhood queries, coordinate transformations) could benefit significantly from hardware acceleration. Designing specialized hardware components—such as optimized GPU compute shaders exploiting lattice regularity, FPGA implementations for specific A15 arithmetic or neighborhood lookups, or even dedicated ASICs—could dramatically improve performance and energy efficiency, especially crucial for resource-constrained edge devices or mobile VR/AR platforms.
+
+\vspace{\parskip}
+Pursuing these directions promises to expand the capabilities of structurally informed spatial partitioning. The intersection of crystallographic principles, computational geometry, numerical analysis, and real-time interactive systems represents a fertile territory for extending beyond entertainment into scientific visualization, collaborative design, distributed simulation, robotics, and the broader architecture of spatial computing itself.
+
+\section{Supplementary Information}\label{sec:supplementary}
+
+This section provides guidelines for replicating the results presented using the accompanying code, details supplementary resources available online, and discusses additional technical considerations relevant to the implementation and interpretation of the \AAAB{} encoding framework.
+
+\subsection{Code Availability and Replication Protocols}\label{subsec:replication}
+
+The figures and structural data presented in this research were generated using the accompanying Python script, \texttt{A15.py} \cite{Risinger2024A15}, which serves as the reference implementation. To ensure reproducibility, users should have Python 3 installed along with the standard scientific libraries NumPy \cite{Harris2020}, SciPy \cite{Virtanen2020}, and Matplotlib \cite{Hunter2007}. Understanding the script's execution flow (\Cref{tab:a15py-workflow}) and key parameters, particularly those governing the multi-stage scaling framework (\Cref{subsec:scaling-pipeline}) and numerical stability validation (\Cref{subsec:stability-validation}), is essential for proper use and interpretation of results.
+
+The core Python script (\texttt{A15.py}), configuration files (\texttt{*.png.txt}) used for figure generation, the LaTeX source for this manuscript (or a version thereof), and extended documentation are publicly available within the \IL{} \texttt{space} repository on GitHub \cite{InfimaSpace}:
+\begin{center}
+    \url{https://github.com/infimalabs/space/tree/main/A15}
+\end{center}
+A project overview and supplementary materials may also be found at the project's homepage:
+\begin{center}
+    \url{https://infima.space/A15/}
+\end{center}
+The related project \texttt{layoutc}, applying similar compact encoding concepts to paintball field layouts \cite{Risinger2024Layoutc}, is also available via associated repositories:
+\begin{center}
+    \url{https://github.com/infimalabs/layoutc}
+\end{center}
+
+Achieving deterministic results, a core goal of this framework, relies crucially on operating within the \textbf{Binary} or \textbf{Stable} scaling regimes ($\epsilon_\Delta = 0$, \Cref{subsubsec:stability-regimes}). The recommended baseline scale of $\epsilon_\delta = 2^{-6}$ (\texttt{-scale=1/64}) generally provides a practical balance for human-scale interactions, offering high precision (approximately \SI{1.5}{\milli\meter} basic unit width $N_1$, see \Cref{subsubsec:apps-measurement,subsubsec:notes-figures}) while ensuring exact floating-point representability relative to the internal grid for typical configurations. Users are strongly encouraged to employ the \texttt{-bars} analysis feature (\Cref{subsec:stability-validation}) to explicitly verify the stability ($\epsilon_\Delta = 0$) of any custom configurations before deployment in applications where determinism is critical.
+
+Furthermore, while \texttt{A15.py} deterministically implements alternating handedness for local coordination environments based on lattice position (\Cref{subsubsec:limits-handedness}), networked applications or systems exchanging \AAAB{}-encoded data \textbf{must} establish and consistently apply a shared global orientation convention to ensure interoperability and prevent geometric mirroring between different clients or system components.
+
+\subsubsection{Example Replication Commands}\label{subsubsec:repl-commands}
+The primary figures presented in this manuscript can be regenerated using the \texttt{A15.py} script and the corresponding configuration files (typically named \texttt{fig-\textit{name}.png.txt}) provided in the supplementary materials repository (\Cref{subsec:replication}). Ensure the script and configuration files are accessible in the execution environment. Use the \texttt{-i} (or \texttt{-pop}) option for interactive viewing (requires a graphical display environment):
+
+\begin{description} \itemsep0pt
+    \item[\Cref{fig:intro} (Intro):] Nested \AAAB{} (Multiple Scales) \\
+        \texttt{python3 A15.py -i fig-intro.png.txt}
+    \item[\Cref{fig:cell2} (Internals):] Left-Handed $^1/_2$ Unit Cell \\
+        \texttt{python3 A15.py -i fig-cell2.png.txt}
+    \item[\Cref{fig:wp-ts} (Partitions):] \WPH{} and \TSP{} \\
+        \texttt{python3 A15.py -i fig-wp.png.txt} \\
+        \texttt{python3 A15.py -i fig-ts.png.txt}
+    \item[\Cref{fig:main} (Composite):] Representative Example (Unstable Scale) \\
+        \texttt{python3 A15.py -i fig-main.png.txt}
+    \item[\Cref{fig:hist} (Histograms):] Binary, Stable, and Unstable Scales \\
+        \texttt{python3 A15.py -i fig-histb.png.txt} \\
+        \texttt{python3 A15.py -i fig-hists.png.txt} \\
+        \texttt{python3 A15.py -i fig-histu.png.txt}
+\end{description}
+For a detailed explanation of all command-line options, parameters, configuration file syntax, and advanced usage, refer to \texttt{python3 A15.py --help}.
+
+\subsection{Supporting Notes and Clarifications}\label{subsec:supplementary-notes}
+
+Further details, data, and clarifications related to this research are provided below.
+
+\subsubsection{Bandwidth Calculation Basis}\label{subsubsec:notes-bandwidth}
+The discussion regarding network bandwidth requirements (\Cref{subsubsec:benefits-efficiency}, \Cref{subsubsec:apps-network}) utilizes a baseline calculation (\Cref{eq:bandwidth-baseline}) assuming a single avatar with 20 tracked joints, each transmitting 3D position (3x \SI{32}{\bit} floats) and an orientation quaternion (4x \SI{32}{\bit} floats) at a \SI{15}{\hertz} update rate ($\approx \SI{67.2}{\kilo\bit\per\second}$). This kinematic component typically represents only a fraction of the total network traffic in complex interactive applications.
+
+\subsubsection{Memory Efficiency Context}\label{subsubsec:notes-memory}
+The estimate of \textbf{50\% or more} memory and bandwidth savings (\Cref{eq:efficiency-memory}, \Cref{subsubsec:benefits-efficiency}) compares storing 3D coordinates using compact integer \AAAB{} identifiers versus raw \SI{32}{\bit} floating-point vectors. A representative scenario assumes a \SI{48}{\bit} integer representation per 3D point for the \AAAB{} identifier (balancing range and precision) compared to $3 \times \SI{32}{\bit} = \SI{96}{\bit}$ for three standard floats. This efficiency gain is most pronounced when quantizing bounded volumes where the extreme dynamic range and full mantissa precision of floats are not required. The exact saving achieved depends on the application's required spatial extent, desired intra-cell resolution, and the chosen bit depth for the \AAAB{} identifier.
+
+\subsubsection{Geometric Data Availability}\label{subsubsec:notes-geometry}
+Tables containing the precise internal integer vertex coordinates (relative to shape centers at the relevant \texttt{prescale} value) for the fundamental polyhedra (pyritohedra with various $h$ parameters, tetradecahedra) generated by \texttt{A15.py} functions are intended to be available as supplementary materials within the code repository (\Cref{subsec:replication}), allowing independent verification of geometric constructions.
+
+\subsubsection{Pyritohedra Parameter for \WPH{} Geometry}\label{subsubsec:notes-h75}
+As implemented in \texttt{A15.py}, invoking the \texttt{pyritohedron()} function with the specific height parameter $h=7/5$ yields internal integer coordinates that, after appropriate scaling and placement by \texttt{lattice()}, correspond precisely to the vertex coordinates defining the pyritohedral cells within the geometric \WPH{} partition used in this framework (\Cref{subsec:intro-partitioning}).
+
+\subsubsection{Unit of Least Precision (ULP) Definition}\label{subsubsec:notes-ulp}
+Within this framework, when operating at a specific Binary or Stable output scale $\epsilon_\delta$ (\Cref{subsubsec:stability-regimes}), the \textbf{Unit of Least Precision (ULP)} represents the smallest coordinate difference or spatial distance along a principal axis that can be exactly resolved by the quantization scheme. This ULP corresponds directly to an integer difference of \num{1} in the underlying \emph{internal integer} coordinate system (relative to the 96-unit baseline, \Cref{subsubsec:scaling-baseline}) before the final scaling by $\epsilon_\delta$ is applied. Therefore, the physical size of the ULP is precisely equal to the chosen output scale factor, $\epsilon_\delta$. Features, movements, or discrepancies smaller than $\epsilon_\delta$ cannot be distinctly represented by the encoding at that scale. Selecting an appropriate $\epsilon_\delta$ involves balancing the desired spatial resolution (ULP) against the overall spatial range achievable within a fixed-bit integer representation chosen for the \AAAB{} identifier.
+
+\subsubsection{Framework Adaptability}\label{subsubsec:notes-adaptability}
+While this research focuses intensely on the \AAAB{} phase structure due to its compelling combination of advantageous properties for deterministic spatial encoding, the underlying \texttt{A15.py} software framework possesses inherent adaptability. Key components, particularly the \texttt{lattice()} function for replicating geometric units according to symmetry rules and the visualization tools within the \texttt{figure()} function, could be modified or extended to generate and visualize other crystal lattice types or different space-filling structures, offering a versatile platform for broader geometric exploration, albeit likely requiring non-trivial adaptation of the core geometric and scaling logic.
+
+\subsubsection{Interpretation of Figure Annotations}\label{subsubsec:notes-figures}
+Annotations visible in figures generated by \texttt{A15.py} with the \texttt{-bars} option (e.g., \Cref{fig:main}) directly illustrate key stability concepts discussed in \Cref{subsec:stability}. The calculated value $N_1$ (labeled ``basic unit width'' or similar in some outputs) shown in the histogram sidebar represents the physical dimension corresponding to the chosen output scale $\epsilon_\delta$ applied to the fundamental internal lattice dimension (the 96-unit baseline, \Cref{subsubsec:scaling-baseline}). For the unstable scale $\epsilon_\delta=1/96$ shown in \Cref{fig:main}, this results in $N_1 = 96 \times (1/96) = 1.0$ (assuming millimeters as the base unit, thus \SI{1.0}{\milli\meter}). In contrast, the recommended stable scale $\epsilon_\delta = 1/64$ yields $N_1 = 96 \times (1/64) = 1.5$ (or \SI{1.5}{\milli\meter}, \Cref{subsubsec:apps-measurement}). The displayed $\epsilon_\Delta$ value explicitly confirms the calculated stability difference for the configuration (e.g., $\epsilon_\Delta \approx \num{0.0104} \neq 0$ for the unstable case in \Cref{fig:main}, confirming $\epsilon_\delta$ is not an integer multiple of $\epsilon_N$), providing direct numerical validation alongside the visual histogram representation.
 
 
 \begin{acknowledgements}
@@ -383,7 +597,8 @@ other crystal lattices; unit of least precision; meets meet joins join meets mee
 \end{acknowledgements}
 
 
-\nocite{*} \bibliographystyle{cs-agh} \bibliography{A15}
+\bibliographystyle{cs-agh}
+\bibliography{A15}
 
 
 \end{document}
