@@ -1,4 +1,4 @@
-<figure id="fig:intro">
+<figure id="fig-intro">
 <img src="fig-intro.png" />
 <figcaption>Illustration of the <em>A15</em> structure (<span
 class="math inline">\(\beta\)</span>–<span
@@ -20,8 +20,8 @@ range essential for graphics and science, yet this reach often comes at
 the cost of precision. Floats are notorious for providing *approximately
 correct* answers[^1], representing most values inexactly. These tiny,
 fundamental representation errors, inherent in their structure
-(<a href="#eq:float-representation" data-reference-type="ref+Label"
-data-reference="eq:float-representation">[eq:float-representation]</a>),
+(<a href="#eq-float-representation" data-reference-type="ref+Label"
+data-reference="eq-float-representation">[eq-float-representation]</a>),
 can accumulate and interact, particularly challenging the deterministic
 consistency required for networked virtual reality (VR), distributed
 simulations, and the burgeoning metaverse. This research confronts these
@@ -29,8 +29,8 @@ challenges head-on, proposing an alternative spatial representation
 rooted in the unique crystallographic properties of the *A15* phase
 structure ($`\beta`$–$`W`$, space group $`Pm\bar{3}n`$, No. 223 (Aroyo
 2016)), as illustrated in
-<a href="#fig:intro" data-reference-type="ref+Label"
-data-reference="fig:intro">1</a>.
+<a href="#fig-intro" data-reference-type="ref+Label"
+data-reference="fig-intro">1</a>.
 
 ## The Challenge of Floating-Point Precision
 
@@ -38,7 +38,7 @@ Standard normalized binary floating-point numbers derive their value
 from three components: a sign bit, a biased exponent, and a significand
 (mantissa). Conceptually[^2], their value relates to:
 ``` math
-\label{eq:float-representation}
+\label{eq-float-representation}
     \text{value} = (-1)^{\text{sign}} \times (1 + \text{significand}) \times 2^{\text{exponent}}
 ```
 The fixed-size significand offers constant *relative* precision within
@@ -65,8 +65,8 @@ for efficiency comparisons. This work, therefore, accepts the practical
 necessity of floats but seeks to structure their use, mitigating risks
 to determinism via the disciplined partitioning and verifiable scaling
 offered by the *A15* framework detailed in
-<a href="#sec:framework-design" data-reference-type="ref+Label"
-data-reference="sec:framework-design">2</a>.
+<a href="#sec-framework-design" data-reference-type="ref+Label"
+data-reference="sec-framework-design">2</a>.
 
 ## The A15 Phase Structure: A Crystallographic Foundation
 
@@ -93,8 +93,8 @@ this restriction with notable elegance. It is based on the simple
 primitive cubic ($`cP`$) Bravais lattice but incorporates a complex
 basis (or motif) containing two distinct types of crystallographic sites
 within its conventional unit cell (Frank and Kasper 1958, 1959), as
-illustrated in <a href="#fig:cell2" data-reference-type="ref+Label"
-data-reference="fig:cell2">2</a>:
+illustrated in <a href="#fig-cell2" data-reference-type="ref+Label"
+data-reference="fig-cell2">2</a>:
 
 - 25% are C12 sites: 12-coordinated, occupying Wyckoff position 2a
   (e.g., at fractional coordinates $`(0, 0, 0)`$ and
@@ -123,8 +123,8 @@ while maintaining the long-range periodicity required by
 crystallography. The structure also features alternating left- and
 right-handed local environments around the 6d sites, adding further
 complexity relevant to implementation
-(<a href="#subsubsec:limits-handedness" data-reference-type="ref+Label"
-data-reference="subsubsec:limits-handedness">3.3.5</a>).
+(<a href="#subsubsec-limits-handedness" data-reference-type="ref+Label"
+data-reference="subsubsec-limits-handedness">3.3.5</a>).
 
 Crucially for this work, the canonical definition of the *A15* structure
 relies on fractional coordinates inherently suitable for binary
@@ -132,8 +132,8 @@ representation: $`0`$, $`1/4`$, and $`1/2`$. These values are exactly
 representable in base-2 systems. When these fractional coordinates are
 mapped onto an integer lattice (conceptually, by scaling the unit cell
 coordinates by 4, aligning with the derivation of the 96-unit baseline
-in <a href="#subsubsec:scaling-baseline" data-reference-type="ref+Label"
-data-reference="subsubsec:scaling-baseline">2.2.3</a>), two
+in <a href="#subsubsec-scaling-baseline" data-reference-type="ref+Label"
+data-reference="subsubsec-scaling-baseline">2.2.3</a>), two
 characteristic squared site-to-site distances emerge within this integer
 framework: $`d^2 = 4`$ (yielding distance 2) and $`d^2 = 5`$ (yielding
 distance $`\sqrt{5}`$). The presence of $`\sqrt{5}`$, the hypotenuse of
@@ -144,10 +144,10 @@ numerical simplicity and compatibility with base-2 representation
 ensures that the *A15* structure can be defined and scaled with
 precision, forming a robust foundation for the numerically stable
 encoding framework developed herein
-(<a href="#subsec:stability" data-reference-type="ref+Label"
-data-reference="subsec:stability">2.3</a>).
+(<a href="#subsec-stability" data-reference-type="ref+Label"
+data-reference="subsec-stability">2.3</a>).
 
-<figure id="fig:cell2">
+<figure id="fig-cell2">
 <img src="fig-cell2.png" />
 <figcaption>Components illustrating the local arrangement within a
 left-handed <span class="math inline">\(^1/_2\)</span> unit cell
@@ -170,8 +170,8 @@ mapped to that specific site’s identifier. This framework primarily
 considers two such methods, both intrinsically linked to the *A15*
 structure, sharing its $`Pm\bar{3}n`$ space group symmetry, and
 implemented within the accompanying `A15.py` software
-(<a href="#fig:wp-ts" data-reference-type="ref+Label"
-data-reference="fig:wp-ts">3</a>):
+(<a href="#fig-wp-ts" data-reference-type="ref+Label"
+data-reference="fig-wp-ts">3</a>):
 
 <div class="description">
 
@@ -210,7 +210,7 @@ that is ultimately transmitted or stored remains based on the position
 within the underlying *A15* lattice, regardless of which local method is
 used for the mapping.
 
-<figure id="fig:wp-ts">
+<figure id="fig-wp-ts">
 <p><img src="fig-wp.png" alt="image" /> <img src="fig-ts.png"
 alt="image" /></p>
 <figcaption>Visualization of local discretization methods related to the
@@ -245,8 +245,8 @@ largely independent of the dynamic content residing within it. This
 *structure-first* methodology prioritizes the creation of a universal,
 efficient, and geometrically sound fabric for spatial representation and
 encoding. The key distinctions are summarized in
-<a href="#tab:comparison-indexing" data-reference-type="ref+Label"
-data-reference="tab:comparison-indexing">1</a>. The *A15* approach
+<a href="#tab-comparison-indexing" data-reference-type="ref+Label"
+data-reference="tab-comparison-indexing">1</a>. The *A15* approach
 deliberately trades the dynamic query optimization focus of traditional
 indexing for significant advantages in predictability, communication
 efficiency (via compact identifiers that implicitly encode the regular
@@ -257,7 +257,7 @@ virtual environments demanding shared spatial understanding, robustness
 against floating-point discrepancies, and efficient state
 synchronization.
 
-<div id="tab:comparison-indexing">
+<div id="tab-comparison-indexing">
 
 | **Characteristic** | **Traditional Spatial Indexing**(e.g., Octree (Finkel and Bentley 1974), R-tree (Guttman 1984), k-d tree (Bentley 1975)) | ***A15* Crystallographic Partitioning** |
 |:---|:---|:---|
@@ -285,10 +285,10 @@ crystallographic point groups) in 3D space (Aroyo 2016). Situating the
 *A15* structure (space group $`Pm\bar{3}n`$, No. 223) within this
 framework highlights its distinctive characteristics relevant to packing
 and partitioning
-(<a href="#tab:spacegroups" data-reference-type="ref+Label"
-data-reference="tab:spacegroups">2</a>).
+(<a href="#tab-spacegroups" data-reference-type="ref+Label"
+data-reference="tab-spacegroups">2</a>).
 
-<div id="tab:spacegroups">
+<div id="tab-spacegroups">
 
 | **Structure Type** | **No.** | **HM Symbol** | **Point Group** | **Order** | **Bravais Lattice** |
 |:---|:--:|:--:|:--:|:--:|:---|
@@ -310,8 +310,8 @@ symmetry (order 24). This group possesses lower overall symmetry than
 the full cubic $`O_h`$ group (order 48) characteristic of the
 highest-symmetry simple cubic, body-centered cubic (BCC, $`cI`$), and
 face-centered cubic (FCC, $`cF`$) structures. However, as discussed
-(<a href="#subsec:intro-a15" data-reference-type="ref+Label"
-data-reference="subsec:intro-a15">1.2</a>), the specific $`T_h`$
+(<a href="#subsec-intro-a15" data-reference-type="ref+Label"
+data-reference="subsec-intro-a15">1.2</a>), the specific $`T_h`$
 symmetry is significant because it represents a maximal crystallographic
 subgroup linking cubic ($`O_h`$) and non-crystallographic icosahedral
 ($`I_h`$) symmetries (Coxeter and Moser 1972). This unique combination
@@ -359,15 +359,15 @@ here.
 
 The heart of this research lies in translating the idealized
 crystallographic description of the *A15* structure
-(<a href="#subsec:intro-a15" data-reference-type="ref+Label"
-data-reference="subsec:intro-a15">1.2</a>) into a practical, numerically
+(<a href="#subsec-intro-a15" data-reference-type="ref+Label"
+data-reference="subsec-intro-a15">1.2</a>) into a practical, numerically
 robust system for partitioning continuous 3D space and encoding
 coordinates. This requires establishing an appropriate and consistent
 scale, mapping continuous coordinates to discrete lattice identifiers,
 and ensuring the process avoids the pitfalls of floating-point
 approximation
-(<a href="#subsec:intro-floats" data-reference-type="ref+Label"
-data-reference="subsec:intro-floats">1.1</a>). The framework achieves
+(<a href="#subsec-intro-floats" data-reference-type="ref+Label"
+data-reference="subsec-intro-floats">1.1</a>). The framework achieves
 this through a carefully staged approach to coordinate scaling,
 primarily operating within an internal integer coordinate system during
 geometric construction to preserve fidelity and defer floating-point
@@ -396,16 +396,16 @@ within `A15.py`. This process uses several interacting parameters and
 fixed factors to progressively build the structure within the internal
 integer system before final output scaling. The key stages are detailed
 below, and the parameters are summarized in
-<a href="#tab:scaling-params" data-reference-type="ref+Label"
-data-reference="tab:scaling-params">3</a>.
+<a href="#tab-scaling-params" data-reference-type="ref+Label"
+data-reference="tab-scaling-params">3</a>.
 
 ### Primitive Definition and Resolution (`prescale`)
 
 The pipeline originates with the definition of the fundamental geometric
 units associated with the *A15* basis sites—typically the pyritohedra
 and tetradecahedra related to the Weaire–Phelan Honeycomb method
-(<a href="#subsec:intro-partitioning" data-reference-type="ref+Label"
-data-reference="subsec:intro-partitioning">1.3</a>), or the cubic blocks
+(<a href="#subsec-intro-partitioning" data-reference-type="ref+Label"
+data-reference="subsec-intro-partitioning">1.3</a>), or the cubic blocks
 for the Tetrastix Prism method. Functions within `A15.py` (e.g.,
 `pyritohedron()`, `tetradecahedra()`) apply an internal integer
 multiplier, the `prescale` parameter, to the canonical *dimensionless
@@ -454,8 +454,8 @@ structure (including its basis) without loss of precision due to these
 fractional offsets. This factor of 96 establishes the crucial **baseline
 dimension** relative to which the structure’s inherent numerical
 precision requirements ($`\epsilon_N`$, see
-<a href="#subsubsec:stability-epsilon-n" data-reference-type="ref+Label"
-data-reference="subsubsec:stability-epsilon-n">2.3.2</a>) are determined
+<a href="#subsubsec-stability-epsilon-n" data-reference-type="ref+Label"
+data-reference="subsubsec-stability-epsilon-n">2.3.2</a>) are determined
 and against which the final output scale ($`\epsilon_\delta`$) is
 compared for stability analysis.
 
@@ -477,17 +477,17 @@ resulting inherent base scale $`\epsilon_N`$ of the internal geometry.
 ### Resultant Internal Integer Coordinates
 
 The cumulative effect of the initial `prescale`
-(<a href="#subsubsec:scaling-prescale" data-reference-type="ref+Label"
-data-reference="subsubsec:scaling-prescale">2.2.1</a>), the lattice
+(<a href="#subsubsec-scaling-prescale" data-reference-type="ref+Label"
+data-reference="subsubsec-scaling-prescale">2.2.1</a>), the lattice
 placement logic
-(<a href="#subsubsec:scaling-lattice" data-reference-type="ref+Label"
-data-reference="subsubsec:scaling-lattice">2.2.2</a>, establishing the
+(<a href="#subsubsec-scaling-lattice" data-reference-type="ref+Label"
+data-reference="subsubsec-scaling-lattice">2.2.2</a>, establishing the
 96-unit effective baseline
-<a href="#subsubsec:scaling-baseline" data-reference-type="ref+Label"
-data-reference="subsubsec:scaling-baseline">2.2.3</a>), and any applied
+<a href="#subsubsec-scaling-baseline" data-reference-type="ref+Label"
+data-reference="subsubsec-scaling-baseline">2.2.3</a>), and any applied
 `rescale` factor
-(<a href="#subsubsec:scaling-rescale" data-reference-type="ref+Label"
-data-reference="subsubsec:scaling-rescale">2.2.4</a>) collectively
+(<a href="#subsubsec-scaling-rescale" data-reference-type="ref+Label"
+data-reference="subsubsec-scaling-rescale">2.2.4</a>) collectively
 defines the complete set of vertex coordinates for the entire generated
 structure. These coordinates exist within a consistent, potentially
 large-valued, *internal integer* system referenced against the 96-unit
@@ -498,7 +498,7 @@ floating-point approximation until the very last output step. This
 internal integer representation forms the bedrock for the numerical
 stability analysis detailed next.
 
-<div id="tab:scaling-params">
+<div id="tab-scaling-params">
 
 | **Parameter/Factor** | **Role and Implementation in `A15.py`** |
 |:---|:---|
@@ -522,8 +522,8 @@ hinges critically on the relationship between the scale chosen for the
 final output coordinates ($`\epsilon_\delta`$) and the inherent
 precision requirements ($`\epsilon_N`$) of the underlying *A15*
 geometry, as captured by the internal integer representation
-(<a href="#subsec:scaling-framework" data-reference-type="ref+Label"
-data-reference="subsec:scaling-framework">2.1</a>). The framework
+(<a href="#subsec-scaling-framework" data-reference-type="ref+Label"
+data-reference="subsec-scaling-framework">2.1</a>). The framework
 defines specific, verifiable conditions under which the mapping from the
 precise internal structure to the output coordinate system can be
 performed without introducing floating-point approximation errors
@@ -547,8 +547,8 @@ regime.
 ### Inherent Base Scale ($`\epsilon_N`$)
 
 The internal integer geometry produced by the construction process
-(<a href="#subsec:scaling-pipeline" data-reference-type="ref+Label"
-data-reference="subsec:scaling-pipeline">2.2</a>) possesses an intrinsic
+(<a href="#subsec-scaling-pipeline" data-reference-type="ref+Label"
+data-reference="subsec-scaling-pipeline">2.2</a>) possesses an intrinsic
 precision limit relative to the 96-unit baseline. This limit arises from
 the specific combination of the *A15* basis site coordinates (involving
 factors of $`1/4`$), the chosen `prescale` value, and any applied
@@ -579,7 +579,7 @@ Conceptually, $`\epsilon_\Delta`$ measures the mismatch or residual
 error when checking if $`\epsilon_\delta`$ aligns perfectly with the
 grid defined by $`\epsilon_N`$:
 ``` math
-\label{eq:stability-condition}
+\label{eq-stability-condition}
 \text{Stability Condition:} \quad \epsilon_\Delta = 0 \quad \iff \quad \epsilon_\delta = m \cdot \epsilon_N \quad \text{for some integer } m \ge 1
 ```
 If this condition holds ($`\epsilon_\Delta = 0`$), the framework
@@ -600,13 +600,13 @@ directly and exactly onto the binary floating-point grid defined by
 $`\epsilon_N = 1/2^N`$ without any approximation relative to the
 internal structure.
 ``` math
-\label{eq:scaling-binary}
+\label{eq-scaling-binary}
     \textbf{Binary}: \quad \epsilon_\delta = \epsilon_N = \frac{1}{2^N} \quad \implies \quad \epsilon_\Delta = 0
 ```
 This represents the most compact scale that allows exact representation
 and guarantees determinism. The validation histogram
-(<a href="#fig:hist" data-reference-type="ref+Label"
-data-reference="fig:hist">4</a>, left) shows a single, sharp peak at the
+(<a href="#fig-hist" data-reference-type="ref+Label"
+data-reference="fig-hist">4</a>, left) shows a single, sharp peak at the
 exponent $`-N`$.
 
 This regime occurs when the output scale is an exact positive integer
@@ -615,18 +615,18 @@ multiple ($`m`$) of the inherent base scale
 still map exactly to representable binary floating-point values without
 approximation error relative to this scaled grid.
 ``` math
-\label{eq:scaling-stable}
+\label{eq-scaling-stable}
     \textbf{Stable}: \quad \epsilon_\delta = m \cdot \epsilon_N = \frac{m}{2^N}, \quad m \in \mathbb{Z}^+, m > 1 \quad \implies \quad \epsilon_\Delta = 0
 ```
 This regime maintains perfect representability and determinism while
 providing flexibility in choosing the overall physical scale. The
 smallest resolvable difference (Unit of Least Precision,
-<a href="#subsubsec:notes-ulp" data-reference-type="ref+Label"
-data-reference="subsubsec:notes-ulp">5.2.5</a>) corresponds to $`m`$
+<a href="#subsubsec-notes-ulp" data-reference-type="ref+Label"
+data-reference="subsubsec-notes-ulp">5.2.5</a>) corresponds to $`m`$
 units at the $`\epsilon_N`$ scale, effectively making the ULP equal to
 $`\epsilon_\delta`$. The validation histogram
-(<a href="#fig:hist" data-reference-type="ref+Label"
-data-reference="fig:hist">4</a>, middle) displays a contiguous block of
+(<a href="#fig-hist" data-reference-type="ref+Label"
+data-reference="fig-hist">4</a>, middle) displays a contiguous block of
 exponents reflecting the integer scaling factor $`m`$.
 
 This regime occurs whenever the chosen output scale $`\epsilon_\delta`$
@@ -637,7 +637,7 @@ grid implied by $`\epsilon_\delta`$. Rounding errors are necessarily
 introduced during the final scaling from internal integers to output
 floats.
 ``` math
-\label{eq:scaling-unstable}
+\label{eq-scaling-unstable}
     \textbf{Unstable}: \quad \epsilon_\delta \neq m \cdot \epsilon_N \quad \text{for any} \quad m \in \mathbb{Z}^+ \quad \implies \quad \epsilon_\Delta \neq 0
 ```
 Utilizing unstable scales fundamentally compromises the core benefit of
@@ -645,10 +645,10 @@ the framework regarding determinism. It introduces representation
 errors, leading to subtle geometric inconsistencies, non-deterministic
 outcomes in sensitive calculations, and significant challenges in
 achieving reliable state synchronization. The validation histogram
-(<a href="#fig:hist" data-reference-type="ref+Label"
-data-reference="fig:hist">4</a>, right; also
-<a href="#fig:main" data-reference-type="ref+Label"
-data-reference="fig:main">5</a>) clearly reveals this instability
+(<a href="#fig-hist" data-reference-type="ref+Label"
+data-reference="fig-hist">4</a>, right; also
+<a href="#fig-main" data-reference-type="ref+Label"
+data-reference="fig-main">5</a>) clearly reveals this instability
 through a broad, sparse, or gapped distribution of denominator
 exponents.
 
@@ -667,15 +667,15 @@ set of parameters, particularly the global output scale
 $`\epsilon_\delta`$. This validation capability is accessed via the
 `-bars` command-line option and provides empirical confirmation of the
 stability concepts discussed above
-(<a href="#subsec:stability" data-reference-type="ref+Label"
-data-reference="subsec:stability">2.3</a>). When enabled, the script
+(<a href="#subsec-stability" data-reference-type="ref+Label"
+data-reference="subsec-stability">2.3</a>). When enabled, the script
 performs the following analysis within its `figure()` function:
 
 1.  It calculates the final vertex coordinates by applying the selected
     `scale` factor ($`\epsilon_\delta`$) to the meticulously generated
     internal integer coordinates
-    (<a href="#subsubsec:scaling-internal" data-reference-type="ref+Label"
-    data-reference="subsubsec:scaling-internal">2.2.5</a>).
+    (<a href="#subsubsec-scaling-internal" data-reference-type="ref+Label"
+    data-reference="subsubsec-scaling-internal">2.2.5</a>).
 
 2.  It then iterates through the components (x, y, z) of these resulting
     output floating-point coordinates. For each component, it obtains
@@ -696,28 +696,28 @@ performs the following analysis within its `figure()` function:
 
 4.  Finally, it visualizes the distribution of these calculated
     exponents $`n`$ across all analyzed vertex components as a histogram
-    (<a href="#fig:hist" data-reference-type="ref+Label"
-    data-reference="fig:hist">4</a>). This histogram provides immediate
+    (<a href="#fig-hist" data-reference-type="ref+Label"
+    data-reference="fig-hist">4</a>). This histogram provides immediate
     visual feedback on the numerical stability of the chosen
     configuration.
 
 The shape of this generated histogram directly corresponds to the
 theoretical stability regimes
-(<a href="#subsubsec:stability-regimes" data-reference-type="ref+Label"
-data-reference="subsubsec:stability-regimes">2.3.4</a>): a single peak
+(<a href="#subsubsec-stability-regimes" data-reference-type="ref+Label"
+data-reference="subsubsec-stability-regimes">2.3.4</a>): a single peak
 signifies Binary scaling; a contiguous block signifies Stable scaling;
 and a sparse, broad, or gapped distribution signifies Unstable scaling,
 revealing the introduction of approximation errors relative to the
 internal geometry. Furthermore, the script explicitly calculates and
 displays the stability difference $`\epsilon_\Delta`$ alongside the
-histogram (<a href="#fig:main" data-reference-type="ref+Label"
-data-reference="fig:main">5</a>), offering direct numerical confirmation
+histogram (<a href="#fig-main" data-reference-type="ref+Label"
+data-reference="fig-main">5</a>), offering direct numerical confirmation
 of the regime. This built-in quantitative validation provides objective
 criteria for selecting scaling parameters that correctly balance spatial
 resolution, memory efficiency, and the critical requirement for
 numerical robustness and determinism.
 
-<figure id="fig:hist">
+<figure id="fig-hist">
 <p><img src="fig-histb.png" alt="image" /> <img src="fig-hists.png"
 alt="image" /> <img src="fig-histu.png" alt="image" /></p>
 <figcaption>Example histograms generated by <code>A15.py</code>
@@ -754,23 +754,23 @@ via `scipy.spatial.ConvexHull`), and Matplotlib (Hunter 2007) for
 versatile 2D and 3D visualization. The script’s workflow systematically
 applies the principles of the *A15* encoding framework, incorporating
 the crucial multi-stage scaling logic
-(<a href="#subsec:scaling-pipeline" data-reference-type="ref+Label"
-data-reference="subsec:scaling-pipeline">2.2</a>) and the quantitative
+(<a href="#subsec-scaling-pipeline" data-reference-type="ref+Label"
+data-reference="subsec-scaling-pipeline">2.2</a>) and the quantitative
 numerical stability analysis
-(<a href="#subsec:stability-validation" data-reference-type="ref+Label"
-data-reference="subsec:stability-validation">2.4</a>) described
+(<a href="#subsec-stability-validation" data-reference-type="ref+Label"
+data-reference="subsec-stability-validation">2.4</a>) described
 previously.
-<a href="#tab:a15py-workflow" data-reference-type="ref+Label"
-data-reference="tab:a15py-workflow">4</a> summarizes the core stages of
+<a href="#tab-a15py-workflow" data-reference-type="ref+Label"
+data-reference="tab-a15py-workflow">4</a> summarizes the core stages of
 its operation, from parameter parsing to final visualization and
 validation. This structured process allows `A15.py` to generate,
 visualize, and analyze configurations, providing concrete examples and
 empirical validation of the framework’s properties, such as the
 composite output shown in
-<a href="#fig:main" data-reference-type="ref+Label"
-data-reference="fig:main">5</a>.
+<a href="#fig-main" data-reference-type="ref+Label"
+data-reference="fig-main">5</a>.
 
-<div id="tab:a15py-workflow">
+<div id="tab-a15py-workflow">
 
 | **Stage** | **Key Functions & Purpose in `A15.py`** |
 |:---|:---|
@@ -783,15 +783,15 @@ data-reference="fig:main">5</a>.
 | Scaling & Stability Analysis | `figure()` |
 |  | Collects internal integer vertex arrays. Applies global `scale` parameter ($`\epsilon_\delta`$) mapping internal integers (relative to the 96-unit baseline) to output floats. Infers inherent base scale $`\epsilon_N`$. Calculates stability difference $`\epsilon_\Delta`$ (verifying if $`\epsilon_\delta = m \cdot \epsilon_N`$ for $`m \in \mathbb{Z}^+ \implies \epsilon_\Delta=0`$). |
 | Visualization & Validation | `figure()` |
-|  | Renders 3D geometry via Matplotlib (Hunter 2007) using specified options (`-edges`, `-faces`, etc.). Uses SciPy (Virtanen et al. 2020) for hull calculations if needed. If `-bars` requested, performs stability analysis (via `float.as_integer_ratio()` (Python Software Foundation 2025) denominators) and generates histogram (<a href="#fig:hist" data-reference-type="ref+Label"
-data-reference="fig:hist">4</a>), visualizing the stability regime and displaying $`\epsilon_\Delta`$. Outputs to screen (`-interactive` option implies pop-up) or file (`-savefig`). Includes annotations (<a href="#fig:main" data-reference-type="ref+Label"
-data-reference="fig:main">5</a>). Relies heavily on NumPy (Harris et al. 2020) throughout. |
+|  | Renders 3D geometry via Matplotlib (Hunter 2007) using specified options (`-edges`, `-faces`, etc.). Uses SciPy (Virtanen et al. 2020) for hull calculations if needed. If `-bars` requested, performs stability analysis (via `float.as_integer_ratio()` (Python Software Foundation 2025) denominators) and generates histogram (<a href="#fig-hist" data-reference-type="ref+Label"
+data-reference="fig-hist">4</a>), visualizing the stability regime and displaying $`\epsilon_\Delta`$. Outputs to screen (`-interactive` option implies pop-up) or file (`-savefig`). Includes annotations (<a href="#fig-main" data-reference-type="ref+Label"
+data-reference="fig-main">5</a>). Relies heavily on NumPy (Harris et al. 2020) throughout. |
 
 Core Workflow Stages in the `A15.py` Implementation.
 
 </div>
 
-<figure id="fig:main">
+<figure id="fig-main">
 <img src="fig-main.png" style="width:80.0%" />
 <figcaption>Composite visualization generated by <code>A15.py</code>
 (<code>fig-main.png.txt</code>) showing pyritohedra and tetradecahedra
@@ -820,15 +820,15 @@ histogram.</figcaption>
 The investigation detailed in the preceding sections confirms the
 distinctive suitability of the *A15* phase structure, when employed
 within the numerically stable scaling framework
-(<a href="#sec:framework-design" data-reference-type="ref+Label"
-data-reference="sec:framework-design">2</a>), for partitioning
+(<a href="#sec-framework-design" data-reference-type="ref+Label"
+data-reference="sec-framework-design">2</a>), for partitioning
 interactive 3D spaces. The confluence of its inherent crystallographic
-properties (<a href="#sec:introduction" data-reference-type="ref+Label"
-data-reference="sec:introduction">1</a>) and the demonstrable numerical
+properties (<a href="#sec-introduction" data-reference-type="ref+Label"
+data-reference="sec-introduction">1</a>) and the demonstrable numerical
 stability achievable through disciplined scaling
 ($`\epsilon_\Delta = 0`$,
-<a href="#subsubsec:stability-diff" data-reference-type="ref+Label"
-data-reference="subsubsec:stability-diff">2.3.3</a>) yields a framework
+<a href="#subsubsec-stability-diff" data-reference-type="ref+Label"
+data-reference="subsubsec-stability-diff">2.3.3</a>) yields a framework
 that is both geometrically sophisticated and computationally practical
 for demanding immersive applications. This section interprets these
 findings, highlights the quantifiable benefits derived directly from the
@@ -859,21 +859,21 @@ analysis and the `A15.py` (Risinger 2024a) reference implementation:
 Arguably the most significant contribution stems directly from operating
 within the rigorously defined **Binary** or **Stable** scaling regimes
 ($`\epsilon_\Delta = 0`$,
-<a href="#subsubsec:stability-regimes" data-reference-type="ref+Label"
-data-reference="subsubsec:stability-regimes">2.3.4</a>). By precisely
+<a href="#subsubsec-stability-regimes" data-reference-type="ref+Label"
+data-reference="subsubsec-stability-regimes">2.3.4</a>). By precisely
 aligning the chosen output scale ($`\epsilon_\delta`$) with the
 structure’s inherent geometric precision requirements ($`\epsilon_N`$,
 relative to the 96-unit baseline derived in
-<a href="#subsubsec:scaling-baseline" data-reference-type="ref+Label"
-data-reference="subsubsec:scaling-baseline">2.2.3</a>), the framework
+<a href="#subsubsec-scaling-baseline" data-reference-type="ref+Label"
+data-reference="subsubsec-scaling-baseline">2.2.3</a>), the framework
 guarantees that all *A15* lattice points and derived vertex coordinates
 map exactly onto hardware binary floating-point formats *relative to
 that chosen stable scale*. This systematically eliminates the
 representation errors inherent in approximating arbitrary spatial
 positions with floats, at least within the context of the framework’s
 quantized representation derived from the internal integer grid
-(<a href="#subsubsec:scaling-internal" data-reference-type="ref+Label"
-data-reference="subsubsec:scaling-internal">2.2.5</a>). The result is
+(<a href="#subsubsec-scaling-internal" data-reference-type="ref+Label"
+data-reference="subsubsec-scaling-internal">2.2.5</a>). The result is
 guaranteed bit-level consistency and numerical determinism across
 disparate machines, platforms, and even different compilation
 environments—a fundamental prerequisite for reliable state
@@ -887,8 +887,8 @@ experiences.
 Mapping continuous coordinates onto compact, often integer-based, *A15*
 identifiers provides substantial memory and bandwidth savings compared
 to standard floating-point vector representations
-(<a href="#subsec:intro-floats" data-reference-type="ref+Label"
-data-reference="subsec:intro-floats">1.1</a>). This advantage is
+(<a href="#subsec-intro-floats" data-reference-type="ref+Label"
+data-reference="subsec-intro-floats">1.1</a>). This advantage is
 particularly pronounced when quantizing explicitly defined or bounded
 volumes where the full dynamic range and mantissa precision of standard
 floats represent unnecessary overhead. Storing or transmitting a 3D
@@ -897,23 +897,23 @@ instance, a 48 integer capable of encoding both a vast cell index range
 and precise intra-cell positioning information—can reduce the data size
 by **50% or more** compared to the 96 typically required for three
 standard single-precision (32) floats, as shown in
-<a href="#eq:efficiency-memory" data-reference-type="ref+Label"
-data-reference="eq:efficiency-memory">[eq:efficiency-memory]</a>.
+<a href="#eq-efficiency-memory" data-reference-type="ref+Label"
+data-reference="eq-efficiency-memory">[eq-efficiency-memory]</a>.
 ``` math
-\label{eq:efficiency-memory}
+\label{eq-efficiency-memory}
     \text{Savings} = \frac{(96\,\text{bit} - 48\,\text{bit})}{96\,\text{bit}} \times 100\% = 50\%
 ```
 This efficiency translates directly into reduced memory footprints for
 spatial data structures and significantly lower network traffic for
 coordinate updates. Considering just baseline kinematic tracking data
-(<a href="#eq:bandwidth-baseline" data-reference-type="ref+Label"
-data-reference="eq:bandwidth-baseline">[eq:bandwidth-baseline]</a>),
+(<a href="#eq-bandwidth-baseline" data-reference-type="ref+Label"
+data-reference="eq-bandwidth-baseline">[eq-bandwidth-baseline]</a>),
 this reduction from approximately 67.2   s<sup>−1</sup> down to
 34   s<sup>−1</sup> or less offers significant leverage on aggregate
 bandwidth, especially in complex scenarios often exceeding
 100   s<sup>−1</sup> per user for kinematics alone.
 ``` math
-\label{eq:bandwidth-baseline}
+\label{eq-bandwidth-baseline}
     \text{Rate}_{\text{3xFloat}} = 20\,\text{jts} \times (3_{\text{pos}} + 4_{\text{quat}})\,\tfrac{\text{floats}}{\text{jt}} \times 4\,\tfrac{\text{bytes}}{\text{float}} \times 15\,\text{Hz} = 8400\,\text{byte/s} \approx 67.2\,\text{kbit/s}
 ```
 The *A15* integer encoding effectively reclaims storage and bandwidth
@@ -926,20 +926,20 @@ compact, deterministic encodings.
 ### Geometric Fidelity and Isotropy
 
 Leveraging the intrinsic crystallographic properties of the *A15*
-structure (<a href="#subsec:intro-a15" data-reference-type="ref+Label"
-data-reference="subsec:intro-a15">1.2</a>) imparts beneficial geometric
+structure (<a href="#subsec-intro-a15" data-reference-type="ref+Label"
+data-reference="subsec-intro-a15">1.2</a>) imparts beneficial geometric
 qualities to the spatial representation. Its verified high mean
 coordination number (13.5) indicates efficient local packing and dense
 connectivity between neighboring regions. The crucial $`T_h`$ point
 group symmetry provides a high degree of local isotropy by incorporating
 near-icosahedral geometric elements within a globally cubic (and thus
 perfectly periodic) framework
-(<a href="#subsec:intro-a15" data-reference-type="ref+Label"
-data-reference="subsec:intro-a15">1.2</a>). This structural integrity,
+(<a href="#subsec-intro-a15" data-reference-type="ref+Label"
+data-reference="subsec-intro-a15">1.2</a>). This structural integrity,
 especially when combined with the topologically matched
 Weaire–Phelan Honeycomb local discretization method
-(<a href="#subsec:intro-partitioning" data-reference-type="ref+Label"
-data-reference="subsec:intro-partitioning">1.3</a>), fosters a spatially
+(<a href="#subsec-intro-partitioning" data-reference-type="ref+Label"
+data-reference="subsec-intro-partitioning">1.3</a>), fosters a spatially
 uniform or “fair” representation, helping to minimize the directional
 biases or artifacts that can plague simpler grid-based partitioning
 schemes.
@@ -947,19 +947,19 @@ schemes.
 ### Validated Implementation Framework
 
 The accompanying `A15.py` script
-(<a href="#subsec:implementation-a15py" data-reference-type="ref+Label"
-data-reference="subsec:implementation-a15py">2.5</a>) serves as more
+(<a href="#subsec-implementation-a15py" data-reference-type="ref+Label"
+data-reference="subsec-implementation-a15py">2.5</a>) serves as more
 than just a visualization aid; it is a validated reference
 implementation and analysis framework. It demonstrates the practical
 construction of *A15*-based structures, rigorously implements the
 multi-stage scaling logic essential for achieving numerical stability
-(<a href="#subsec:scaling-pipeline" data-reference-type="ref+Label"
-data-reference="subsec:scaling-pipeline">2.2</a>), and provides the
+(<a href="#subsec-scaling-pipeline" data-reference-type="ref+Label"
+data-reference="subsec-scaling-pipeline">2.2</a>), and provides the
 quantitative histogram analysis
-(<a href="#subsec:stability-validation" data-reference-type="ref+Label"
-data-reference="subsec:stability-validation">2.4</a>,
-<a href="#fig:hist" data-reference-type="ref+Label"
-data-reference="fig:hist">4</a>) that empirically confirms the existence
+(<a href="#subsec-stability-validation" data-reference-type="ref+Label"
+data-reference="subsec-stability-validation">2.4</a>,
+<a href="#fig-hist" data-reference-type="ref+Label"
+data-reference="fig-hist">4</a>) that empirically confirms the existence
 and accessibility of the stable scaling regimes
 ($`\epsilon_\Delta = 0`$). This ensures the reproducibility of the core
 findings regarding numerical stability and offers a concrete, verifiable
@@ -990,8 +990,8 @@ look-up tables for allowed transformations, or performing complex
 transformations in a continuous coordinate space before re-quantizing
 back into the *A15* grid. Adhering strictly to a canonical orientation
 convention
-(<a href="#subsubsec:limits-handedness" data-reference-type="ref+Label"
-data-reference="subsubsec:limits-handedness">3.3.5</a>) can also
+(<a href="#subsubsec-limits-handedness" data-reference-type="ref+Label"
+data-reference="subsubsec-limits-handedness">3.3.5</a>) can also
 mitigate some rotation-related complexities.
 
 ### Scalability and Spatial Federation
@@ -1034,8 +1034,8 @@ might reintroduce some complexity).
 It bears repeating that this research primarily utilizes the
 computationally tractable *geometric polyhedral* form of the
 Weaire–Phelan Honeycomb for local discretization
-(<a href="#subsec:intro-partitioning" data-reference-type="ref+Label"
-data-reference="subsec:intro-partitioning">1.3</a>). This form shares
+(<a href="#subsec-intro-partitioning" data-reference-type="ref+Label"
+data-reference="subsec-intro-partitioning">1.3</a>). This form shares
 the essential topology and $`Pm\bar{3}n`$ symmetry with the A15
 structure but is distinct from the theoretical, relaxed minimal-surface
 area structure associated with the Kelvin conjecture counter-example
@@ -1052,8 +1052,8 @@ While the overall $`Pm\bar{3}n`$ space group is centrosymmetric
 (achiral), the specific arrangement of atoms in the *A15* structure’s
 basis results in alternating left- and right-handed local coordination
 environments around the 6d sites
-(<a href="#subsec:intro-a15" data-reference-type="ref+Label"
-data-reference="subsec:intro-a15">1.2</a>). This local chirality is
+(<a href="#subsec-intro-a15" data-reference-type="ref+Label"
+data-reference="subsec-intro-a15">1.2</a>). This local chirality is
 implemented deterministically based on lattice position within the
 `A15.py` reference code. However, for interoperability in any practical
 application, particularly networked ones, all participating systems
@@ -1111,8 +1111,8 @@ reputational risks.
 
 The *A15*-based spatial partitioning and encoding framework, validated
 for its numerical stability and efficiency
-(<a href="#sec:discussion" data-reference-type="ref+Label"
-data-reference="sec:discussion">3</a>), offers immediate potential for
+(<a href="#sec-discussion" data-reference-type="ref+Label"
+data-reference="sec-discussion">3</a>), offers immediate potential for
 enhancing current virtual environments and provides a solid foundation
 for future advancements in spatial computing. Its inherent structural
 and numerical properties lend themselves to broad applicability, while
@@ -1140,8 +1140,8 @@ achieving unambiguous interoperability absolutely requires establishing
 and adhering to a shared global orientation convention for interpreting
 the alternating local chiral environments arising from the 6d Wyckoff
 sites
-(<a href="#subsubsec:limits-handedness" data-reference-type="ref+Label"
-data-reference="subsubsec:limits-handedness">3.3.5</a>).
+(<a href="#subsubsec-limits-handedness" data-reference-type="ref+Label"
+data-reference="subsubsec-limits-handedness">3.3.5</a>).
 
 ### Alignment with Global Measurement Standards
 
@@ -1149,13 +1149,13 @@ The explicit output scaling mechanism ($`\epsilon_\delta`$, controlled
 via the `-scale` parameter in `A15.py`) allows the dimensionless
 internal *A15* lattice coordinates (relative to the 96-unit effective
 baseline,
-<a href="#subsubsec:scaling-baseline" data-reference-type="ref+Label"
-data-reference="subsubsec:scaling-baseline">2.2.3</a>) to map directly
+<a href="#subsubsec-scaling-baseline" data-reference-type="ref+Label"
+data-reference="subsubsec-scaling-baseline">2.2.3</a>) to map directly
 and predictably onto standard physical units, such as SI meters or
 Imperial feet. Critically, selecting a scale factor within the Binary or
 Stable regimes ($`\epsilon_\Delta=0`$,
-<a href="#subsubsec:stability-regimes" data-reference-type="ref+Label"
-data-reference="subsubsec:stability-regimes">2.3.4</a>) ensures this
+<a href="#subsubsec-stability-regimes" data-reference-type="ref+Label"
+data-reference="subsubsec-stability-regimes">2.3.4</a>) ensures this
 mapping is exact relative to the framework’s chosen resolution,
 facilitating interoperability with real-world measurements and enhancing
 user comprehension. For instance, the recommended baseline scale of
@@ -1170,18 +1170,18 @@ many human-scale interactions.
 ### Foundation for Networked Systems
 
 As established
-(<a href="#subsubsec:benefits-efficiency" data-reference-type="ref+Label"
-data-reference="subsubsec:benefits-efficiency">3.2.2</a>,
-<a href="#subsubsec:benefits-determinism"
+(<a href="#subsubsec-benefits-efficiency" data-reference-type="ref+Label"
+data-reference="subsubsec-benefits-efficiency">3.2.2</a>,
+<a href="#subsubsec-benefits-determinism"
 data-reference-type="ref+Label"
-data-reference="subsubsec:benefits-determinism">3.2.1</a>), the
+data-reference="subsubsec-benefits-determinism">3.2.1</a>), the
 combination of compact integer-based representation and guaranteed
 coordinate consistency achieved within stable scaling regimes
 ($`\epsilon_\Delta = 0`$) is arguably the framework’s most crucial
 advantage for networked systems. It significantly reduces bandwidth
 requirements, especially for high-frequency data like kinematic tracking
-(<a href="#eq:bandwidth-baseline" data-reference-type="ref+Label"
-data-reference="eq:bandwidth-baseline">[eq:bandwidth-baseline]</a>),
+(<a href="#eq-bandwidth-baseline" data-reference-type="ref+Label"
+data-reference="eq-bandwidth-baseline">[eq-bandwidth-baseline]</a>),
 while providing an essential foundation for reliable state
 synchronization, eliminating a major source of divergence caused by
 floating-point variance. This enables more efficient network delta
@@ -1209,8 +1209,8 @@ This regularity could potentially be leveraged for optimized spatial
 query algorithms (e.g., proximity searches, ray casting within the
 lattice using integer arithmetic) compared to navigating complex
 adaptive tree structures common in traditional spatial indexing
-(<a href="#subsec:comparison-indexing" data-reference-type="ref+Label"
-data-reference="subsec:comparison-indexing">1.4</a>), offering
+(<a href="#subsec-comparison-indexing" data-reference-type="ref+Label"
+data-reference="subsec-comparison-indexing">1.4</a>), offering
 computational performance benefits in certain scenarios. Further
 investigation and benchmarking are needed to quantify these potential
 gains.
@@ -1256,8 +1256,8 @@ semantics, and capability negotiation across different *A15*-partitioned
 virtual spaces or worlds. This could enable seamless transitions between
 independently managed environments, facilitate dynamic federation of
 spaces
-(<a href="#subsubsec:limits-federation" data-reference-type="ref+Label"
-data-reference="subsubsec:limits-federation">3.3.2</a>), and provide
+(<a href="#subsubsec-limits-federation" data-reference-type="ref+Label"
+data-reference="subsubsec-limits-federation">3.3.2</a>), and provide
 consistent object or avatar referencing across a heterogeneous metaverse
 built on deterministic spatial principles.
 
@@ -1276,8 +1276,8 @@ reduced spatial aliasing effects along common traversal paths).
 
 Developing robust and efficient methods for representing non-cuboid
 volumes or complex geometric features within the A15 framework
-(<a href="#subsubsec:limits-complex" data-reference-type="ref+Label"
-data-reference="subsubsec:limits-complex">3.3.3</a>) remains a key area
+(<a href="#subsubsec-limits-complex" data-reference-type="ref+Label"
+data-reference="subsubsec-limits-complex">3.3.3</a>) remains a key area
 for practical improvement. Research could explore hybrid approaches
 combining the base A15 grid with techniques like sparse octrees or
 boundary representations for detail, investigate constructive solid
@@ -1360,14 +1360,14 @@ reproducibility, users should have Python 3 installed along with the
 standard scientific libraries NumPy (Harris et al. 2020), SciPy
 (Virtanen et al. 2020), and Matplotlib (Hunter 2007). Understanding the
 script’s execution flow
-(<a href="#tab:a15py-workflow" data-reference-type="ref+Label"
-data-reference="tab:a15py-workflow">4</a>) and key parameters,
+(<a href="#tab-a15py-workflow" data-reference-type="ref+Label"
+data-reference="tab-a15py-workflow">4</a>) and key parameters,
 particularly those governing the multi-stage scaling framework
-(<a href="#subsec:scaling-pipeline" data-reference-type="ref+Label"
-data-reference="subsec:scaling-pipeline">2.2</a>) and numerical
+(<a href="#subsec-scaling-pipeline" data-reference-type="ref+Label"
+data-reference="subsec-scaling-pipeline">2.2</a>) and numerical
 stability validation
-(<a href="#subsec:stability-validation" data-reference-type="ref+Label"
-data-reference="subsec:stability-validation">2.4</a>), is essential for
+(<a href="#subsec-stability-validation" data-reference-type="ref+Label"
+data-reference="subsec-stability-validation">2.4</a>), is essential for
 proper use and interpretation of results.
 
 The core Python script (`A15.py`), configuration files (`*.png.txt`)
@@ -1403,27 +1403,27 @@ via associated repositories:
 Achieving deterministic results, a core goal of this framework, relies
 crucially on operating within the **Binary** or **Stable** scaling
 regimes ($`\epsilon_\Delta = 0`$,
-<a href="#subsubsec:stability-regimes" data-reference-type="ref+Label"
-data-reference="subsubsec:stability-regimes">2.3.4</a>). The recommended
+<a href="#subsubsec-stability-regimes" data-reference-type="ref+Label"
+data-reference="subsubsec-stability-regimes">2.3.4</a>). The recommended
 baseline scale of $`\epsilon_\delta = 2^{-6}`$ (`-scale=1/64`) generally
 provides a practical balance for human-scale interactions, offering high
 precision (approximately 1.5 mm basic unit width $`N_1`$, see
-<a href="#subsubsec:apps-measurement,subsubsec:notes-figures"
+<a href="#subsubsec-apps-measurement,subsubsec-notes-figures"
 data-reference-type="ref+Label"
-data-reference="subsubsec:apps-measurement,subsubsec:notes-figures">[subsubsec:apps-measurement,subsubsec:notes-figures]</a>)
+data-reference="subsubsec-apps-measurement,subsubsec-notes-figures">[subsubsec-apps-measurement,subsubsec-notes-figures]</a>)
 while ensuring exact floating-point representability relative to the
 internal grid for typical configurations. Users are strongly encouraged
 to employ the `-bars` analysis feature
-(<a href="#subsec:stability-validation" data-reference-type="ref+Label"
-data-reference="subsec:stability-validation">2.4</a>) to explicitly
+(<a href="#subsec-stability-validation" data-reference-type="ref+Label"
+data-reference="subsec-stability-validation">2.4</a>) to explicitly
 verify the stability ($`\epsilon_\Delta = 0`$) of any custom
 configurations before deployment in applications where determinism is
 critical.
 
 Furthermore, while `A15.py` deterministically implements alternating
 handedness for local coordination environments based on lattice position
-(<a href="#subsubsec:limits-handedness" data-reference-type="ref+Label"
-data-reference="subsubsec:limits-handedness">3.3.5</a>), networked
+(<a href="#subsubsec-limits-handedness" data-reference-type="ref+Label"
+data-reference="subsubsec-limits-handedness">3.3.5</a>), networked
 applications or systems exchanging *A15*-encoded data **must** establish
 and consistently apply a shared global orientation convention to ensure
 interoperability and prevent geometric mirroring between different
@@ -1435,8 +1435,8 @@ The primary figures presented in this manuscript can be regenerated
 using the `A15.py` script and the corresponding configuration files
 (typically named `fig-`*`name`*`.png.txt`) provided in the supplementary
 materials repository
-(<a href="#subsec:replication" data-reference-type="ref+Label"
-data-reference="subsec:replication">5.1</a>). Ensure the script and
+(<a href="#subsec-replication" data-reference-type="ref+Label"
+data-reference="subsec-replication">5.1</a>). Ensure the script and
 configuration files are accessible in the execution environment. Use the
 `-i` (or `-pop`) option for interactive viewing (requires a graphical
 display environment):
@@ -1475,13 +1475,13 @@ provided below.
 ### Bandwidth Calculation Basis
 
 The discussion regarding network bandwidth requirements
-(<a href="#subsubsec:benefits-efficiency" data-reference-type="ref+Label"
-data-reference="subsubsec:benefits-efficiency">3.2.2</a>,
-<a href="#subsubsec:apps-network" data-reference-type="ref+Label"
-data-reference="subsubsec:apps-network">4.1.3</a>) utilizes a baseline
+(<a href="#subsubsec-benefits-efficiency" data-reference-type="ref+Label"
+data-reference="subsubsec-benefits-efficiency">3.2.2</a>,
+<a href="#subsubsec-apps-network" data-reference-type="ref+Label"
+data-reference="subsubsec-apps-network">4.1.3</a>) utilizes a baseline
 calculation
-(<a href="#eq:bandwidth-baseline" data-reference-type="ref+Label"
-data-reference="eq:bandwidth-baseline">[eq:bandwidth-baseline]</a>)
+(<a href="#eq-bandwidth-baseline" data-reference-type="ref+Label"
+data-reference="eq-bandwidth-baseline">[eq-bandwidth-baseline]</a>)
 assuming a single avatar with 20 tracked joints, each transmitting 3D
 position (3x 32 floats) and an orientation quaternion (4x 32 floats) at
 a 15 Hz update rate (67.2   s<sup>−1</sup>). This kinematic component
@@ -1491,10 +1491,10 @@ complex interactive applications.
 ### Memory Efficiency Context
 
 The estimate of **50% or more** memory and bandwidth savings
-(<a href="#eq:efficiency-memory" data-reference-type="ref+Label"
-data-reference="eq:efficiency-memory">[eq:efficiency-memory]</a>,
-<a href="#subsubsec:benefits-efficiency" data-reference-type="ref+Label"
-data-reference="subsubsec:benefits-efficiency">3.2.2</a>) compares
+(<a href="#eq-efficiency-memory" data-reference-type="ref+Label"
+data-reference="eq-efficiency-memory">[eq-efficiency-memory]</a>,
+<a href="#subsubsec-benefits-efficiency" data-reference-type="ref+Label"
+data-reference="subsubsec-benefits-efficiency">3.2.2</a>) compares
 storing 3D coordinates using compact integer *A15* identifiers versus
 raw 32 floating-point vectors. A representative scenario assumes a 48
 integer representation per 3D point for the *A15* identifier (balancing
@@ -1513,8 +1513,8 @@ Tables containing the precise internal integer vertex coordinates
 fundamental polyhedra (pyritohedra with various $`h`$ parameters,
 tetradecahedra) generated by `A15.py` functions are intended to be
 available as supplementary materials within the code repository
-(<a href="#subsec:replication" data-reference-type="ref+Label"
-data-reference="subsec:replication">5.1</a>), allowing independent
+(<a href="#subsec-replication" data-reference-type="ref+Label"
+data-reference="subsec-replication">5.1</a>), allowing independent
 verification of geometric constructions.
 
 ### Pyritohedra Parameter for Weaire–Phelan Honeycomb Geometry
@@ -1525,22 +1525,22 @@ coordinates that, after appropriate scaling and placement by
 `lattice()`, correspond precisely to the vertex coordinates defining the
 pyritohedral cells within the geometric Weaire–Phelan Honeycomb
 partition used in this framework
-(<a href="#subsec:intro-partitioning" data-reference-type="ref+Label"
-data-reference="subsec:intro-partitioning">1.3</a>).
+(<a href="#subsec-intro-partitioning" data-reference-type="ref+Label"
+data-reference="subsec-intro-partitioning">1.3</a>).
 
 ### Unit of Least Precision (ULP) Definition
 
 Within this framework, when operating at a specific Binary or Stable
 output scale $`\epsilon_\delta`$
-(<a href="#subsubsec:stability-regimes" data-reference-type="ref+Label"
-data-reference="subsubsec:stability-regimes">2.3.4</a>), the **Unit of
+(<a href="#subsubsec-stability-regimes" data-reference-type="ref+Label"
+data-reference="subsubsec-stability-regimes">2.3.4</a>), the **Unit of
 Least Precision (ULP)** represents the smallest coordinate difference or
 spatial distance along a principal axis that can be exactly resolved by
 the quantization scheme. This ULP corresponds directly to an integer
 difference of 1 in the underlying *internal integer* coordinate system
 (relative to the 96-unit baseline,
-<a href="#subsubsec:scaling-baseline" data-reference-type="ref+Label"
-data-reference="subsubsec:scaling-baseline">2.2.3</a>) before the final
+<a href="#subsubsec-scaling-baseline" data-reference-type="ref+Label"
+data-reference="subsubsec-scaling-baseline">2.2.3</a>) before the final
 scaling by $`\epsilon_\delta`$ is applied. Therefore, the physical size
 of the ULP is precisely equal to the chosen output scale factor,
 $`\epsilon_\delta`$. Features, movements, or discrepancies smaller than
@@ -1567,31 +1567,31 @@ logic.
 ### Interpretation of Figure Annotations
 
 Annotations visible in figures generated by `A15.py` with the `-bars`
-option (e.g., <a href="#fig:main" data-reference-type="ref+Label"
-data-reference="fig:main">5</a>) directly illustrate key stability
+option (e.g., <a href="#fig-main" data-reference-type="ref+Label"
+data-reference="fig-main">5</a>) directly illustrate key stability
 concepts discussed in
-<a href="#subsec:stability" data-reference-type="ref+Label"
-data-reference="subsec:stability">2.3</a>. The calculated value $`N_1`$
+<a href="#subsec-stability" data-reference-type="ref+Label"
+data-reference="subsec-stability">2.3</a>. The calculated value $`N_1`$
 (labeled “basic unit width” or similar in some outputs) shown in the
 histogram sidebar represents the physical dimension corresponding to the
 chosen output scale $`\epsilon_\delta`$ applied to the fundamental
 internal lattice dimension (the 96-unit baseline,
-<a href="#subsubsec:scaling-baseline" data-reference-type="ref+Label"
-data-reference="subsubsec:scaling-baseline">2.2.3</a>). For the unstable
+<a href="#subsubsec-scaling-baseline" data-reference-type="ref+Label"
+data-reference="subsubsec-scaling-baseline">2.2.3</a>). For the unstable
 scale $`\epsilon_\delta=1/96`$ shown in
-<a href="#fig:main" data-reference-type="ref+Label"
-data-reference="fig:main">5</a>, this results in
+<a href="#fig-main" data-reference-type="ref+Label"
+data-reference="fig-main">5</a>, this results in
 $`N_1 = 96 \times (1/96) = 1.0`$ (assuming millimeters as the base unit,
 thus 1.0 mm). In contrast, the recommended stable scale
 $`\epsilon_\delta = 1/64`$ yields $`N_1 = 96 \times (1/64) = 1.5`$ (or
 1.5 mm,
-<a href="#subsubsec:apps-measurement" data-reference-type="ref+Label"
-data-reference="subsubsec:apps-measurement">4.1.2</a>). The displayed
+<a href="#subsubsec-apps-measurement" data-reference-type="ref+Label"
+data-reference="subsubsec-apps-measurement">4.1.2</a>). The displayed
 $`\epsilon_\Delta`$ value explicitly confirms the calculated stability
 difference for the configuration (e.g.,
 $`\epsilon_\Delta \approx \num{0.0104} \neq 0`$ for the unstable case in
-<a href="#fig:main" data-reference-type="ref+Label"
-data-reference="fig:main">5</a>, confirming $`\epsilon_\delta`$ is not
+<a href="#fig-main" data-reference-type="ref+Label"
+data-reference="fig-main">5</a>, confirming $`\epsilon_\delta`$ is not
 an integer multiple of $`\epsilon_N`$), providing direct numerical
 validation alongside the visual histogram representation.
 
