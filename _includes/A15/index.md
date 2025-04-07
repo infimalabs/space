@@ -6,10 +6,8 @@
 
 </summary>
 
-This [document](https://infima.space/A15.pdf){: target="_blank"} is replete with section-sized **(todo)** items, contains no references, and has
-seen no review---it's _incomplete_. However, its code, research, and outcomes _are_ complete. In the wake of [Meta Connect
-2023](https://www.metaconnect.com/en/home){: target="_blank"}---and the release of next-generation, _Meta Quest 3_ hardware---we believe [_open
-access_](https://github.com/infimalabs/space){: target="_blank"} to its ideas and ensuing projects are of great value to competitive, full-body VR
+This [document](https://infima.space/A15.pdf){: target="_blank"} has seen no review---it's _incomplete_. However, its code, research,and outcomes _are_ complete, and we believe [_open
+access_](https://github.com/infimalabs/space){: target="_blank"} to its ideas and related projects are of great value to competitive, full-body VR
 experiences.
 
 We invite everyone interested in this research to join us at its [GitHub project page](https://github.com/infimalabs/space){: target="_blank"}. With
