@@ -393,8 +393,6 @@ body: |-2
   </ul>
   <h3 id="subsubsec-outlook-perception">Perceptual and Cognitive Impact Studies</h3>
   <p>Interdisciplinary research involving human-computer interaction (HCI) and cognitive science is needed to investigate how the specific geometric properties of different underlying spatial partitioning schemes (e.g., <em>A15</em> or Weaire&#x2013;Phelan&#xA0;Honeycomb vs. simpler grids) affect human spatial perception, navigation efficiency, wayfinding accuracy, cognitive load, and the subjective sense of presence or realism within virtual environments. Such studies could provide valuable empirical data for human-centered design of virtual spaces.</p>
-  <h3 id="subsubsec-outlook-hardware">Hardware Acceleration Opportunities</h3>
-  <p>The computational demands of real-time <em>A15</em>-based spatial operations (quantization, neighborhood queries, coordinate transformations) could benefit significantly from hardware acceleration. Designing specialized hardware components&#x2014;such as optimized GPU compute shaders exploiting lattice regularity, FPGA implementations for specific A15 arithmetic or neighborhood lookups, or even dedicated ASICs&#x2014;could dramatically improve performance and energy efficiency, especially crucial for resource-constrained edge devices or mobile VR/AR platforms.</p>
   <p>Pursuing these directions promises to expand the capabilities of structurally informed spatial partitioning. The intersection of crystallographic principles, computational geometry, numerical analysis, and real-time interactive systems represents a fertile territory for extending beyond entertainment into scientific visualization, collaborative design, distributed simulation, robotics, and the broader architecture of spatial computing itself.</p>
   <h1 id="sec-supplementary">Supplementary Information</h1>
   <p>This section provides guidelines for replicating the results presented using the accompanying code, details supplementary resources available online, and discusses additional technical considerations relevant to the implementation and interpretation of the <em>A15</em> encoding framework.</p>
@@ -582,7 +580,7 @@ keywords: |-2
 lang: |-2
   
 last_modified_at: |-2
-  2025-04-07T22:25:14Z
+  2025-04-07T22:39:35Z
 math: |-2
   
 subtitle: |-2
@@ -657,7 +655,6 @@ table-of-contents: |-2
   <li><a href="#subsubsec-outlook-complex" id="toc-subsubsec-outlook-complex">Advanced Complex Geometry Representation</a></li>
   <li><a href="#subsubsec-outlook-geometry" id="toc-subsubsec-outlook-geometry">Exploration of Alternative Geometric Structures</a></li>
   <li><a href="#subsubsec-outlook-perception" id="toc-subsubsec-outlook-perception">Perceptual and Cognitive Impact Studies</a></li>
-  <li><a href="#subsubsec-outlook-hardware" id="toc-subsubsec-outlook-hardware">Hardware Acceleration Opportunities</a></li>
   </ul></li>
   </ul></li>
   <li><a href="#sec-supplementary" id="toc-sec-supplementary">Supplementary Information</a>

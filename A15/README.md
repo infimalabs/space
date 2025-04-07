@@ -1325,17 +1325,6 @@ accuracy, cognitive load, and the subjective sense of presence or
 realism within virtual environments. Such studies could provide valuable
 empirical data for human-centered design of virtual spaces.
 
-### Hardware Acceleration Opportunities
-
-The computational demands of real-time *A15*-based spatial operations
-(quantization, neighborhood queries, coordinate transformations) could
-benefit significantly from hardware acceleration. Designing specialized
-hardware components—such as optimized GPU compute shaders exploiting
-lattice regularity, FPGA implementations for specific A15 arithmetic or
-neighborhood lookups, or even dedicated ASICs—could dramatically improve
-performance and energy efficiency, especially crucial for
-resource-constrained edge devices or mobile VR/AR platforms.
-
 Pursuing these directions promises to expand the capabilities of
 structurally informed spatial partitioning. The intersection of
 crystallographic principles, computational geometry, numerical analysis,
