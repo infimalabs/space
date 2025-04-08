@@ -449,8 +449,8 @@ body: |-2
   <div class="acknowledgements">
   <p>This work benefited significantly from the democratization of knowledge, particularly Wikipedia&#x2019;s extensive collection of mathematical and physical concepts. The accessibility of such resources proved invaluable.</p>
   <p>Unabashed credit is given to the transformative role of artificial intelligence assistants in accelerating the development and articulation of these ideas. Their capabilities enabled rapid iteration and refinement of concepts and language.</p>
-  <p>Special appreciation is extended to the Infima&#xA0;Labs team for their support and encouragement throughout this research. Their collaborative spirit and shared vision for advancing spatial computing is a wellspring of inspiration.</p>
-  <p>Above all, deep gratitude is expressed to the author&#x2019;s wife and family for their unwavering support and patience throughout this work&#x2019;s development. Their encouragement and understanding were instrumental in bringing these ideas to fruition.</p>
+  <p>Special appreciation is extended to the Infima&#xA0;Labs team for their patience and trust throughout this research. Their shared vision for advancing spatial computing was&#x2014;and continues to be&#x2014;a wellspring of inspiration.</p>
+  <p>Above all, deep gratitude is expressed to the author&#x2019;s wife and family for their unwavering support and confidence throughout this work&#x2019;s development. Their encouragement and understanding were instrumental in bringing these ideas to fruition.</p>
   </div>
   <div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
   <div id="ref-ITCVolumeA2016" class="csl-entry" role="listitem">
@@ -583,7 +583,7 @@ keywords: |-2
 lang: |-2
   
 last_modified_at: |-2
-  2025-04-08T01:13:39Z
+  2025-04-08T04:08:12Z
 math: |-2
   
 subtitle: |-2

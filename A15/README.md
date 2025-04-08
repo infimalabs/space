@@ -1597,12 +1597,12 @@ of these ideas. Their capabilities enabled rapid iteration and
 refinement of concepts and language.
 
 Special appreciation is extended to the Infima Labs team for their
-support and encouragement throughout this research. Their collaborative
-spirit and shared vision for advancing spatial computing is a wellspring
-of inspiration.
+patience and trust throughout this research. Their shared vision for
+advancing spatial computing was—and continues to be—a wellspring of
+inspiration.
 
 Above all, deep gratitude is expressed to the author’s wife and family
-for their unwavering support and patience throughout this work’s
+for their unwavering support and confidence throughout this work’s
 development. Their encouragement and understanding were instrumental in
 bringing these ideas to fruition.
 
