@@ -1586,7 +1586,25 @@ validation alongside the visual histogram representation.
 
 <div class="acknowledgements">
 
-**(todo)** Acknowledgements.
+This work benefited significantly from the democratization of knowledge,
+particularly Wikipedia’s extensive collection of mathematical and
+physical concepts. The accessibility of such resources proved
+invaluable.
+
+Unabashed credit is given to the transformative role of artificial
+intelligence assistants in accelerating the development and articulation
+of these ideas. Their capabilities enabled rapid iteration and
+refinement of concepts and language.
+
+Special appreciation is extended to the Infima Labs team for their
+support and encouragement throughout this research. Their collaborative
+spirit and shared vision for advancing spatial computing is a wellspring
+of inspiration.
+
+Above all, deep gratitude is expressed to the author’s wife and family
+for their unwavering support and patience throughout this work’s
+development. Their encouragement and understanding were instrumental in
+bringing these ideas to fruition.
 
 </div>
 
