@@ -184,15 +184,22 @@ This research utilizes the geometric polyhedral form of the
 Weaire–Phelan structure as a partitioning method. It divides space using
 cells of two distinct shapes: a 12-faced pyritohedron and a 14-faced
 tetradecahedron, arranged in a precise 1:3 ratio (Weaire and Phelan
-1994). These cell shapes correspond topologically to the local
-coordination environments of the C12 and C14 sites within the *A15*
-structure, respectively. This partitioning is notable for its high
-degree of isotropy, closely mirroring the symmetry characteristics of
-the underlying lattice. (It is important to distinguish this geometric,
-space-filling honeycomb from the related but distinct relaxed,
-minimal-surface structure which famously provided a counter-example to
-Kelvin’s conjecture on foam partitioning (Thomson 1887; Kusner and
-Sullivan 1996; Weaire and Hutzler 2001).)
+1994). Significantly, these flat-faced polyhedra constitute the Voronoi
+decomposition for the A15 lattice points; the pyritohedron is the
+Voronoi cell for the C12 (Wyckoff 2a) site, and the tetradecahedron is
+the Voronoi cell for the C14 (Wyckoff 6d) site. This relationship makes
+the Weaire–Phelan Honeycomb geometry a canonical choice for
+discretization, as each cell naturally defines the region of space
+closest to its corresponding A15 lattice site. These cell shapes
+correspond topologically to the local coordination environments of the
+C12 and C14 sites within the *A15* structure, respectively. This
+partitioning is notable for its high degree of isotropy, closely
+mirroring the symmetry characteristics of the underlying lattice. (It is
+important to distinguish this geometric, space-filling honeycomb from
+the related but distinct relaxed, minimal-surface structure which
+famously provided a counter-example to Kelvin’s conjecture on foam
+partitioning (Thomson 1887; Kusner and Sullivan 1996; Weaire and Hutzler
+2001).)
 
 A structurally simpler alternative partitioning method, activated within
 `A15.py` via the `-stix` configuration option. This method employs
@@ -913,21 +920,39 @@ to standard floating-point vector representations
 data-reference="subsec-intro-floats">1.1</a>). This advantage is
 particularly pronounced when quantizing explicitly defined or bounded
 volumes where the full dynamic range and mantissa precision of standard
-floats represent unnecessary overhead. Storing or transmitting a 3D
-coordinate using a suitable *A15*-based integer representation—for
-instance, a 48 integer capable of encoding both a vast cell index range
-and precise intra-cell positioning information—can reduce the data size
-by **50% or more** compared to the 96 typically required for three
-standard single-precision (32) floats, as shown in
-<a href="#eq-efficiency-memory" data-reference-type="ref+Label"
-data-reference="eq-efficiency-memory">[eq-efficiency-memory]</a>.
+floats represent unnecessary overhead. For a practical example, consider
+establishing a coordinate system using a stable scale where the basic
+unit width $`N_1`$ (derived from the 96-unit baseline,
+<a href="#subsubsec-scaling-baseline,subsubsec-notes-figures"
+data-reference-type="ref+Label"
+data-reference="subsubsec-scaling-baseline,subsubsec-notes-figures">[subsubsec-scaling-baseline,subsubsec-notes-figures]</a>)
+corresponds to 1.5 mm (achieved with $`\epsilon_\delta=1/64`$). A 48
+integer identifier could then be structured as follows: 3 bits can
+uniquely address the 8 distinct atomic sites within the A15 conventional
+cubic cell (2 at Wyckoff 2a, 6 at Wyckoff 6d); allocating 11 bits for
+the vertical axis provides
+$`2^{11} \times \SI{1.5}{\milli\meter} \approx \SI{3.07}{\meter}`$ of
+range, sufficient vertical headroom for human-scale interaction; the
+remaining 34 bits, split evenly (17+17) for the horizontal axes, define
+a square area of
+$`(2^{17} \times \SI{1.5}{\milli\meter})^2 \approx (\SI{196.6}{\meter})^2`$.
+This 48-bit structure, capable of encoding a space several times larger
+in area than the largest professional stadium fields with sub-millimeter
+intra-cell precision, represents a **50% reduction** compared to the 96
+typically required for three standard single-precision (32) floats
+(<a href="#eq-efficiency-memory" data-reference-type="ref+Label"
+data-reference="eq-efficiency-memory">[eq-efficiency-memory]</a>).
 ``` math
 \label{eq-efficiency-memory}
     \text{Savings} = \frac{(96\,\text{bit} - 48\,\text{bit})}{96\,\text{bit}} \times 100\% = 50\%
 ```
-This efficiency translates directly into reduced memory footprints for
-spatial data structures and significantly lower network traffic for
-coordinate updates. Considering just baseline kinematic tracking data
+Furthermore, because many application environments (e.g., smaller
+arenas, non-square layouts (Risinger 2024b)) require less range, the bit
+allocation can often be reduced further, leading to savings
+significantly exceeding 50%. This efficiency translates directly into
+reduced memory footprints for spatial data structures and significantly
+lower network traffic for coordinate updates. Considering just baseline
+kinematic tracking data
 (<a href="#eq-bandwidth-baseline" data-reference-type="ref+Label"
 data-reference="eq-bandwidth-baseline">[eq-bandwidth-baseline]</a>),
 this reduction from approximately 67.2   s<sup>−1</sup> down to
@@ -1022,10 +1047,10 @@ design aspects rather than fundamental flaws in the underlying concept:
 
 ### Complexity of Arbitrary Rotations
 
-Applying arbitrary rotations \*relative to the lattice axes\* directly
-to the integer lattice coordinates used in *A15* encoding can be
-intricate, particularly when mapping points onto valid *A15* basis sites
-(Wyckoff 2a or 6d) or navigating complex cell boundaries like those in
+Applying arbitrary rotations relative to the lattice axes directly to
+the integer lattice coordinates used in *A15* encoding can be intricate,
+particularly when mapping points onto valid *A15* basis sites (Wyckoff
+2a or 6d) or navigating complex cell boundaries like those in
 the Weaire–Phelan Honeycomb. Correct implementation necessitates
 carefully calculated transformations aware of the crystal basis and
 space group operations (Aroyo 2016). However, the complexity is
@@ -1060,8 +1085,8 @@ A practical consideration is the computational cost of
 quantization—mapping arbitrary continuous coordinates to the nearest
 discrete *A15* identifier. While general-purpose nearest-neighbor
 searches in 3D can be computationally intensive, especially with complex
-cell boundaries (e.g., WPH), this cost is highly dependent on
-implementation strategy and application alignment. As noted
+cell boundaries (e.g., Weaire–Phelan Honeycomb), this cost is highly
+dependent on implementation strategy and application alignment. As noted
 (<a href="#subsec-scaling-framework" data-reference-type="ref+Label"
 data-reference="subsec-scaling-framework">2.1</a>), if an application’s
 coordinate system is deliberately aligned with a stable *A15* scale
@@ -1118,15 +1143,18 @@ environments around the 6d sites
 (<a href="#subsec-intro-a15" data-reference-type="ref+Label"
 data-reference="subsec-intro-a15">1.2</a>). This local chirality is
 implemented deterministically based on lattice position within the
-`A15.py` reference code. However, for interoperability in any practical
-application, particularly networked ones, all participating systems
-**must establish and strictly adhere to a shared global orientation
-convention**. This convention dictates how these local chiralities are
-interpreted, represented, and transformed, ensuring consistency between
-different client implementations and, crucially, when interfacing with
-host environments or game engines that may use different native
-coordinate system handedness (e.g., left-handed systems common in Unity
-(Unity Technologies 2024) and Unreal Engine (Epic Games 2023) versus
+`A15.py` reference code, and is consistent with a standard
+**right-handed coordinate system** interpretation. However, for
+interoperability in any practical application, particularly networked
+ones, all participating systems **must establish and strictly adhere to
+a shared global orientation convention**, independent of any specific
+implementation’s internal standard. This convention dictates how local
+chiralities and global axes are interpreted, represented, and
+transformed, ensuring consistency between different client
+implementations and, crucially, when interfacing with host environments
+or game engines that may use different native coordinate system
+handedness (e.g., left-handed systems common in Unity (Unity
+Technologies 2024) and Unreal Engine (Epic Games 2023) versus
 right-handed systems standard in physics and mathematics). Without such
 a shared convention, mirrored or incorrectly oriented geometry could
 easily result from exchanging *A15*-encoded coordinates.
@@ -1478,7 +1506,7 @@ within the Infima Labs `space` repository on GitHub (Infima Labs 2023):
 
 <div class="center">
 
-<https://github.com/infimalabs/space/tree/main/A15>
+<https://github.com/infimalabs/space/>
 
 </div>
 
@@ -1497,7 +1525,7 @@ via associated repositories:
 
 <div class="center">
 
-<https://github.com/infimalabs/layoutc>
+<https://github.com/infimalabs/layoutc/>
 
 </div>
 
@@ -1509,12 +1537,13 @@ data-reference="subsubsec-stability-regimes">2.3.4</a>). The recommended
 baseline scale of $`\epsilon_\delta = 2^{-6}`$ (`-scale=1/64`) generally
 provides a practical balance for human-scale interactions, offering high
 precision (approximately 1.5 mm basic unit width $`N_1`$, see
-<a href="#subsubsec-apps-measurement,subsubsec-notes-figures"
-data-reference-type="ref+Label"
-data-reference="subsubsec-apps-measurement,subsubsec-notes-figures">[subsubsec-apps-measurement,subsubsec-notes-figures]</a>)
-while ensuring exact floating-point representability relative to the
-internal grid for typical configurations. Users are strongly encouraged
-to employ the `-bars` analysis feature
+<a href="#subsubsec-apps-measurement" data-reference-type="ref+Label"
+data-reference="subsubsec-apps-measurement">4.1.2</a> and
+<a href="#subsubsec-notes-figures" data-reference-type="ref+Label"
+data-reference="subsubsec-notes-figures">5.2.7</a>) while ensuring exact
+floating-point representability relative to the internal grid for
+typical configurations. Users are strongly encouraged to employ the
+`-bars` analysis feature
 (<a href="#subsec-stability-validation" data-reference-type="ref+Label"
 data-reference="subsec-stability-validation">2.4</a>) to explicitly
 verify the stability ($`\epsilon_\Delta = 0`$) of any custom
