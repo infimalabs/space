@@ -14,9 +14,6 @@ gittop := $(shell TZ=UTC0 git log -1 --date=format-local:%Y-%m-%dT%H:%M:%SZ --fo
 gitmod := $(shell TZ=UTC0 git log -1 --date=format-local:%Y-%m-%dT%H:%M:%SZ --format=%ad -- $(docs) $(pngs))
 giturl := $(subst git@,https://,$(subst :,/,$(subst .git,,$(shell git config remote.origin.url))))
 
-# Makefile utils.
-reverse = $(if $(1),$(call reverse,$(wordlist 2,$(words $(1)),$(1)))) $(firstword $(1))
-
 # Build dirs.
 bldall = _build
 bldone = $(bldall)/$v
@@ -47,9 +44,9 @@ pre = \newcommand\version{$v} \
 	\newcommand\group{$g} \
 	\newcommand\stamp{$(or $($(v)stampv),true)} \
 	\newcommand\setctime{\DTMsavetimestamp{ctime}{$(gittop)}} \
-	\newcommand\setmtime{\DTMsavetimestamp{mtime}{$(gitmod)}} \
-	\newcommand\setgraphicspath{\graphicspath{$(addprefix {,$(addsuffix },$(call reverse,$(sort $(^D)))))}}
-latexc = $(latexmk) -outdir=$(bldtmp) -jobname=$(@F).tmp -usepretex='$(pre)' -pdflua -quiet -halt-on-error -Werror $< \
+	\newcommand\setmtime{\DTMsavetimestamp{mtime}{$(gitmod)}}
+latexc = $(cp) -a $(docs) $(bldone) \
+				 && $(latexmk) -cd -outdir=tmp -jobname=$(@F).tmp -usepretex='$(pre)' -pdflua -quiet -halt-on-error -Werror $(bldone)/$(<F) \
 				 && $(cp) -a $(bldtmp)/$(@F).tmp.pdf $@
 docsc = $(rm) -f $@ \
 				&& $(pandoc) $g.tex --output=$@ --lua-filter=$g.lua --resource-path=$(bldtmp) \
@@ -65,7 +62,7 @@ $(bldone) $(bldtmp): ; $(mkdir) -p $@
 $(bldone)/%.png: $g.py %.png.txt | $(bldone); $(figc)
 
 # Compile content.
-$(bldone)/%.pdf: %.tex $(bldpngs) $(MAKEFILE_LIST) | $(bldtmp); $(latexc)
+$(bldone)/%.pdf: $(docs) $(bldpngs) $(MAKEFILE_LIST) | $(bldtmp); $(latexc)
 
 # Compile README.md.
 $(bldrtfm): $(srcs) $(bldpngs) $(MAKEFILE_LIST); $(markc)
