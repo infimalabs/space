@@ -202,8 +202,8 @@ def figure(shape, *shapes, savefig:bool|str=False, views:tuple[tuple[int|float]]
     normalize = matplotlib.colors.Normalize(vmin=0)
     colormap = matplotlib.colormaps["CMRmap"]
     figsize = (
-        (10/4, 10) if not views else
-        (10, 10-bars) if (len(views)**0.5).is_integer() else
+        (10-3*bars, 10) if not views else
+        (10, 10-3*bars) if (len(views)**0.5).is_integer() else
         (10/len(views), 10) if bars else
         (10, 10/len(views))
     )
@@ -428,7 +428,7 @@ def figure(shape, *shapes, savefig:bool|str=False, views:tuple[tuple[int|float]]
             spine.set_visible(False)
         if axes:
             ax.set_title(
-                x=0, y=-3*2**-7, loc="left", ma="left", va="top", fontsize=fs*3*2**-2, pad=1,
+                x=0, y=-3*2**-7, loc="left", ma="left", va="top", fontsize=fs*5*2**-2, pad=1,
                 label="${}$".format("$\n$".join(list(filter(None, [
                     fr"\mathbf{{N_{{1}}}} = {width:.55}_{{mm}}",
                 ] + [
@@ -464,7 +464,7 @@ def figure(shape, *shapes, savefig:bool|str=False, views:tuple[tuple[int|float]]
         cnil, cnix = sum(count==0 for count in counts), max((1, *gaps))
         csum, cmax = sum(counts), max(counts)
         ax.set_title(
-            x=0.5, y=1+2**-6, loc="center", ma="left", va="bottom", fontsize=fs*5*2**-3, fontweight="bold",
+            x=0.5, y=1+2**-6, loc="center", ma="left", va="bottom", fontsize=fs*9*2**-3, fontweight="bold",
             label="\n".join(filter(None, [
                 f"${csum}$ $binary_{{64}}$ float{'s'*(csum>1)}",
                 f"${len(base2)}$ $rational$ epsilon{'s'*(len(base2)>1)}",
@@ -482,10 +482,10 @@ def figure(shape, *shapes, savefig:bool|str=False, views:tuple[tuple[int|float]]
                 left=-1, width=2*w, y=y+1, height=2, color=bc,
                 hatch=None if count else "///" if w==1 and cnil>1 else "//",
             )
-            count and ax.bar_label(bax, color=lc, label_type="center", fontsize=fs*3*2**-2, fmt=f"${count:.0f}$")
+            count and ax.bar_label(bax, color=lc, label_type="center", fontsize=fs*9*2**-3, fmt=f"${count:.0f}$")
             bbox_extra_artists.append(ax.annotate(
-                textcoords="offset points", xytext=(-fs/4, 0), xy=(-1, y+1.625), clip_on=False,
-                va="center", ha="right", fontsize=fs*3*2**-2, color="#1a1a1a",
+                textcoords="offset points", xytext=(-fs/4, 0), xy=(-1, y+0.8125), clip_on=False,
+                va="center", ha="right", fontsize=fs*9*2**-3, color="#1a1a1a",
                 text=r"$2^{%s}$" % -power,
             ))
     if fig and title:
@@ -495,7 +495,7 @@ def figure(shape, *shapes, savefig:bool|str=False, views:tuple[tuple[int|float]]
             x=(0.7 if figrats[1]>=3 else 0.55) if bars and views else 0.5,
             y=1+2**-5 if axes and views else 1+3*2**-5 if axes or bars else 1,
             ma="right", va="baseline" if not axes and mosaic.shape[0]==1 else "bottom",
-            fontsize=fs*1.125, fontfamily="monospace",
+            fontsize=fs*2.125, fontfamily="monospace",
             t="\n".join(list(filter(None, [
                 hasattr(title, "title") and title.title(),
                 r"$\mathbf{%s}_{\left(\epsilon_{\delta} = %s\right)}$" % (
