@@ -203,7 +203,7 @@ def figure(shape, *shapes, savefig:bool|str=False, views:tuple[tuple[int|float]]
     colormap = matplotlib.colormaps["CMRmap"]
     figsize = (
         (10-3*bars, 10) if not views else
-        (10, 10-3*bars) if (len(views)**0.5).is_integer() else
+        (10, 10-bars) if (len(views)**0.5).is_integer() else
         (10/len(views), 10) if bars else
         (10, 10/len(views))
     )
@@ -428,7 +428,7 @@ def figure(shape, *shapes, savefig:bool|str=False, views:tuple[tuple[int|float]]
             spine.set_visible(False)
         if axes:
             ax.set_title(
-                x=0, y=-3*2**-7, loc="left", ma="left", va="top", fontsize=fs*5*2**-2, pad=1,
+                x=0, y=-3*2**-7, loc="left", ma="left", va="top", fontsize=fs*3*2**-2 if views else fs*5*2**-2, pad=1,
                 label="${}$".format("$\n$".join(list(filter(None, [
                     fr"\mathbf{{N_{{1}}}} = {width:.55}_{{mm}}",
                 ] + [
