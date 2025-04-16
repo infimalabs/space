@@ -525,8 +525,7 @@ To provide a clear conceptual overview of the A15 encoding framework, Figure~\re
         edge [->] (reconstruct);
     \node[stability, above=of binary] (stable) {Stable Regime\\$\epsilon_\Delta = 0, m > 1$}
         edge [->] (binary);
-    \node[stability, below=of reconstruct] (unstable) {Unstable Regime\\$\epsilon_\Delta \neq 0$}
-        edge [->] (reconstruct);
+    \node[stability, below=of reconstruct] (unstable) {Unstable Regime\\$\epsilon_\Delta \neq 0$};
 
     % Internal Integer Representation
     \node[data, below=0.5cm of identifier] (internal) {Internal Integer Representation\\(96-unit baseline)}
