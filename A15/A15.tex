@@ -955,20 +955,6 @@ The investigation detailed in the preceding sections confirms the distinctive su
 
 This research establishes \AAAB{} encoding as a robust structural foundation for coordinated spatial partitioning. The core finding is that by leveraging the specific crystallographic symmetries and binary-friendly coordinates of the \AAAB{} structure, and by rigorously adhering to the multi-stage scaling pipeline culminating in a stable output scale ($\epsilon_\Delta = 0$), it is possible to create a spatial representation that fundamentally eliminates floating-point representation errors relative to its own discrete grid. This provides a pathway to achieving verifiable determinism in spatial computations, a critical enabler for next-generation networked virtual environments and related spatial computing tasks.
 
-\subsubsection{Privacy and Security of Tracking Data (PII)}\label{subsubsec-limits-privacy}
-The application of this efficient encoding framework to fine-grained spatial tracking data, especially full-body kinematics derived from VR/AR systems, carries significant privacy implications that \textbf{must} be addressed with utmost seriousness. Such detailed movement data constitutes \textbf{Personally Identifiable Information (PII)} and may qualify as sensitive biometric data under various regulations (e.g., GDPR \cite{GDPR-2016}, CCPA \cite{CCPA-2018}). Handling this data demands rigorous privacy safeguards and unwavering ethical considerations as a \textbf{non-negotiable} aspect of implementation. Developers and deployers \textbf{must} integrate robust security measures as a foundational requirement. This includes, at a minimum:
-\begin{itemize} \itemsep0pt
-    \item Employing strong \textbf{end-to-end encryption (E2EE)} for all \AAAB{}-encoded coordinate streams and associated tracking data during network transmission and persistent storage.
-    \item Strict adherence to \textbf{data minimization principles} (collecting only the data essential for the application's functionality).
-    \item Implementing transparent \textbf{user consent mechanisms} before any tracking begins.
-    \item Establishing clearly defined \textbf{data retention and deletion policies}.
-    \item Utilizing effective \textbf{anonymization or aggregation strategies} whenever full individual fidelity is not strictly required (e.g., for analytics or heatmaps).
-    \item Ensuring full compliance with all relevant legal and ethical regulations.
-\end{itemize}
-This data represents individuals and their behavior; it \textbf{must} be treated with the highest degree of care, respect, security, and transparency. Failure to do so carries significant legal, ethical, and reputational risks.
-
-It should be noted that while the A15 encoding framework reduces the raw size of spatial data, potentially making it more efficient to encrypt and secure, this efficiency gain does not diminish the fundamental privacy requirements surrounding such sensitive information.
-
 \subsection{Quantifiable Benefits}\label{subsec-discussion-benefits}
 
 The \AAAB{} encoding framework, when implemented correctly within stable scaling regimes, offers several key advantages validated by theoretical analysis and the \texttt{A15.py} \cite{Risinger2024A15} reference implementation:
@@ -1058,6 +1044,21 @@ Using lattice-aligned cuboidal extents for defining \AAAB{} zones, while straigh
 
 \subsubsection{Requirement for Handedness Convention}\label{subsubsec-limits-handedness}
 While the overall $Pm\bar{3}n$ space group is centrosymmetric (achiral), the specific arrangement of atoms in the \AAAB{} structure's basis results in alternating left- and right-handed local coordination environments around the 6d sites (\Cref{subsec-intro-a15}). This local chirality is implemented deterministically based on lattice position within the \texttt{A15.py} reference code, and is consistent with a standard \textbf{right-handed coordinate system} interpretation. However, for interoperability in any practical application, particularly networked ones, all participating systems \textbf{must establish and strictly adhere to a shared global orientation convention}, independent of any specific implementation's internal standard. This convention dictates how local chiralities and global axes are interpreted, represented, and transformed, ensuring consistency between different client implementations and, crucially, when interfacing with host environments or game engines that may use different native coordinate system handedness (e.g., left-handed systems common in Unity \cite{UnityCoords} and Unreal Engine \cite{UnrealCoords} versus right-handed systems standard in physics and mathematics). Without such a shared convention, mirrored or incorrectly oriented geometry could easily result from exchanging \AAAB{}-encoded coordinates.
+
+\section{Privacy and Security of Tracking Data (PII)}\label{sec-privacy}
+
+The application of this efficient encoding framework to fine-grained spatial tracking data, especially full-body kinematics derived from VR/AR systems, carries significant privacy implications that \textbf{must} be addressed with utmost seriousness. Such detailed movement data constitutes \textbf{Personally Identifiable Information (PII)} and may qualify as sensitive biometric data under various regulations (e.g., GDPR \cite{GDPR-2016}, CCPA \cite{CCPA-2018}). Handling this data demands rigorous privacy safeguards and unwavering ethical considerations as a \textbf{non-negotiable} aspect of implementation. Developers and deployers \textbf{must} integrate robust security measures as a foundational requirement. This includes, at a minimum:
+\begin{itemize} \itemsep0pt
+    \item Employing strong \textbf{end-to-end encryption (E2EE)} for all \AAAB{}-encoded coordinate streams and associated tracking data during network transmission and persistent storage.
+    \item Strict adherence to \textbf{data minimization principles} (collecting only the data essential for the application's functionality).
+    \item Implementing transparent \textbf{user consent mechanisms} before any tracking begins.
+    \item Establishing clearly defined \textbf{data retention and deletion policies}.
+    \item Utilizing effective \textbf{anonymization or aggregation strategies} whenever full individual fidelity is not strictly required (e.g., for analytics or heatmaps).
+    \item Ensuring full compliance with all relevant legal and ethical regulations.
+\end{itemize}
+This data represents individuals and their behavior; it \textbf{must} be treated with the highest degree of care, respect, security, and transparency. Failure to do so carries significant legal, ethical, and reputational risks.
+
+It should be noted that while the A15 encoding framework reduces the raw size of spatial data, potentially making it more efficient to encrypt and secure, this efficiency gain does not diminish the fundamental privacy requirements surrounding such sensitive information.
 
 \section{Immediate Potential and Future Prospects}\label{sec-outlook}
 
