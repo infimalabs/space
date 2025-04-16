@@ -22,16 +22,16 @@ For networked virtual environments—particularly competitive VR,
 collaborative simulations, and distributed computing—this translates
 directly to several practical benefits:
 
-- **Network Efficiency:** Reduces coordinate transmission size by
-  approximately 50% compared to raw float vectors, enabling higher
-  update rates within limited bandwidth.
+- **Network Efficiency:** Shrinks coordinate transmission size by 50%
+  compared to raw float vectors, enabling higher update rates within
+  limited bandwidth.
 
 - **Deterministic Guarantee:** Enables verifiable event sequences,
   accurate replays, and fair competition across heterogeneous client
   devices.
 
 - **Geometric Fidelity:** Preserves spatial relationships with minimal
-  directional bias owing to the structure’s high coordination (13.5) and
+  directional bias owing to *A15*’s high coordination (13.5) and
   near-icosahedral local ordering.
 
 The framework includes robust tools for verifying numerical stability
@@ -341,7 +341,7 @@ implementation:
 In contrast, the minimal-surface WPH would require more complex surface
 representations, potentially introducing additional numerical challenges
 contradictory to the framework’s determinism goals. Therefore, all
-references to the Weaire-Phelan Honeycomb (WPH) within this manuscript
+references to the Weaire-Phelan Honeycomb (WPH) within this document
 specifically denote the geometric polyhedral form, not the
 minimal-surface variant from foam physics.
 
@@ -385,100 +385,20 @@ synchronization.
 
 <div id="tab-comparison-indexing">
 
-<table>
-<caption>Comparison of Spatial Organization Approaches.</caption>
-<thead>
-<tr>
-<th style="text-align: left;"><strong>Characteristic</strong></th>
-<th style="text-align: left;"><strong>Traditional Spatial
-Indexing</strong><br />
-(e.g., Octree <span class="citation" data-cites="Finkel1974">(Finkel and
-Bentley 1974)</span>, R-tree <span class="citation"
-data-cites="Guttman1984">(Guttman 1984)</span>, k-d tree <span
-class="citation" data-cites="Bentley1975">(Bentley 1975)</span>)</th>
-<th style="text-align: left;"><strong><em>A15</em> Crystallographic
-Partitioning</strong></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align: left;">Main Objective</td>
-<td style="text-align: left;">Efficient query/retrieval of existing,
-often arbitrary, data</td>
-<td style="text-align: left;">Uniform, deterministic spatial
-discretization and efficient coordinate encoding</td>
-</tr>
-<tr>
-<td style="text-align: left;">Partition Strategy</td>
-<td style="text-align: left;">Data-driven; adaptive boundaries; often
-hierarchical; structure follows data</td>
-<td style="text-align: left;">Structure-driven; regular lattice;
-predetermined boundaries (via WPH/TSP local methods); data follows
-structure</td>
-</tr>
-<tr>
-<td style="text-align: left;">Symmetry Awareness</td>
-<td style="text-align: left;">Generally low; structure adapts to data,
-often breaking ambient symmetries</td>
-<td style="text-align: left;">High; leverages crystallographic symmetry
-(<span class="math inline">\(T_h\)</span>, <span
-class="math inline">\(Pm\bar{3}n\)</span>) of the imposed lattice</td>
-</tr>
-<tr>
-<td style="text-align: left;">Coordinate Handling</td>
-<td style="text-align: left;">Typically preserves input precision (e.g.,
-float coordinates)</td>
-<td style="text-align: left;">Quantizes coordinates to discrete
-representations (<em>A15</em> identifiers, often integers)</td>
-</tr>
-<tr>
-<td style="text-align: left;">Memory Usage</td>
-<td style="text-align: left;">Variable, depends on data
-density/distribution; includes tree/node overhead</td>
-<td style="text-align: left;">Predictable based on defined scale/volume;
-highly efficient storage using integer identifiers</td>
-</tr>
-<tr>
-<td style="text-align: left;">Isotropy</td>
-<td style="text-align: left;">Variable; depends heavily on data
-distribution and algorithm specifics</td>
-<td style="text-align: left;">High local isotropy inherent in the
-<em>A15</em> structure, especially when using Weaire–Phelan Honeycomb
-partitioning</td>
-</tr>
-<tr>
-<td style="text-align: left;">Neighborhood Info</td>
-<td style="text-align: left;">Requires explicit tree traversal or
-complex range/proximity queries</td>
-<td style="text-align: left;">Implicit, regular neighbor relationships
-directly derivable from the lattice structure</td>
-</tr>
-<tr>
-<td style="text-align: left;">Temporal Stability</td>
-<td style="text-align: left;">Partitioning structure can change
-significantly as data moves or updates</td>
-<td style="text-align: left;">Fixed partitioning grid provides temporal
-coherence for coordinate mapping (though content moves within)</td>
-</tr>
-<tr>
-<td style="text-align: left;">Determinism Guarantee</td>
-<td style="text-align: left;">Generally low; susceptible to float
-variance affecting boundary tests/traversal</td>
-<td style="text-align: left;">High; guaranteed bit-level consistency
-achievable with stable scaling regimes (<span
-class="math inline">\(\epsilon_\Delta = 0\)</span>)</td>
-</tr>
-<tr>
-<td style="text-align: left;">Main Use Case</td>
-<td style="text-align: left;">Databases, GIS <span class="citation"
-data-cites="Samet1990">(Samet 1990)</span>, dynamic collision detection,
-view frustum culling</td>
-<td style="text-align: left;">Foundational spatial fabric for
-deterministic VR/simulations, compact coordinate encoding, networked
-state consistency, verifiable replays</td>
-</tr>
-</tbody>
-</table>
+| **Characteristic** | **Traditional Spatial Indexing**(e.g., Octree (Finkel and Bentley 1974), R-tree (Guttman 1984), k-d tree (Bentley 1975)) | ***A15* Crystallographic Partitioning** |
+|:---|:---|:---|
+| Main Objective | Efficient query/retrieval of existing, often arbitrary, data | Uniform, deterministic spatial discretization and efficient coordinate encoding |
+| Partition Strategy | Data-driven; adaptive boundaries; often hierarchical; structure follows data | Structure-driven; regular lattice; predetermined boundaries (via WPH/TSP local methods); data follows structure |
+| Symmetry Awareness | Generally low; structure adapts to data, often breaking ambient symmetries | High; leverages crystallographic symmetry ($`T_h`$, $`Pm\bar{3}n`$) of the imposed lattice |
+| Coordinate Handling | Typically preserves input precision (e.g., float coordinates) | Quantizes coordinates to discrete representations (*A15* identifiers, often integers) |
+| Memory Usage | Variable, depends on data density/distribution; includes tree/node overhead | Predictable based on defined scale/volume; highly efficient storage using integer identifiers |
+| Isotropy | Variable; depends heavily on data distribution and algorithm specifics | High local isotropy inherent in the *A15* structure, especially when using Weaire–Phelan Honeycomb partitioning |
+| Neighborhood Info | Requires explicit tree traversal or complex range/proximity queries | Implicit, regular neighbor relationships directly derivable from the lattice structure |
+| Temporal Stability | Partitioning structure can change significantly as data moves or updates | Fixed partitioning grid provides temporal coherence for coordinate mapping (though content moves within) |
+| Determinism Guarantee | Generally low; susceptible to float variance affecting boundary tests/traversal | High; guaranteed bit-level consistency achievable with stable scaling regimes ($`\epsilon_\Delta = 0`$) |
+| Main Use Case | Databases, GIS (Samet 1990), dynamic collision detection, view frustum culling | Foundational spatial fabric for deterministic VR/simulations, compact coordinate encoding, networked state consistency, verifiable replays |
+
+Comparison of Spatial Organization Approaches.
 
 </div>
 
@@ -692,17 +612,17 @@ point to the framework’s core mechanisms.
 
 <figure id="fig-system-diagram">
 
-<figcaption>Comprehensive system diagram of the A15 encoding framework.
-The process begins with continuous 3D coordinates, which are quantized
-to the nearest A15 lattice point using either the WPH or TSP
-partitioning method. This produces a compact integer A15 identifier
-suitable for efficient transmission or storage. For visualization or
-further processing, the A15 identifier can be deterministically
-reconstructed to floating-point coordinates. When operating in binary or
-stable scaling regimes (<span class="math inline">\(\epsilon_\Delta =
-0\)</span>), this reconstruction guarantees bit-identical results across
-all platforms, creating islands of determinism within the otherwise
-approximated float continuum.</figcaption>
+<figcaption>System diagram of the <em>A15</em> encoding framework. The
+process begins with continuous 3D coordinates, which are quantized to
+the nearest <em>A15</em> lattice point using either the WPH or TSP
+partitioning method. This produces a compact integer <em>A15</em>
+identifier suitable for efficient transmission or storage. It can be
+deterministically reconstructed to floating-point coordinates as needed.
+When operating in binary or stable scaling regimes (<span
+class="math inline">\(\epsilon_\Delta = 0\)</span>), this reconstruction
+guarantees bit-identical results across all platforms, creating islands
+of determinism within the otherwise approximated float
+continuum.</figcaption>
 </figure>
 
 The pipeline consists of four main stages:
@@ -806,7 +726,7 @@ Together, these visualizations provide a comprehensive overview of the
 A15 encoding framework, illustrating its pipeline structure, stability
 characteristics, and hierarchical representation capabilities. They
 serve as a visual complement to the detailed technical descriptions
-throughout the manuscript, enhancing accessibility without sacrificing
+throughout the document, enhancing accessibility without sacrificing
 precision.
 
 ## Core Principle: Internal Integer Representation
@@ -918,7 +838,7 @@ compared for stability analysis.
 Before the lattice generation stage fully populates the internal integer
 coordinates, an optional power-of-two scaling factor, `rescale`, can be
 applied. This factor is specified via the `-rescale` command-line flag
-or implicitly through ‘+/-‘ suffixes appended to shape names in the
+or implicitly through ‘+/-’ suffixes appended to shape names in the
 input (e.g., `pyritohedra++` implies a rescale factor of $`2^2=4`$ in
 `A15.py`). This `rescale` factor multiplies the effective size
 represented by the internal integer coordinates relative to the 96-unit
@@ -1094,7 +1014,7 @@ This regime maintains perfect representability and determinism while
 providing flexibility in choosing the overall physical scale. The
 smallest resolvable difference (Unit of Least Precision,
 <a href="#subsubsec-notes-ulp" data-reference-type="ref+Label"
-data-reference="subsubsec-notes-ulp">6.4.5</a>) corresponds to $`m`$
+data-reference="subsubsec-notes-ulp">7.4.5</a>) corresponds to $`m`$
 units at the $`\epsilon_N`$ scale, effectively making the ULP equal to
 $`\epsilon_\delta`$. The validation histogram
 (<a href="#fig-hist" data-reference-type="ref+Label"
@@ -1320,50 +1240,6 @@ representation errors relative to its own discrete grid. This provides a
 pathway to achieving verifiable determinism in spatial computations, a
 critical enabler for next-generation networked virtual environments and
 related spatial computing tasks.
-
-### Privacy and Security of Tracking Data (PII)
-
-The application of this efficient encoding framework to fine-grained
-spatial tracking data, especially full-body kinematics derived from
-VR/AR systems, carries significant privacy implications that **must** be
-addressed with utmost seriousness. Such detailed movement data
-constitutes **Personally Identifiable Information (PII)** and may
-qualify as sensitive biometric data under various regulations (e.g.,
-GDPR (European Parliament and Council of the European Union 2016), CCPA
-(California State Legislature 2018)). Handling this data demands
-rigorous privacy safeguards and unwavering ethical considerations as a
-**non-negotiable** aspect of implementation. Developers and deployers
-**must** integrate robust security measures as a foundational
-requirement. This includes, at a minimum:
-
-- Employing strong **end-to-end encryption (E2EE)** for all
-  *A15*-encoded coordinate streams and associated tracking data during
-  network transmission and persistent storage.
-
-- Strict adherence to **data minimization principles** (collecting only
-  the data essential for the application’s functionality).
-
-- Implementing transparent **user consent mechanisms** before any
-  tracking begins.
-
-- Establishing clearly defined **data retention and deletion policies**.
-
-- Utilizing effective **anonymization or aggregation strategies**
-  whenever full individual fidelity is not strictly required (e.g., for
-  analytics or heatmaps).
-
-- Ensuring full compliance with all relevant legal and ethical
-  regulations.
-
-This data represents individuals and their behavior; it **must** be
-treated with the highest degree of care, respect, security, and
-transparency. Failure to do so carries significant legal, ethical, and
-reputational risks.
-
-It should be noted that while the A15 encoding framework reduces the raw
-size of spatial data, potentially making it more efficient to encrypt
-and secure, this efficiency gain does not diminish the fundamental
-privacy requirements surrounding such sensitive information.
 
 ## Quantifiable Benefits
 
@@ -1698,6 +1574,50 @@ right-handed systems standard in physics and mathematics). Without such
 a shared convention, mirrored or incorrectly oriented geometry could
 easily result from exchanging *A15*-encoded coordinates.
 
+# Privacy and Security of Tracking Data (PII)
+
+The application of this efficient encoding framework to fine-grained
+spatial tracking data, especially full-body kinematics derived from
+VR/AR systems, carries significant privacy implications that **must** be
+addressed with utmost seriousness. Such detailed movement data
+constitutes **Personally Identifiable Information (PII)** and may
+qualify as sensitive biometric data under various regulations (e.g.,
+GDPR (European Parliament and Council of the European Union 2016), CCPA
+(California State Legislature 2018)). Handling this data demands
+rigorous privacy safeguards and unwavering ethical considerations as a
+**non-negotiable** aspect of implementation. Developers and deployers
+**must** integrate robust security measures as a foundational
+requirement. This includes, at a minimum:
+
+- Employing strong **end-to-end encryption (E2EE)** for all
+  *A15*-encoded coordinate streams and associated tracking data during
+  network transmission and persistent storage.
+
+- Strict adherence to **data minimization principles** (collecting only
+  the data essential for the application’s functionality).
+
+- Implementing transparent **user consent mechanisms** before any
+  tracking begins.
+
+- Establishing clearly defined **data retention and deletion policies**.
+
+- Utilizing effective **anonymization or aggregation strategies**
+  whenever full individual fidelity is not strictly required (e.g., for
+  analytics or heatmaps).
+
+- Ensuring full compliance with all relevant legal and ethical
+  regulations.
+
+This data represents individuals and their behavior; it **must** be
+treated with the highest degree of care, respect, security, and
+transparency. Failure to do so carries significant legal, ethical, and
+reputational risks.
+
+It should be noted that while the A15 encoding framework reduces the raw
+size of spatial data, potentially making it more efficient to encrypt
+and secure, this efficiency gain does not diminish the fundamental
+privacy requirements surrounding such sensitive information.
+
 # Immediate Potential and Future Prospects
 
 The *A15*-based spatial partitioning and encoding framework, validated
@@ -1831,7 +1751,7 @@ baseline scale of $`\epsilon_\delta = 2^{-6}`$ (`-scale=1/64`) provides
 robust sub-millimeter precision while operating within a numerically
 stable regime, yielding a basic unit width ($`N_1`$) of 1.5 mm
 (<a href="#subsubsec-notes-figures" data-reference-type="ref+Label"
-data-reference="subsubsec-notes-figures">6.4.7</a>), suitable for many
+data-reference="subsubsec-notes-figures">7.4.7</a>), suitable for many
 human-scale interactions.
 
 ### Hierarchical Representation via Relative Addressing
@@ -1932,7 +1852,7 @@ for practical improvement. Research could explore:
   (Luebke et al. 2002)) using the framework’s inherent support for
   relative addressing
   (<a href="#subsubsec-apps-relative" data-reference-type="ref+Label"
-  data-reference="subsubsec-apps-relative">4.1.4</a>)
+  data-reference="subsubsec-apps-relative">5.1.4</a>)
 
 - Efficient encoding schemes for representing partially filled or
   complex boundary regions within a coarser A15 grid
@@ -2043,7 +1963,7 @@ architecture of spatial computing itself.
 # Glossary of Terms and Notation
 
 This glossary provides definitions for the specialized terminology and
-mathematical notation used throughout this manuscript.
+mathematical notation used throughout this document.
 
 ## Mathematical Notation
 
@@ -2233,14 +2153,14 @@ Enables efficient multi-scale representation while maintaining precision
 where needed.
 
 This glossary provides a reference for the specialized terms and
-mathematical notation used throughout the manuscript. For implementation
+mathematical notation used throughout the document. For implementation
 details and additional technical specifications, refer to the `A15.py`
 reference implementation
 (<a href="#subsec-implementation-a15py" data-reference-type="ref+Label"
 data-reference="subsec-implementation-a15py">2.6</a>) and the
 supplementary information
 (<a href="#sec-supplementary" data-reference-type="ref+Label"
-data-reference="sec-supplementary">6</a>).
+data-reference="sec-supplementary">7</a>).
 
 # Supplementary Information
 
@@ -2276,11 +2196,11 @@ networked VR, physics engines) are advised to implement accelerated
 versions using fixed-point or SIMD-based quantization pipelines
 alongside other integration strategies outlined in
 <a href="#subsubsec-apps-integration" data-reference-type="ref+Label"
-data-reference="subsubsec-apps-integration">4.1.2</a> and design
+data-reference="subsubsec-apps-integration">5.1.2</a> and design
 optimized implementations tailored to their application domains.
 
 The core Python script (`A15.py`), configuration files (`*.png.txt`)
-used for figure generation, the LaTeX source for this manuscript (or a
+used for figure generation, the LaTeX source for this document (or a
 version thereof), and extended documentation are publicly available
 within the Infima Labs `space` repository on GitHub (Infima Labs 2023):
 
@@ -2318,9 +2238,9 @@ baseline scale of $`\epsilon_\delta = 2^{-6}`$ (`-scale=1/64`) generally
 provides a practical balance for human-scale interactions, offering high
 precision (approximately 1.5 mm basic unit width $`N_1`$, see
 <a href="#subsubsec-apps-measurement" data-reference-type="ref+Label"
-data-reference="subsubsec-apps-measurement">4.1.3</a> and
+data-reference="subsubsec-apps-measurement">5.1.3</a> and
 <a href="#subsubsec-notes-figures" data-reference-type="ref+Label"
-data-reference="subsubsec-notes-figures">6.4.7</a>) while ensuring exact
+data-reference="subsubsec-notes-figures">7.4.7</a>) while ensuring exact
 floating-point representability relative to the internal grid for
 typical configurations. Users are strongly encouraged to employ the
 `-bars` analysis feature
@@ -2341,12 +2261,12 @@ clients or system components.
 
 ### Example Replication Commands
 
-The primary figures presented in this manuscript can be regenerated
-using the `A15.py` script and the corresponding configuration files
-(typically named `fig-`*`name`*`.png.txt`) provided in the supplementary
-materials repository
+The primary figures presented in this document can be regenerated using
+the `A15.py` script and the corresponding configuration files (typically
+named `fig-`*`name`*`.png.txt`) provided in the supplementary materials
+repository
 (<a href="#subsec-replication" data-reference-type="ref+Label"
-data-reference="subsec-replication">6.1</a>). Ensure the script and
+data-reference="subsec-replication">7.1</a>). Ensure the script and
 configuration files are accessible in the execution environment. Use the
 `-i` (or `-pop`) option for interactive viewing (requires a graphical
 display environment):
@@ -2414,7 +2334,7 @@ applications:
 
 While comprehensive benchmarking remains an area for future work
 (<a href="#subsubsec-outlook-performance" data-reference-type="ref+Label"
-data-reference="subsubsec-outlook-performance">4.2.1</a>), preliminary
+data-reference="subsubsec-outlook-performance">5.2.1</a>), preliminary
 experience suggests several approaches to optimize A15 implementation
 performance:
 
@@ -2528,7 +2448,7 @@ are not required. The exact saving achieved depends on the application’s
 required spatial extent, desired intra-cell resolution (potentially
 managed via relative addressing,
 <a href="#subsubsec-apps-relative" data-reference-type="ref+Label"
-data-reference="subsubsec-apps-relative">4.1.4</a>), and the chosen bit
+data-reference="subsubsec-apps-relative">5.1.4</a>), and the chosen bit
 depth for the *A15* identifier.
 
 ### Geometric Data Availability
@@ -2539,7 +2459,7 @@ fundamental polyhedra (pyritohedra with various $`h`$ parameters,
 tetradecahedra) generated by `A15.py` functions are available within the
 code repository
 (<a href="#subsec-replication" data-reference-type="ref+Label"
-data-reference="subsec-replication">6.1</a>), allowing independent
+data-reference="subsec-replication">7.1</a>), allowing independent
 verification of geometric constructions.
 
 ### Pyritohedra Parameter for Weaire–Phelan Honeycomb Geometry
@@ -2576,7 +2496,7 @@ spatial range achievable within a fixed-bit integer representation
 chosen for the *A15* identifier, potentially leveraging relative
 addressing
 (<a href="#subsubsec-apps-relative" data-reference-type="ref+Label"
-data-reference="subsubsec-apps-relative">4.1.4</a>) to manage this
+data-reference="subsubsec-apps-relative">5.1.4</a>) to manage this
 trade-off across different parts of a scene.
 
 ### Framework Adaptability
@@ -2615,7 +2535,7 @@ thus 1.0 mm). In contrast, the recommended stable scale
 $`\epsilon_\delta = 1/64`$ yields $`N_1 = 96 \times (1/64) = 1.5`$ (or
 1.5 mm,
 <a href="#subsubsec-apps-measurement" data-reference-type="ref+Label"
-data-reference="subsubsec-apps-measurement">4.1.3</a>). The displayed
+data-reference="subsubsec-apps-measurement">5.1.3</a>). The displayed
 $`\epsilon_\Delta`$ value explicitly confirms the calculated stability
 difference for the configuration (e.g.,
 $`\epsilon_\Delta \approx \num{0.0104} \neq 0`$ for the unstable case in
@@ -2631,10 +2551,10 @@ particularly Wikipedia’s extensive collection of mathematical and
 physical concepts. The accessibility of such resources proved
 invaluable.
 
-Unabashed credit is given to the transformative role of artificial
-intelligence assistants in accelerating the development and articulation
-of these ideas. Their capabilities enabled rapid iteration and
-refinement of concepts and language.
+Unabashed acknowledgement is given to the transformative role of
+artificial intelligence assistants in accelerating the development and
+articulation of these ideas. Their capabilities enabled rapid iteration
+and refinement of concepts and language.
 
 Special appreciation is extended to the Infima Labs team for their
 confidence and trust throughout this research. Their shared vision for
