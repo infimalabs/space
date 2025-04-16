@@ -144,11 +144,10 @@ At its core, the framework leverages the unique properties of the \AAAB{} phase 
 
 For networked virtual environments—particularly competitive VR, collaborative simulations, and distributed computing—this translates directly to several practical benefits:
 \begin{itemize}
-    \item \textbf{Network Efficiency:} Reduces coordinate transmission size by approximately 50\% compared to raw float vectors, enabling higher update rates within limited bandwidth.
+    \item \textbf{Network Efficiency:} Shrinks coordinate transmission size by 50\% compared to raw float vectors, enabling higher update rates within limited bandwidth.
     \item \textbf{Deterministic Guarantee:} Enables verifiable event sequences, accurate replays, and fair competition across heterogeneous client devices.
-    \item \textbf{Geometric Fidelity:} Preserves spatial relationships with minimal directional bias owing to the structure's high coordination (13.5) and near-icosahedral local ordering.
+    \item \textbf{Geometric Fidelity:} Preserves spatial relationships with minimal directional bias owing to \AAAB{}'s high coordination (13.5) and near-icosahedral local ordering.
 \end{itemize}
-
 The framework includes robust tools for verifying numerical stability through histogram analysis, enabling developers to confidently implement deterministic spatial systems while maintaining flexibility in coordinate scale selection appropriate to their application domain.
 
 \begin{figure}[!ht]
@@ -290,7 +289,7 @@ The practical implications of this distinction are significant for implementatio
     \item The structural rigidity of the geometric WPH ensures consistent partitioning regardless of cell contents or external influences, in contrast to physical foam structures that might deform based on pressure differentials.
 \end{itemize}
 
-In contrast, the minimal-surface WPH would require more complex surface representations, potentially introducing additional numerical challenges contradictory to the framework's determinism goals. Therefore, all references to the Weaire-Phelan Honeycomb (WPH) within this manuscript specifically denote the geometric polyhedral form, not the minimal-surface variant from foam physics.
+In contrast, the minimal-surface WPH would require more complex surface representations, potentially introducing additional numerical challenges contradictory to the framework's determinism goals. Therefore, all references to the Weaire-Phelan Honeycomb (WPH) within this document specifically denote the geometric polyhedral form, not the minimal-surface variant from foam physics.
 
 This clarification is particularly important because the minimal-surface WPH has gained broader recognition through its architectural application in structures like the Beijing National Aquatics Center (the "Water Cube") for the 2008 Olympics, potentially creating confusion about which variant is employed in this spatial encoding framework.
 
@@ -559,7 +558,7 @@ To provide a clear conceptual overview of the A15 encoding framework, Figure~\re
     \node at (8.75,-3.5) {Server/Recipient Environment};
 
     \end{tikzpicture}
-    \caption{Comprehensive system diagram of the A15 encoding framework. The process begins with continuous 3D coordinates, which are quantized to the nearest A15 lattice point using either the WPH or TSP partitioning method. This produces a compact integer A15 identifier suitable for efficient transmission or storage. For visualization or further processing, the A15 identifier can be deterministically reconstructed to floating-point coordinates. When operating in binary or stable scaling regimes ($\epsilon_\Delta = 0$), this reconstruction guarantees bit-identical results across all platforms, creating islands of determinism within the otherwise approximated float continuum.}
+    \caption{System diagram of the \AAAB{} encoding framework. The process begins with continuous 3D coordinates, which are quantized to the nearest \AAAB{} lattice point using either the WPH or TSP partitioning method. This produces a compact integer \AAAB{} identifier suitable for efficient transmission or storage. It can be deterministically reconstructed to floating-point coordinates as needed. When operating in binary or stable scaling regimes ($\epsilon_\Delta = 0$), this reconstruction guarantees bit-identical results across all platforms, creating islands of determinism within the otherwise approximated float continuum.}
     \label{fig-system-diagram}
 \end{figure}
 
@@ -703,7 +702,7 @@ The pipeline consists of four main stages:
 
     % Middle level
     \node[hierarchy, fill=green!10] (region) at (-4,1.5) {
-        \textbf{Regional}\\
+        \textbf{Region}\\
         $\epsilon_\delta = 2^{-6}$\\
         $N_1 = 1.5$ mm\\
         (Player movements)
@@ -799,7 +798,7 @@ Figure~\ref{fig-stability-analysis} illustrates the three stability regimes defi
 
 The hierarchical representation capability shown in Figure~\ref{fig-hierarchical-representation} further extends the framework's utility, enabling efficient encoding across different spatial scales with appropriate precision for each level. This multi-scale approach allows applications to balance compact global positioning with high-precision local details, all within the same coherent A15 framework.
 
-Together, these visualizations provide a comprehensive overview of the A15 encoding framework, illustrating its pipeline structure, stability characteristics, and hierarchical representation capabilities. They serve as a visual complement to the detailed technical descriptions throughout the manuscript, enhancing accessibility without sacrificing precision.
+Together, these visualizations provide a comprehensive overview of the A15 encoding framework, illustrating its pipeline structure, stability characteristics, and hierarchical representation capabilities. They serve as a visual complement to the detailed technical descriptions throughout the document, enhancing accessibility without sacrificing precision.
 
 \subsection{Core Principle: Internal Integer Representation}\label{subsec-scaling-framework}
 
@@ -825,7 +824,7 @@ The \AAAB{} structure's complexity arises from its multi-atom basis; it contains
 This derived \textbf{Effective Lattice Unit Factor of 96} represents the fundamental period or effective unit dimension of the comprehensive internal integer grid required to represent the \emph{complete} \AAAB{} structure (including its basis) without loss of precision due to these fractional offsets. This factor of 96 establishes the crucial \textbf{baseline dimension} relative to which the structure's inherent numerical precision requirements ($\epsilon_N$, see \Cref{subsubsec-stability-epsilon-n}) are determined and against which the final output scale ($\epsilon_\delta$) is compared for stability analysis.
 
 \subsubsection{Optional Binary Rescaling (\texttt{rescale})}\label{subsubsec-scaling-rescale}
-Before the lattice generation stage fully populates the internal integer coordinates, an optional power-of-two scaling factor, \texttt{rescale}, can be applied. This factor is specified via the \texttt{-rescale} command-line flag or implicitly through `+/-` suffixes appended to shape names in the input (e.g., \texttt{pyritohedra++} implies a rescale factor of $2^2=4$ in \texttt{A15.py}). This \texttt{rescale} factor multiplies the effective size represented by the internal integer coordinates relative to the 96-unit baseline established above. It allows adjustments to the overall size or relative proportions of different generated components \emph{before} the final output scaling step, operating purely in powers of two within the integer domain. Importantly, the choice of \texttt{rescale} influences the resulting inherent base scale $\epsilon_N$ of the internal geometry.
+Before the lattice generation stage fully populates the internal integer coordinates, an optional power-of-two scaling factor, \texttt{rescale}, can be applied. This factor is specified via the \texttt{-rescale} command-line flag or implicitly through `+/-' suffixes appended to shape names in the input (e.g., \texttt{pyritohedra++} implies a rescale factor of $2^2=4$ in \texttt{A15.py}). This \texttt{rescale} factor multiplies the effective size represented by the internal integer coordinates relative to the 96-unit baseline established above. It allows adjustments to the overall size or relative proportions of different generated components \emph{before} the final output scaling step, operating purely in powers of two within the integer domain. Importantly, the choice of \texttt{rescale} influences the resulting inherent base scale $\epsilon_N$ of the internal geometry.
 
 \subsubsection{Resultant Internal Integer Coordinates}\label{subsubsec-scaling-internal}
 The cumulative effect of the initial \texttt{prescale} (\Cref{subsubsec-scaling-prescale}), the lattice placement logic (\Cref{subsubsec-scaling-lattice}, establishing the 96-unit effective baseline \Cref{subsubsec-scaling-baseline}), and any applied \texttt{rescale} factor (\Cref{subsubsec-scaling-rescale}) collectively defines the complete set of vertex coordinates for the entire generated structure. These coordinates exist within a consistent, potentially large-valued, \emph{internal integer} system referenced against the 96-unit effective lattice baseline. By prioritizing integer arithmetic throughout these construction stages, \texttt{A15.py} preserves the precise geometric relationships inherent in the \AAAB{} structure, deferring any floating-point approximation until the very last output step. This internal integer representation forms the bedrock for the numerical stability analysis detailed next.
@@ -1206,7 +1205,7 @@ Pursuing these directions promises to expand the capabilities of structurally in
 \section{Glossary of Terms and Notation}
 \label{sec-glossary}
 
-This glossary provides definitions for the specialized terminology and mathematical notation used throughout this manuscript.
+This glossary provides definitions for the specialized terminology and mathematical notation used throughout this document.
 
 \subsection{Mathematical Notation}
 \label{subsec-glossary-notation}
@@ -1290,7 +1289,7 @@ This glossary provides definitions for the specialized terminology and mathemati
     \item[Relative Addressing] Technique using hierarchical A15 grids at different scales, with fine-grained coordinates defined relative to a parent object's position. Enables efficient multi-scale representation while maintaining precision where needed.
 \end{description}
 
-This glossary provides a reference for the specialized terms and mathematical notation used throughout the manuscript. For implementation details and additional technical specifications, refer to the \texttt{A15.py} reference implementation (\Cref{subsec-implementation-a15py}) and the supplementary information (\Cref{sec-supplementary}).
+This glossary provides a reference for the specialized terms and mathematical notation used throughout the document. For implementation details and additional technical specifications, refer to the \texttt{A15.py} reference implementation (\Cref{subsec-implementation-a15py}) and the supplementary information (\Cref{sec-supplementary}).
 
 \section{Supplementary Information}\label{sec-supplementary}
 
@@ -1302,7 +1301,7 @@ The figures and structural data presented in this research were generated using 
 
 \textbf{Note on performance:} \texttt{A15.py} is a clarity-first reference implementation intended for correctness and pedagogical value. It does not reflect the performance achievable through optimized implementations. Developers targeting real-time applications (e.g., networked VR, physics engines) are advised to implement accelerated versions using fixed-point or SIMD-based quantization pipelines alongside other integration strategies outlined in \Cref{subsubsec-apps-integration} and design optimized implementations tailored to their application domains.
 
-The core Python script (\texttt{A15.py}), configuration files (\texttt{*.png.txt}) used for figure generation, the LaTeX source for this manuscript (or a version thereof), and extended documentation are publicly available within the \IL{} \texttt{space} repository on GitHub \cite{InfimaSpace}:
+The core Python script (\texttt{A15.py}), configuration files (\texttt{*.png.txt}) used for figure generation, the LaTeX source for this document (or a version thereof), and extended documentation are publicly available within the \IL{} \texttt{space} repository on GitHub \cite{InfimaSpace}:
 \begin{center}
     \url{https://github.com/infimalabs/space/}
 \end{center}
@@ -1320,7 +1319,7 @@ Achieving deterministic results, a core goal of this framework, relies crucially
 Furthermore, while \texttt{A15.py} deterministically implements alternating handedness for local coordination environments based on lattice position (\Cref{subsubsec-limits-handedness}), networked applications or systems exchanging \AAAB{}-encoded data \textbf{must} establish and consistently apply a shared global orientation convention to ensure interoperability and prevent geometric mirroring between different clients or system components.
 
 \subsubsection{Example Replication Commands}\label{subsubsec-repl-commands}
-The primary figures presented in this manuscript can be regenerated using the \texttt{A15.py} script and the corresponding configuration files (typically named \texttt{fig-\textit{name}.png.txt}) provided in the supplementary materials repository (\Cref{subsec-replication}). Ensure the script and configuration files are accessible in the execution environment. Use the \texttt{-i} (or \texttt{-pop}) option for interactive viewing (requires a graphical display environment):
+The primary figures presented in this document can be regenerated using the \texttt{A15.py} script and the corresponding configuration files (typically named \texttt{fig-\textit{name}.png.txt}) provided in the supplementary materials repository (\Cref{subsec-replication}). Ensure the script and configuration files are accessible in the execution environment. Use the \texttt{-i} (or \texttt{-pop}) option for interactive viewing (requires a graphical display environment):
 
 \begin{description} \itemsep0pt
     \item[\Cref{fig-intro} (Intro):] Nested \AAAB{} (Multiple Scales) \\
@@ -1428,7 +1427,7 @@ Annotations visible in figures generated by \texttt{A15.py} with the \texttt{-ba
 \begin{acknowledgements}
     This work benefited significantly from the democratization of knowledge, particularly Wikipedia's extensive collection of mathematical and physical concepts. The accessibility of such resources proved invaluable.
 
-    Unabashed credit is given to the transformative role of artificial intelligence assistants in accelerating the development and articulation of these ideas. Their capabilities enabled rapid iteration and refinement of concepts and language.
+    Unabashed acknowledgement is given to the transformative role of artificial intelligence assistants in accelerating the development and articulation of these ideas. Their capabilities enabled rapid iteration and refinement of concepts and language.
 
     Special appreciation is extended to the \IL{} team for their confidence and trust throughout this research. Their shared vision for advancing spatial computing was---and continues to be---a wellspring of inspiration.
 
