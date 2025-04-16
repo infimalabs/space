@@ -503,59 +503,53 @@ To provide a clear conceptual overview of the A15 encoding framework, Figure~\re
 \begin{figure}[!ht]
     \centering
     \begin{tikzpicture}[
-        node distance=1.5cm,
-        box/.style={rectangle, draw, text width=2.5cm, rounded corners, minimum height=1cm, text centered},
+        font=\scriptsize,
+        node distance=0.5cm,
+        box/.style={rectangle, draw, text width=2cm, rounded corners, minimum height=1cm, text centered},
         arrow/.style={->, >=stealth, thick},
-        process/.style={rectangle, draw, fill=blue!10, text width=2.5cm, rounded corners, minimum height=1cm, text centered},
-        data/.style={rectangle, draw, fill=green!10, text width=2.5cm, rounded corners, minimum height=1cm, text centered},
-        method/.style={rectangle, draw, fill=red!10, text width=2.5cm, rounded corners, minimum height=1cm, text centered},
-        stability/.style={rectangle, draw, fill=yellow!10, text width=2.5cm, rounded corners, minimum height=1cm, text centered}
+        process/.style={rectangle, draw, fill=blue!10, text width=2cm, rounded corners, minimum height=1cm, text centered},
+        data/.style={rectangle, draw, fill=green!10, text width=2cm, rounded corners, minimum height=1cm, text centered},
+        method/.style={rectangle, draw, fill=red!10, text width=2cm, rounded corners, minimum height=1cm, text centered},
+        stability/.style={rectangle, draw, fill=yellow!10, text width=2cm, rounded corners, minimum height=1cm, text centered}
     ]
 
     % Main pipeline
-    \node[data] (input) {Continuous 3D Coordinates (Floats)};
-    \node[process, right=of input] (quantize) {Quantization Process};
-    \node[data, right=of quantize] (identifier) {Compact A15 Identifier (Integer)};
-    \node[process, right=of identifier] (reconstruct) {Deterministic Reconstruction};
-    \node[data, right=of reconstruct] (output) {Consistent 3D Coordinates (Floats)};
-
-    % Connections
-    \draw[arrow] (input) -- (quantize);
-    \draw[arrow] (quantize) -- (identifier);
-    \draw[arrow] (identifier) -- (reconstruct);
-    \draw[arrow] (reconstruct) -- (output);
+    \node[data, anchor=north, rotate=90, yshift=0.5cm, text width=6cm, font=\small] (input) {Continuous 3D Floats};
+    \node[process, yshift=-3cm, xshift=0.5cm, right=of input] (quantize) {Quantization Process}
+        edge [<-, thick] (input);
+    \node[data, right=of quantize, yshift=0.75cm] (identifier) {Compact A15 Integers}
+        edge [<-, thick] (quantize);
+    \node[process, right=of identifier, yshift=-0.75cm] (reconstruct) {Deterministic Reconstruction}
+        edge [<-, thick] (identifier);
+    \node[data, anchor=south, rotate=-90, yshift=0.5cm, xshift=-3cm, text width=6cm, font=\small, right=of reconstruct] (output) {Consistent 3D Floats}
+        edge [<-, thick] (reconstruct);
 
     % Partitioning methods
-    \node[method, above=of quantize] (wph) {WPH Partitioning\\(High Isotropy)};
-    \node[method, below=of quantize] (tsp) {TSP Partitioning\\(Computational Efficiency)};
-    \draw[arrow] (wph) -- (quantize);
-    \draw[arrow] (tsp) -- (quantize);
+    \node[method, above=of quantize] (wph) {WPH Partitioning\\(High Isotropy)}
+        edge [->] (quantize);
+    \node[method, below=of quantize] (tsp) {TSP Partitioning\\(Computational Efficiency)}
+        edge [->] (quantize);
 
     % Stability regimes
-    \node[stability, above=of reconstruct] (binary) {Binary Regime\\$\epsilon_\Delta = 0, m = 1$};
-    \node[stability, above=of binary] (stable) {Stable Regime\\$\epsilon_\Delta = 0, m > 1$};
-    \node[stability, below=of reconstruct] (unstable) {Unstable Regime\\$\epsilon_\Delta \neq 0$};
-    \draw[arrow] (binary) -- (reconstruct);
-    \draw[arrow] (stable) -- (binary);
-    \draw[arrow] (unstable) -- (reconstruct);
+    \node[stability, above=of reconstruct] (binary) {Binary Regime\\$\epsilon_\Delta = 0, m = 1$}
+        edge [->] (reconstruct);
+    \node[stability, above=of binary] (stable) {Stable Regime\\$\epsilon_\Delta = 0, m > 1$}
+        edge [->] (binary);
+    \node[stability, below=of reconstruct] (unstable) {Unstable Regime\\$\epsilon_\Delta \neq 0$}
+        edge [->] (reconstruct);
 
     % Internal Integer Representation
-    \node[data, below=2cm of identifier] (internal) {Internal Integer Representation\\(96-unit baseline)};
-    \draw[arrow, dashed] (internal) -- (quantize);
-    \draw[arrow, dashed] (internal) -- (identifier);
-    \draw[arrow, dashed] (internal) -- (reconstruct);
-
-    % Network/Storage
-    \draw[arrow, dotted, bend left] (identifier) to node[above] {Network/Storage} (reconstruct);
+    \node[data, below=0.5cm of identifier] (internal) {Internal Integer Representation\\(96-unit baseline)}
+        edge [->, dashed] (quantize)
+        edge [->, dashed] (identifier)
+        edge [->, dashed] (reconstruct);
 
     % Environment boundaries
-    \draw[rounded corners, dashed] (-1,-4) rectangle (3.5,4) {};
-    \draw[rounded corners, dashed] (4,-4) rectangle (6,4) {};
-    \draw[rounded corners, dashed] (6.5,-4) rectangle (11,4) {};
+    \draw[rounded corners, dashed] (3.5,-4) rectangle (6.25,4) {};
 
-    \node at (1.25,-3.5) {Client Environment};
-    \node at (5,-3.5) {Network/Storage};
-    \node at (8.75,-3.5) {Server/Recipient Environment};
+    \node[font=\normalsize] at (2.0,-3.5) {Client};
+    \node[font=\normalsize] at (5,-3.5) {Network/...};
+    \node[font=\normalsize] at (7.75,-3.5) {Server};
 
     \end{tikzpicture}
     \caption{System diagram of the \AAAB{} encoding framework. The process begins with continuous 3D coordinates, which are quantized to the nearest \AAAB{} lattice point using either the WPH or TSP partitioning method. This produces a compact integer \AAAB{} identifier suitable for efficient transmission or storage. It can be deterministically reconstructed to floating-point coordinates as needed. When operating in binary or stable scaling regimes ($\epsilon_\Delta = 0$), this reconstruction guarantees bit-identical results across all platforms, creating islands of determinism within the otherwise approximated float continuum.}
