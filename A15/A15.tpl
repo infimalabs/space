@@ -8,7 +8,7 @@ author: |-2
 author-meta: |-2
   $author-meta$
 body: |-2
-  $body$
+  $body/left 2048$
 css: |-2
   $css$
 date: |-2
