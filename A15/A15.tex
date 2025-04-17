@@ -525,7 +525,8 @@ To provide a clear conceptual overview of the A15 encoding framework, Figure~\re
         edge [->] (reconstruct);
     \node[stability, above=of binary] (stable) {Stable Regime\\$\epsilon_\Delta = 0, m > 1$}
         edge [->] (binary);
-    \node[stability, below=of reconstruct] (unstable) {Unstable Regime\\$\epsilon_\Delta \neq 0$};
+    \node[stability, below=of reconstruct] (unstable) {Unstable Regime\\$\epsilon_\Delta \neq 0$}
+        edge [->, in=110, out=70, looseness=3] (unstable);
 
     % Internal Integer Representation
     \node[data, below=0.5cm of identifier] (internal) {Internal Integer Representation\\(96-unit baseline)}
@@ -560,101 +561,73 @@ The pipeline consists of four main stages:
 \begin{figure}[!ht]
     \centering
     \begin{tikzpicture}[
-        scale=0.9,
-        transform shape,
-        node distance=1.2cm,
-        box/.style={rectangle, draw, text width=3.8cm, rounded corners, minimum height=1.2cm, text centered},
+        font=\small,
+        node distance=0.75cm,
+        box/.style={rectangle, draw, text width=7cm, rounded corners, minimum height=1cm, text centered},
         arrow/.style={->, >=stealth, thick},
-        regime/.style={rectangle, draw, text width=3.8cm, rounded corners, minimum height=2.5cm, align=center, font=\small},
-        hist/.style={rectangle, draw, minimum width=3.8cm, minimum height=1.5cm}
+        regime/.style={rectangle, draw, text width=3.5cm, rounded corners, minimum height=2.5cm, align=center},
+        hist/.style={rectangle, draw, minimum width=3.5cm, minimum height=1.5cm}
     ]
 
     % Title
-    \node[font=\large\bfseries] at (0,6) {A15 Stability Regimes};
+    \node[font=\large\bfseries] (title) {A15 Stability Regimes};
 
     % Epsilon delta node
-    \node[box, fill=blue!10] (epsilon) at (0,4.5) {Output Scale Factor $\epsilon_\delta$};
+    \node[box, fill=blue!10, below=of title] (epsilon) {Output Scale Factor $\epsilon_\delta$};
 
     % Regimes
-    \node[regime, fill=green!10] (binary) at (-5,1) {
-        \textbf{Binary Regime}\\
+    \node[regime, fill=green!10, below=of epsilon] (binary) {
+        \textbf{Binary}\\
         $\epsilon_\delta = \epsilon_N$\\
         $\epsilon_\Delta = 0, m = 1$\\[0.3cm]
         \textit{Perfect 1:1 mapping}\\
-        \textit{Most compact representation}\\
-        \textit{Strong determinism guarantee}
-    };
+        \textit{Most compact scale}\\
+        \textit{Strong determinism}
+    } edge[<-, thick] (epsilon);
 
-    \node[regime, fill=yellow!10] (stable) at (0,1) {
-        \textbf{Stable Regime}\\
+    \node[regime, fill=yellow!10, left=of binary] (stable) {
+        \textbf{Stable}\\
         $\epsilon_\delta = m \cdot \epsilon_N, m > 1$\\
         $\epsilon_\Delta = 0$\\[0.3cm]
-        \textit{Perfect integer mapping}\\
-        \textit{Flexible scale selection}\\
-        \textit{Strong determinism guarantee}
-    };
+        \textit{Simple integer mapping}\\
+        \textit{Linear multiple scale}\\
+        \textit{Strong determinism}
+    } edge[<-, thick, bend left=35] (epsilon);
 
-    \node[regime, fill=red!10] (unstable) at (5,1) {
-        \textbf{Unstable Regime}\\
+    \node[regime, fill=red!10, right=of binary] (unstable) {
+        \textbf{Unstable}\\
         $\epsilon_\delta \neq m \cdot \epsilon_N$\\
         $\epsilon_\Delta \neq 0$\\[0.3cm]
         \textit{Approximation errors}\\
         \textit{Floating-point rounding}\\
         \textit{Incomplete determinism}
-    };
+    } edge[<-, thick, bend right=35] (epsilon);
 
     % Histogram examples
-    \node[hist] (histb) at (-5,-2) {};
-    \node[hist] (hists) at (0,-2) {};
-    \node[hist] (histu) at (5,-2) {};
+    \node[hist, below=of binary] (histb) {}
+        edge[<-, thick, dashed] (binary);
+    \node[hist, below=of stable] (hists) {}
+        edge[<-, thick, dashed] (stable);
+    \node[hist, below=of unstable] (histu) {}
+        edge[<-, thick, dashed] (unstable);
 
-    % Binary histogram - multiple discrete peaks
-    \draw[thick] (-6.9,-2.75) -- (-3.1,-2.75);
-    \draw[fill=blue!50] (-6.5,-2.75) rectangle (-6.3,-1.5);
-    \draw[fill=blue!50] (-5.5,-2.75) rectangle (-5.3,-1.7);
-    \draw[fill=blue!50] (-4.5,-2.75) rectangle (-4.3,-1.9);
-    \draw[fill=blue!50] (-3.7,-2.75) rectangle (-3.5,-2.1);
-    \node[font=\tiny] at (-5,-2.9) {Exponent $n = \log_2 d$};
+    % Binary histogram - minimal discrete peaks
+    % TODO
+    \node[font=\tiny, below=of histb, yshift=0.75cm] {Exponent $n = \log_2 d$};
+    \node[font=\scriptsize, below=of histb, yshift=0.5cm] {Minimal Contiguous Discrete};
 
-    % Stable histogram - same pattern as binary plus more
-    \draw[thick] (-1.9,-2.75) -- (1.9,-2.75);
-    \draw[fill=blue!50] (-1.8,-2.75) rectangle (-1.6,-1.5);
-    \draw[fill=blue!50] (-1.4,-2.75) rectangle (-1.2,-1.5);
-    \draw[fill=blue!50] (-1.0,-2.75) rectangle (-0.8,-1.7);
-    \draw[fill=blue!50] (-0.6,-2.75) rectangle (-0.4,-1.7);
-    \draw[fill=blue!50] (-0.2,-2.75) rectangle (0.0,-1.9);
-    \draw[fill=blue!50] (0.2,-2.75) rectangle (0.4,-1.9);
-    \draw[fill=blue!50] (0.6,-2.75) rectangle (0.8,-2.1);
-    \draw[fill=blue!50] (1.0,-2.75) rectangle (1.2,-2.1);
-    \draw[fill=blue!50] (1.4,-2.75) rectangle (1.6,-1.5);
-    \node[font=\tiny] at (0,-2.9) {Exponent $n = \log_2 d$};
+    % Stable histogram - multiple discrete peaks
+    % TODO
+    \node[font=\tiny, below=of hists, yshift=0.75cm] {Exponent $n = \log_2 d$};
+    \node[font=\scriptsize, below=of hists, yshift=0.5cm] {Multiple Contiguous Discrete};
 
-    % Unstable histogram - gapped or sparse
-    \draw[thick] (3.1,-2.75) -- (6.9,-2.75);
-    \draw[fill=blue!50] (3.3,-2.75) rectangle (3.5,-1.5);
-    \draw[fill=blue!50] (3.9,-2.75) rectangle (4.1,-1.7);
-    \draw[fill=blue!50] (4.7,-2.75) rectangle (4.9,-2.0);
-    \draw[fill=blue!50] (5.2,-2.75) rectangle (5.4,-1.8);
-    \draw[fill=blue!50] (6.0,-2.75) rectangle (6.2,-1.6);
-    \draw[fill=blue!50] (6.5,-2.75) rectangle (6.7,-1.9);
-    \node[font=\tiny] at (5,-2.9) {Exponent $n = \log_2 d$};
-
-    % Labels
-    \node[font=\small] at (-5,-3.5) {Multiple Discrete Peaks};
-    \node[font=\small] at (0,-3.5) {Same Pattern Plus Additional Peaks};
-    \node[font=\small] at (5,-3.5) {Gapped or Sparse Distribution};
-
-    % Connections
-    \draw[arrow] (epsilon) -- (-5,3.5) -- (binary);
-    \draw[arrow] (epsilon) -- (0,3.5) -- (stable);
-    \draw[arrow] (epsilon) -- (5,3.5) -- (unstable);
-
-    \draw[arrow, dashed] (binary) -- (histb);
-    \draw[arrow, dashed] (stable) -- (hists);
-    \draw[arrow, dashed] (unstable) -- (histu);
+    % Unstable histogram - gapped or sparse distribution
+    % TODO
+    \node[font=\tiny, below=of histu, yshift=0.75cm] {Exponent $n = \log_2 d$};
+    \node[font=\scriptsize, below=of histu, yshift=0.5cm] {Gapped or Sparse Distribution};
 
     % Formula
-    \node[box, fill=gray!10] at (0,-5) {$\epsilon_\Delta = 0 \iff \epsilon_\delta = m \cdot \epsilon_N$ for $m \in \mathbb{Z}^+$};
+    \node[box, fill=gray!10, below=of histb, yshift=-0.5cm] {$\epsilon_\Delta = 0 \iff \epsilon_\delta = m \cdot \epsilon_N$ for $m \in \mathbb{Z}^+$};
 
     \end{tikzpicture}
     \caption{Analysis of stability regimes based on the relationship between output scale factor $\epsilon_\delta$ and inherent base scale $\epsilon_N$. The binary regime ($\epsilon_\delta = \epsilon_N$) produces a specific pattern of discrete histogram peaks corresponding to the intrinsic geometric characteristics of the A15 structure. The stable regime ($\epsilon_\delta = m \cdot \epsilon_N, m > 1$) shows the same pattern plus additional peaks from the integer multiple scaling. The unstable regime ($\epsilon_\delta \neq m \cdot \epsilon_N$) exhibits a gapped or sparse distribution, indicating approximation errors. Operating in either binary or stable regimes ($\epsilon_\Delta = 0$) is essential for guaranteeing bit-identical results across platforms.}
