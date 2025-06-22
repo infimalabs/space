@@ -1,4 +1,4 @@
-<details markdown=block>
+<details markdown=block open>
 
 <summary markdown=span>
 
